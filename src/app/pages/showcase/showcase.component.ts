@@ -1,20 +1,19 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NgxStringUtils } from 'ngx-utils-lite';
-import { NgxDateUtils } from 'ngx-utils-lite';
-import { NgxArrayUtils } from 'ngx-utils-lite';
-import { NgxObjectUtils } from 'ngx-utils-lite';
-import { NgxNumberUtils } from 'ngx-utils-lite';
-import { NgxValidationUtils } from 'ngx-utils-lite';
-import { NgxIdUtils } from 'ngx-utils-lite';
-import { NgxCookieUtils } from 'ngx-utils-lite';
-import { NgxCopyToClipboardDirective } from 'ngx-utils-lite';
+import { StringUtils } from '../../../string';
+import { DateUtils } from '../../../date';
+import { ArrayUtils } from '../../../array';
+import { ObjectUtils } from '../../../object';
+import { NumberUtils } from '../../../number';
+import { ValidationUtils } from '../../../validation';
+import { IdUtils } from '../../../id';
+import { CookieUtils } from '../../../cookie';
 
 @Component({
   selector: 'app-showcase',
   standalone: true,
-  imports: [CommonModule, FormsModule, NgxCopyToClipboardDirective],
+  imports: [CommonModule, FormsModule],
   template: `
 <div class="showcase-container">
   <h1>ngx-utils-lite</h1>
@@ -343,14 +342,14 @@ export class MyService &#123;
 
     <div *ngIf="activeTab === 'copy'" class="demo">
       <h2>Copy to Clipboard</h2>
-      <p>Directive to copy text to clipboard on click</p>
+      <p>Use the browser's clipboard API</p>
       
       <div class="demo-box">
         <div class="input-group">
           <label>Text to copy:</label>
           <input [(ngModel)]="copyInput" placeholder="Type something..." />
         </div>
-        <button ngxCopyToClipboard [ngxCopyToClipboard]="copyInput" (click)="copyResult = 'Copied to clipboard!'">Copy Text</button>
+        <button (click)="doCopy()">Copy Text</button>
         <div *ngIf="copyResult" class="result">{{ copyResult }}</div>
       </div>
 
@@ -409,14 +408,14 @@ button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(59, 130,
   `]
 })
 export class ShowcaseComponent {
-  string = inject(NgxStringUtils);
-  date = inject(NgxDateUtils);
-  array = inject(NgxArrayUtils);
-  object = inject(NgxObjectUtils);
-  number = inject(NgxNumberUtils);
-  validation = inject(NgxValidationUtils);
-  id = inject(NgxIdUtils);
-  cookie = inject(NgxCookieUtils);
+  string = inject(StringUtils);
+  date = inject(DateUtils);
+  array = inject(ArrayUtils);
+  object = inject(ObjectUtils);
+  number = inject(NumberUtils);
+  validation = inject(ValidationUtils);
+  id = inject(IdUtils);
+  cookie = inject(CookieUtils);
 
   activeTab = 'string';
 
@@ -428,8 +427,7 @@ export class ShowcaseComponent {
     { id: 'number', name: 'Number' },
     { id: 'validation', name: 'Validation' },
     { id: 'id', name: 'ID' },
-    { id: 'cookie', name: 'Cookie' },
-    { id: 'copy', name: 'Copy' }
+    { id: 'cookie', name: 'Cookie' }
   ];
 
   stringInput = 'Hello World from ngx-utils';
@@ -537,135 +535,79 @@ export class ShowcaseComponent {
     }
   }
 
+  doCopy(): void {
+    navigator.clipboard.writeText(this.copyInput).then(() => {
+      this.copyResult = 'Copied to clipboard!';
+    }).catch(() => {
+      this.copyResult = 'Failed to copy';
+    });
+  }
+
   copyCode(tab: string): void {
     const codeMap: Record<string, string> = {
-      string: `import { Injectable } from '@angular/core';
-import { NgxStringUtils } from 'ngx-utils-lite';
+      string: `import { StringUtils } from 'ngx-utils-lite';
 
-@Injectable({ providedIn: 'root' })
-export class MyService {
-  constructor(private str: NgxStringUtils) { }
-  
-  myMethod(): void {
-    this.str.slugify('Hello World');
-    this.str.camelCase('hello world');
-  }
-}`,
-      date: `import { Injectable } from '@angular/core';
-import { NgxDateUtils } from 'ngx-utils-lite';
+const string = new StringUtils();
 
-@Injectable({ providedIn: 'root' })
-export class MyService {
-  constructor(private date: NgxDateUtils) { }
-  
-  myMethod(): void {
-    this.date.format(new Date(), 'YYYY-MM-DD');
-    this.date.relative(new Date(Date.now() - 3600000));
-    this.date.add(new Date(), 7, 'day');
-  }
-}`,
-      array: `import { Injectable } from '@angular/core';
-import { NgxArrayUtils } from 'ngx-utils-lite';
+string.slugify('Hello World');    // 'hello-world'
+string.camelCase('hello world'); // 'helloWorld'
+string.kebabCase('Hello World'); // 'hello-world'`,
+      date: `import { DateUtils } from 'ngx-utils-lite';
 
-@Injectable({ providedIn: 'root' })
-export class MyService {
-  constructor(private arr: NgxArrayUtils) { }
-  
-  myMethod(): void {
-    this.arr.unique([1, 2, 2, 3]);
-    this.arr.chunk([1, 2, 3, 4], 2);
-    this.arr.groupBy(['apple', 'banana'], s => s[0]);
-  }
-}`,
-      object: `import { Injectable } from '@angular/core';
-import { NgxObjectUtils } from 'ngx-utils-lite';
+const date = new DateUtils();
 
-@Injectable({ providedIn: 'root' })
-export class MyService {
-  constructor(private obj: NgxObjectUtils) { }
-  
-  myMethod(): void {
-    this.obj.deepGet({a: {b: 42}}, 'a.b');
-    this.obj.deepClone({a: 1});
-    this.obj.merge({a: 1}, {b: 2});
-  }
-}`,
-      number: `import { Injectable } from '@angular/core';
-import { NgxNumberUtils } from 'ngx-utils-lite';
+date.format(new Date(), 'YYYY-MM-DD');                    // '2024-01-15'
+date.relative(new Date(Date.now() - 3600000));            // '1 hour ago'
+date.add(new Date(), 7, 'day');                            // Date + 7 days`,
+      array: `import { ArrayUtils } from 'ngx-utils-lite';
 
-@Injectable({ providedIn: 'root' })
-export class MyService {
-  constructor(private num: NgxNumberUtils) { }
-  
-  myMethod(): void {
-    this.num.formatCurrency(1234.56);
-    this.num.formatBytes(1048576);
-    this.num.formatPercent(0.756);
-  }
-}`,
-      validation: `import { Injectable } from '@angular/core';
-import { NgxValidationUtils } from 'ngx-utils-lite';
+const array = new ArrayUtils();
 
-@Injectable({ providedIn: 'root' })
-export class MyService {
-  constructor(private val: NgxValidationUtils) { }
-  
-  myMethod(): void {
-    this.val.isEmail('test@example.com');
-    this.val.isUrl('https://google.com');
-    this.val.isStrongPassword('Test123!');
-  }
-}`,
-      id: `import { Injectable } from '@angular/core';
-import { NgxIdUtils } from 'ngx-utils-lite';
+array.unique([1, 2, 2, 3]);              // [1, 2, 3]
+array.chunk([1,2,3,4], 2);               // [[1,2], [3,4]]
+array.groupBy(['apple','banana'], s => s[0]); // {a: [...], b: [...]}`,
+      object: `import { ObjectUtils } from 'ngx-utils-lite';
 
-@Injectable({ providedIn: 'root' })
-export class MyService {
-  constructor(private id: NgxIdUtils) { }
-  
-  myMethod(): void {
-    this.id.uuid();
-    this.id.nanoid();
-    this.id.generateCode(6, 'numeric');
-  }
-}`,
-      cookie: `import { Injectable } from '@angular/core';
-import { NgxCookieUtils } from 'ngx-utils-lite';
+const obj = new ObjectUtils();
 
-@Injectable({ providedIn: 'root' })
-export class MyService {
-  constructor(private cookie: NgxCookieUtils) { }
-  
-  myMethod(): void {
-    this.cookie.set('theme', 'dark', 7);
-    const theme = this.cookie.get('theme');
-    const has = this.cookie.has('theme');
-  }
-}`,
-      copy: `import { Component } from '@angular/core';
-import { NgxCopyToClipboardDirective } from 'ngx-utils-lite';
+obj.deepGet({a: {b: 42}}, 'a.b');    // 42
+obj.deepClone({a: 1});               // {a: 1}
+obj.merge({a: 1}, {b: 2});           // {a: 1, b: 2}`,
+      number: `import { NumberUtils } from 'ngx-utils-lite';
 
-@Component({
-  selector: 'app-my-component',
-  standalone: true,
-  imports: [NgxCopyToClipboardDirective],
-  template: \`
-    <input [(ngModel)]="text" placeholder="Enter text" />
-    <button (click)="copyText()">Copy</button>
-  \`
-})
-export class MyComponent {
-  text = 'Hello World';
-  
-  copyText(): void {
-    // Use the directive via parent or implement custom copy
-    navigator.clipboard.writeText(this.text);
-  }
-}
+const num = new NumberUtils();
 
-// Alternative: Direct usage in template
-// <button [ngxCopyToClipboard]="text">Copy</button>
-`
+num.formatCurrency(1234.56);         // '$1,234.56'
+num.formatBytes(1048576);            // '1 MB'
+num.formatPercent(0.756);           // '75.6%'`,
+      validation: `import { ValidationUtils } from 'ngx-utils-lite';
+
+const val = new ValidationUtils();
+
+val.isEmail('test@example.com');    // true
+val.isUrl('https://google.com');    // true
+val.isStrongPassword('Test123!');  // {valid: true, score: 5, ...}`,
+      id: `import { IdUtils } from 'ngx-utils-lite';
+
+const id = new IdUtils();
+
+id.uuid();                // 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+id.nanoid();              // 'V1StGXR8_Z'
+id.generateCode(6, 'numeric'); // '482921'`,
+      cookie: `import { CookieUtils } from 'ngx-utils-lite';
+
+const cookie = new CookieUtils();
+
+cookie.set('theme', 'dark', 7);
+const theme = cookie.get('theme');  // 'dark'
+cookie.has('theme');                // true
+cookie.delete('theme');`,
+      copy: `// Copy to clipboard (browser API)
+navigator.clipboard.writeText('Hello World');
+
+// Or use the Utils helper
+import { Utils } from 'ngx-utils-lite';
+Utils.id.generateCode(6); // Generate random code`
     };
     navigator.clipboard.writeText(codeMap[tab] || '');
   }
