@@ -71,13 +71,11 @@ jobs:
           npm install typescript --save-dev
 
       - name: Build package
-        continue-on-error: true
         run: |
           cd packages/${{ matrix.package }}
           npx tsc
 
       - name: Publish to npm
-        continue-on-error: true
         run: |
           cd packages/${{ matrix.package }}
           npm publish --access public --tag ${{ steps.version.outputs.channel }}
@@ -85,7 +83,6 @@ jobs:
       - name: Create tag (beta only)
         if: github.event_name != 'release'
         run: |
-          # Create common tag for all packages
           COMMON_TAG="v${{ steps.version.outputs.version }}"
           git tag $COMMON_TAG
           git push origin $COMMON_TAG
