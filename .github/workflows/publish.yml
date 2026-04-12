@@ -56,8 +56,8 @@ jobs:
       - name: Update package.json version
         run: |
           VERSION='${{ steps.version.outputs.version }}'
-          sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" packages/ngx-utils-lite/package.json
-          cat packages/ngx-utils-lite/package.json | head -5
+          sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" packages/ts-utils-lite/package.json
+          cat packages/ts-utils-lite/package.json | head -5
 
       - uses: actions/setup-node@v6
         with:
@@ -68,16 +68,16 @@ jobs:
 
       - name: Build pure TypeScript package
         run: |
-          cd packages/ngx-utils-lite
+          cd packages/ts-utils-lite
           npx tsc
           cd ../..
           # List files to verify
           echo "=== Files to publish ==="
-          ls packages/ngx-utils-lite/dist
+          ls packages/ts-utils-lite/dist
 
       - name: Publish to npm
         run: |
-          cd packages/ngx-utils-lite
+          cd packages/ts-utils-lite
           npm publish --access public --tag ${{ steps.version.outputs.channel }}
 
       - name: Create tag (beta only)

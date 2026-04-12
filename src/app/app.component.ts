@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
       <div class="nav-container">
         <a routerLink="/" class="logo">
           <span class="logo-icon">⚡</span>
-          <span class="logo-text">ngx-utils-lite</span>
+          <span class="logo-text">ts-utils-lite</span>
         </a>
         <div class="nav-links">
           <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
@@ -28,7 +28,7 @@ import { FormsModule } from '@angular/forms';
           <button class="theme-toggle" (click)="toggleTheme()">
             {{ isDark ? '☀️' : '🌙' }}
           </button>
-          <a href="https://github.com/gbmrocks/ngx-utils-lite" target="_blank" class="github-btn">
+          <a href="https://github.com/gbmrocks/ts-utils-lite" target="_blank" class="github-btn">
             <span>⭐</span> GitHub
           </a>
         </div>
@@ -156,7 +156,7 @@ import { FormsModule } from '@angular/forms';
   `]
 })
 export class AppComponent {
-  title = 'ngx-utils-lite';
+  title = 'ts-utils-lite';
   isDark = true;
 
   toggleTheme(): void {

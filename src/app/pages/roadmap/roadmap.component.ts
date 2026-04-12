@@ -107,6 +107,6 @@ How would you use this feature?
 // What would you like to call?
 \`\`\`
 `);
-    window.open(`https://github.com/gbmrocks/ngx-utils-lite/issues/new?title=${title}&body=${body}`, '_blank');
+    window.open(`https://github.com/gbmrocks/ts-utils-lite/issues/new?title=${title}&body=${body}`, '_blank');
   }
 }

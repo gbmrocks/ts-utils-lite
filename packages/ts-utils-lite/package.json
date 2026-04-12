@@ -1,7 +1,7 @@
 {
-  "name": "ngx-utils-lite",
-  "version": "1.0.0",
-  "description": "Lightweight utility library for TypeScript/JavaScript - like Lodash",
+  "name": "t1s-utils-lite",
+  "version": "0.0.1",
+  "description": "Lightweight, type-safe utility library for web developers",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
