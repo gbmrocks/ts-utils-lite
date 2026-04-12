@@ -64,6 +64,11 @@ jobs:
           node-version: '24'
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Install TypeScript
+        run: |
+          cd packages/${{ matrix.package }}
+          npm install typescript --save-dev
+
       - name: Build package
         run: |
           cd packages/${{ matrix.package }}
