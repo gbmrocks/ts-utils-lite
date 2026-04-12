@@ -1,0 +1,64 @@
+name: Publish Beta
+
+on:
+  push:
+    branches:
+      - dev
+
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  publish-beta:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Determine beta version
+        id: version
+        run: |
+          git fetch --tags
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          
+          LAST_BETA=$(git tag -l 'v*-beta.*' | sort -V | tail -1 || echo "")
+          
+          if [ -z "$LAST_BETA" ]; then
+            LAST_BETA="v0.0.0-beta.0"
+          fi
+          
+          BETA_NUM=$(echo $LAST_BETA | grep -oP 'beta\.\K\d+' || echo "0")
+          BETA_NUM=$((BETA_NUM + 1))
+          
+          LAST_VERSION=${LAST_TAG#v}
+          NEW_VERSION="v${LAST_VERSION}-beta.${BETA_NUM}"
+          
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Update package.json version
+        run: |
+          VERSION=${{ steps.version.outputs.new_version }}
+          cd projects/ngx-utils-lite
+          sed -i "s/\"version\": \".*\"/\"version\": \"$VERSION\"/" package.json
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+
+      - run: npm ci
+
+      - run: npx ng build ngx-utils-lite
+
+      - name: Publish beta to npm
+        run: |
+          cd dist/ngx-utils-lite
+          npm publish --access public --tag beta
+
+      - name: Create beta tag
+        run: |
+          git tag ${{ steps.version.outputs.new_version }}
+          git push origin ${{ steps.version.outputs.new_version }}
