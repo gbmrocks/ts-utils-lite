@@ -57,7 +57,7 @@ jobs:
         run: |
           VERSION='${{ steps.version.outputs.version }}'
           sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" packages/ts-utils-lite/package.json
-          cat packages/ngx-utils-lite/package.json | head -5
+          cat packages/ts-utils-lite/package.json | head -5
 
       - uses: actions/setup-node@v6
         with:
@@ -73,7 +73,7 @@ jobs:
           cd ../..
           # List files to verify
           echo "=== Files to publish ==="
-          ls packages/ngx-utils-lite/dist
+          ls packages/ts-utils-lite/dist
 
       - name: Publish to npm
         run: |
