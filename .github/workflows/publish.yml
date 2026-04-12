@@ -1,90 +1,41 @@
 name: Publish Packages
 
 on:
-  release:
-    types: [published]
   push:
     branches:
-      - dev
+      - main
 
 permissions:
-  id-token: write
   contents: write
+  id-token: write   # REQUIRED for OIDC
 
 jobs:
-  publish:
+  release:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        package:
-#          - ts-string-lite
-#          - ts-array-lite
-#          - ts-date-lite
-#          - ts-object-lite
-#          - ts-number-lite
-#          - ts-validation-lite
-#          - ts-id-lite
-#          - ts-cookie-lite
-          - ts-utils-lite
+
     steps:
-      - uses: actions/checkout@v6
-
-      - name: Determine version
-        id: version
-        run: |
-          git fetch --tags --all
-
-          if [ "${{ github.event_name }}" = "release" ]; then
-            VERSION="${GITHUB_REF#refs/tags/v}"
-            echo "channel=latest" >> $GITHUB_OUTPUT
-          else
-            LAST_STABLE=$(git tag -l | grep -vE 'beta' | sort -V | tail -1 | sed 's/^v//')
-            LAST_BETA=$(git tag -l | grep -E "v?${LAST_STABLE}-beta\." | sort -V | tail -1)
-
-            if [ -z "$LAST_BETA" ]; then
-              BETA_NUM=1
-            else
-              BETA_NUM=$(echo "$LAST_BETA" | grep -oE '[0-9]+$' || echo "1")
-              BETA_NUM=$((BETA_NUM + 1))
-            fi
-
-            VERSION="${LAST_STABLE}-beta.${BETA_NUM}"
-            echo "channel=beta" >> $GITHUB_OUTPUT
-          fi
-
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-
-      - name: Update package.json version
-        run: |
-          VERSION='${{ steps.version.outputs.version }}'
-          sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" packages/${{ matrix.package }}/package.json
-
-      - uses: actions/setup-node@v6
+      - name: Checkout repo
+        uses: actions/checkout@v4
         with:
-          node-version: '24'
-          registry-url: 'https://registry.npmjs.org'
+          fetch-depth: 0
 
-      - name: Install TypeScript
-        run: |
-          cd packages/${{ matrix.package }}
-          npm install typescript --save-dev
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
 
-      - name: Build package
-        run: |
-          cd packages/${{ matrix.package }}
-          npx tsc
+      - name: Install dependencies
+        run: npm install
 
-      - name: Publish to npm
-        run: |
-          cp README.md packages/${{ matrix.package }}/
-          cp LICENSE packages/${{ matrix.package }}/
-          cd packages/${{ matrix.package }}
-          npm publish --access public --tag ${{ steps.version.outputs.channel }}
+      # 🔥 Version only affected packages
+      - name: Version packages
+        run: npx changeset version
 
-      - name: Create tag (beta only)
-        if: github.event_name != 'release'
-        run: |
-          COMMON_TAG="v${{ steps.version.outputs.version }}"
-          git tag $COMMON_TAG
-          git push origin $COMMON_TAG
+      # 🔥 Build all workspaces
+      - name: Build packages
+        run: npm run build --workspaces
+
+      # 🚀 Publish via npm OIDC (NO TOKEN NEEDED)
+      - name: Publish packages
+        run: npx changeset publish
