@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { StringUtils } from 'ts-utils-lite';
-import { DateUtils } from 'ts-utils-lite';
-import { ArrayUtils } from 'ts-utils-lite';
-import { ObjectUtils } from 'ts-utils-lite';
-import { NumberUtils } from 'ts-utils-lite';
-import { ValidationUtils } from 'ts-utils-lite';
-import { IdUtils } from 'ts-utils-lite';
-import { CookieUtils } from 'ts-utils-lite';
+import { StringUtils } from 't1s-utils-lite';
+import { DateUtils } from 't1s-utils-lite';
+import { ArrayUtils } from 't1s-utils-lite';
+import { ObjectUtils } from 't1s-utils-lite';
+import { NumberUtils } from 't1s-utils-lite';
+import { ValidationUtils } from 't1s-utils-lite';
+import { IdUtils } from 't1s-utils-lite';
+import { CookieUtils } from 't1s-utils-lite';
 
 @Component({
   selector: 'app-showcase',
@@ -16,11 +16,11 @@ import { CookieUtils } from 'ts-utils-lite';
   imports: [CommonModule, FormsModule],
   template: `
 <div class="showcase-container">
-  <h1>ts-utils-lite</h1>
-  <p class="subtitle">Learn how to use ts-utils-lite in your projects</p>
+  <h1>t1s-utils-lite</h1>
+  <p class="subtitle">Learn how to use t1s-utils-lite in your projects</p>
 
   <nav class="tabs">
-    <button *ngFor="let tab of tabs" 
+    <button *ngFor="let tab of tabs"
       [class.active]="activeTab === tab.id"
       (click)="activeTab = tab.id">
       {{ tab.name }}
@@ -31,7 +31,7 @@ import { CookieUtils } from 'ts-utils-lite';
     <div *ngIf="activeTab === 'string'" class="demo">
       <h2>String Utils</h2>
       <p>String manipulation and formatting</p>
-      
+
       <div class="demo-box">
         <div class="input-group">
           <label>Input:</label>
@@ -55,7 +55,7 @@ import { CookieUtils } from 'ts-utils-lite';
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('string')">Copy</button>
         </div>
-        <pre><code>import &#123; StringUtils &#125; from 'ts-utils-lite';
+        <pre><code>import &#123; StringUtils &#125; from 't1s-utils-lite';
 
 const str = new StringUtils();
 
@@ -67,7 +67,7 @@ str.camelCase('hello world');</code></pre>
     <div *ngIf="activeTab === 'date'" class="demo">
       <h2>Date Utils</h2>
       <p>Date manipulation and formatting</p>
-      
+
       <div class="demo-box">
         <div class="btn-group">
           <button (click)="runDate('format')">format</button>
@@ -84,7 +84,7 @@ str.camelCase('hello world');</code></pre>
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('date')">Copy</button>
         </div>
-        <pre><code>import &#123; DateUtils &#125; from 'ts-utils-lite';
+        <pre><code>import &#123; DateUtils &#125; from 't1s-utils-lite';
 
 const date = new DateUtils();
 
@@ -97,7 +97,7 @@ date.add(new Date(), 7, 'day');</code></pre>
     <div *ngIf="activeTab === 'array'" class="demo">
       <h2>Array Utils</h2>
       <p>Array manipulation utilities</p>
-      
+
       <div class="demo-box">
         <div class="input-group">
           <label>Input (comma-separated):</label>
@@ -118,7 +118,7 @@ date.add(new Date(), 7, 'day');</code></pre>
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('array')">Copy</button>
         </div>
-        <pre><code>import &#123; ArrayUtils &#125; from 'ts-utils-lite';
+        <pre><code>import &#123; ArrayUtils &#125; from 't1s-utils-lite';
 
 const arr = new ArrayUtils();
 
@@ -131,7 +131,7 @@ arr.groupBy(['apple','banana'], s => s[0]);</code></pre>
     <div *ngIf="activeTab === 'object'" class="demo">
       <h2>Object Utils</h2>
       <p>Object manipulation and comparison</p>
-      
+
       <div class="demo-box">
         <div class="btn-group">
           <button (click)="runObject('deepGet')">deepGet</button>
@@ -149,7 +149,7 @@ arr.groupBy(['apple','banana'], s => s[0]);</code></pre>
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('object')">Copy</button>
         </div>
-        <pre><code>import &#123; ObjectUtils &#125; from 'ts-utils-lite';
+        <pre><code>import &#123; ObjectUtils &#125; from 't1s-utils-lite';
 
 const obj = new ObjectUtils();
 
@@ -162,7 +162,7 @@ obj.merge(obj1, obj2);</code></pre>
     <div *ngIf="activeTab === 'number'" class="demo">
       <h2>Number Utils</h2>
       <p>Number formatting and math utilities</p>
-      
+
       <div class="demo-box">
         <div class="btn-group">
           <button (click)="runNumber('formatCurrency')">formatCurrency</button>
@@ -180,7 +180,7 @@ obj.merge(obj1, obj2);</code></pre>
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('number')">Copy</button>
         </div>
-        <pre><code>import &#123; NumberUtils &#125; from 'ts-utils-lite';
+        <pre><code>import &#123; NumberUtils &#125; from 't1s-utils-lite';
 
 const num = new NumberUtils();
 
@@ -193,7 +193,7 @@ num.formatPercent(0.756);</code></pre>
     <div *ngIf="activeTab === 'validation'" class="demo">
       <h2>Validation Utils</h2>
       <p>Input validation and pattern matching</p>
-      
+
       <div class="demo-box">
         <div class="input-group">
           <label>Input:</label>
@@ -214,7 +214,7 @@ num.formatPercent(0.756);</code></pre>
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('validation')">Copy</button>
         </div>
-        <pre><code>import &#123; ValidationUtils &#125; from 'ts-utils-lite';
+        <pre><code>import &#123; ValidationUtils &#125; from 't1s-utils-lite';
 
 const val = new ValidationUtils();
 
@@ -227,7 +227,7 @@ val.isStrongPassword('Test123!');</code></pre>
     <div *ngIf="activeTab === 'id'" class="demo">
       <h2>ID Utils</h2>
       <p>Unique ID and code generation</p>
-      
+
       <div class="demo-box">
         <div class="btn-group">
           <button (click)="runId('uuid')">uuid</button>
@@ -245,7 +245,7 @@ val.isStrongPassword('Test123!');</code></pre>
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('id')">Copy</button>
         </div>
-        <pre><code>import &#123; IdUtils &#125; from 'ts-utils-lite';
+        <pre><code>import &#123; IdUtils &#125; from 't1s-utils-lite';
 
 const id = new IdUtils();
 
@@ -258,7 +258,7 @@ id.generateCode(6);</code></pre>
     <div *ngIf="activeTab === 'cookie'" class="demo">
       <h2>Cookie Utils</h2>
       <p>Browser cookie management</p>
-      
+
       <div class="demo-box">
         <div class="input-group">
           <label>Key:</label>
@@ -282,7 +282,7 @@ id.generateCode(6);</code></pre>
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('cookie')">Copy</button>
         </div>
-        <pre><code>import &#123; CookieUtils &#125; from 'ts-utils-lite';
+        <pre><code>import &#123; CookieUtils &#125; from 't1s-utils-lite';
 
 const cookie = new CookieUtils();
 
@@ -461,56 +461,56 @@ export class ShowcaseComponent {
 
   copyCode(tab: string): void {
     const codeMap: Record<string, string> = {
-      string: `import { StringUtils } from 'ts-utils-lite';
+      string: `import { StringUtils } from 't1s-utils-lite';
 
 const string = new StringUtils();
 
 string.slugify('Hello World');    // 'hello-world'
 string.camelCase('hello world'); // 'helloWorld'
 string.kebabCase('Hello World'); // 'hello-world'`,
-      date: `import { DateUtils } from 'ts-utils-lite';
+      date: `import { DateUtils } from 't1s-utils-lite';
 
 const date = new DateUtils();
 
 date.format(new Date(), 'YYYY-MM-DD');                    // '2024-01-15'
 date.relative(new Date(Date.now() - 3600000));            // '1 hour ago'
 date.add(new Date(), 7, 'day');                            // Date + 7 days`,
-      array: `import { ArrayUtils } from 'ts-utils-lite';
+      array: `import { ArrayUtils } from 't1s-utils-lite';
 
 const array = new ArrayUtils();
 
 array.unique([1, 2, 2, 3]);              // [1, 2, 3]
 array.chunk([1,2,3,4], 2);               // [[1,2], [3,4]]
 array.groupBy(['apple','banana'], s => s[0]); // {a: [...], b: [...]}`,
-      object: `import { ObjectUtils } from 'ts-utils-lite';
+      object: `import { ObjectUtils } from 't1s-utils-lite';
 
 const obj = new ObjectUtils();
 
 obj.deepGet({a: {b: 42}}, 'a.b');    // 42
 obj.deepClone({a: 1});               // {a: 1}
 obj.merge({a: 1}, {b: 2});           // {a: 1, b: 2}`,
-      number: `import { NumberUtils } from 'ts-utils-lite';
+      number: `import { NumberUtils } from 't1s-utils-lite';
 
 const num = new NumberUtils();
 
 num.formatCurrency(1234.56);         // '$1,234.56'
 num.formatBytes(1048576);            // '1 MB'
 num.formatPercent(0.756);           // '75.6%'`,
-      validation: `import { ValidationUtils } from 'ts-utils-lite';
+      validation: `import { ValidationUtils } from 't1s-utils-lite';
 
 const val = new ValidationUtils();
 
 val.isEmail('test@example.com');    // true
 val.isUrl('https://google.com');    // true
 val.isStrongPassword('Test123!');  // {valid: true, score: 5, ...}`,
-      id: `import { IdUtils } from 'ts-utils-lite';
+      id: `import { IdUtils } from 't1s-utils-lite';
 
 const id = new IdUtils();
 
 id.uuid();                // 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
 id.nanoid();              // 'V1StGXR8_Z'
 id.generateCode(6, 'numeric'); // '482921'`,
-      cookie: `import { CookieUtils } from 'ts-utils-lite';
+      cookie: `import { CookieUtils } from 't1s-utils-lite';
 
 const cookie = new CookieUtils();
 
@@ -522,7 +522,7 @@ cookie.delete('theme');`,
 navigator.clipboard.writeText('Hello World');
 
 // Or use the Utils helper
-import { Utils } from 'ts-utils-lite';
+import { Utils } from 't1s-utils-lite';
 Utils.id.generateCode(6); // Generate random code`
     };
     navigator.clipboard.writeText(codeMap[tab] || '');
