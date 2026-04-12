@@ -23,8 +23,8 @@ jobs:
       - name: Determine version
         id: version
         run: |
-          if [[ "${{ github.event_name }}" == "release" ]]; then
-            VERSION=${GITHUB_REF#refs/tags/v}
+          if [ "${{ github.event_name }}" = "release" ]; then
+            VERSION="${GITHUB_REF#refs/tags/v}"
             echo "channel=latest" >> $GITHUB_OUTPUT
           else
             git fetch --tags
@@ -36,7 +36,7 @@ jobs:
               LAST_BETA="v0.0.0-beta.0"
             fi
 
-            BETA_NUM=$(echo $LAST_BETA | grep -oP 'beta\.\K\d+' || echo "0")
+            BETA_NUM=$(echo $LAST_BETA | grep -oE '[0-9]+$' || echo "0")
             BETA_NUM=$((BETA_NUM + 1))
 
             LAST_VERSION=${LAST_TAG#v}
@@ -48,9 +48,9 @@ jobs:
 
       - name: Update package.json version
         run: |
-          VERSION=${{ steps.version.outputs.version }}
+          VERSION='${{ steps.version.outputs.version }}'
           cd projects/ngx-utils-lite
-          sed -i "s/\"version\": \".*\"/\"version\": \"$VERSION\"/" package.json
+          npm version $VERSION --no-git-tag-version
 
       - uses: actions/setup-node@v6
         with:
@@ -67,7 +67,7 @@ jobs:
           npm publish --access public --tag ${{ steps.version.outputs.channel }}
 
       - name: Create tag (beta only)
-        if: github.event_name == 'push'
+        if: github.event_name != 'release'
         run: |
-          git tag v${{ steps.version.outputs.version }}
-          git push origin v${{ steps.version.outputs.version }}
+          git tag ${{ steps.version.outputs.version }}
+          git push origin ${{ steps.version.outputs.version }}
