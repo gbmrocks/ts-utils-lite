@@ -57,7 +57,9 @@ jobs:
       - run: npm i
 
       - name: Build pure TypeScript package
-        run: npx tsc -p tsconfig-pure.json
+        run: |
+          npx tsc -p tsconfig-pure.json
+          cp src/package.json dist-pure/package.json
 
       - name: Publish to npm
         run: |
