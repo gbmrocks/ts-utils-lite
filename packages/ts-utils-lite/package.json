@@ -25,6 +25,9 @@
   "files": [
     "dist"
   ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
   "keywords": ["utils", "typescript", "javascript", "helpers", "lodash"],
   "author": "Gaurang Mody - G8X",
   "license": "MIT"

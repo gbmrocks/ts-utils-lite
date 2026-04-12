@@ -12,6 +12,9 @@
       "require": "./dist/index.js"
     }
   },
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
   "files": ["dist"],
   "keywords": ["utils", "typescript", "cookie", "helpers", "lite"],
   "author": "Gaurang Mody - G8X",
