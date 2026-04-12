@@ -1,5 +1,5 @@
 {
-  "name": "ts-utils-lite0",
+  "name": "t1s-utils-lite",
   "version": "1.0.0",
   "description": "Lightweight, type-safe utility library for web developers",
   "main": "./index.js",
@@ -13,14 +13,14 @@
     }
   },
   "dependencies": {
-    "ts-string-lite": "*",
-    "ts-array-lite": "*",
-    "ts-date-lite": "*",
-    "ts-object-lite": "*",
-    "ts-number-lite": "*",
-    "ts-validation-lite": "*",
-    "ts-id-lite": "*",
-    "ts-cookie-lite": "*"
+    "ts-string-lite": "1.0.2",
+    "ts-array-lite": "1.0.2",
+    "ts-date-lite": "1.0.2",
+    "ts-object-lite": "1.0.2",
+    "ts-number-lite": "1.0.2",
+    "ts-validation-lite": "1.0.2",
+    "ts-id-lite": "1.0.2",
+    "ts-cookie-lite": "1.0.2"
   },
   "files": [
     "dist"
