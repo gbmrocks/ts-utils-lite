@@ -16,41 +16,48 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Determine version
         id: version
         run: |
+          git fetch --tags --all
+          
+          echo "=== All tags ==="
+          git tag -l | sort -V
+          
           if [ "${{ github.event_name }}" = "release" ]; then
             VERSION="${GITHUB_REF#refs/tags/v}"
             echo "channel=latest" >> $GITHUB_OUTPUT
+            echo "Release mode: $VERSION"
           else
-            git fetch --tags
-            LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
-
-            LAST_BETA=$(git tag -l 'v*-beta.*' | sort -V | tail -1 || echo "")
-
+            # Get highest stable version (with or without v prefix)
+            LAST_STABLE=$(git tag -l | grep -vE 'beta' | sort -V | tail -1 | sed 's/^v//')
+            echo "Last stable: $LAST_STABLE"
+            
+            # Get beta tag for this version
+            LAST_BETA=$(git tag -l | grep -E "v?${LAST_STABLE}-beta\." | sort -V | tail -1)
+            echo "Last beta: $LAST_BETA"
+            
             if [ -z "$LAST_BETA" ]; then
-              LAST_BETA="v0.0.0-beta.0"
+              BETA_NUM=1
+            else
+              BETA_NUM=$(echo "$LAST_BETA" | grep -oE '[0-9]+$' || echo "1")
+              BETA_NUM=$((BETA_NUM + 1))
             fi
-
-            BETA_NUM=$(echo $LAST_BETA | grep -oE '[0-9]+$' || echo "0")
-            BETA_NUM=$((BETA_NUM + 1))
-
-            LAST_VERSION=${LAST_TAG#v}
-            VERSION="${LAST_VERSION}-beta.${BETA_NUM}"
+            
+            echo "New beta number: $BETA_NUM"
+            VERSION="${LAST_STABLE}-beta.${BETA_NUM}"
+            echo "Beta mode: $VERSION"
             echo "channel=beta" >> $GITHUB_OUTPUT
           fi
-
+          
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Update package.json version
         run: |
           VERSION='${{ steps.version.outputs.version }}'
-          cd projects/ngx-utils-lite
-          npm version $VERSION --no-git-tag-version
+          sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" packages/ngx-utils-lite/package.json
+          cat packages/ngx-utils-lite/package.json | head -5
 
       - uses: actions/setup-node@v6
         with:
@@ -59,11 +66,18 @@ jobs:
 
       - run: npm i
 
-      - run: npx ng build ngx-utils-lite
+      - name: Build pure TypeScript package
+        run: |
+          cd packages/ngx-utils-lite
+          npx tsc
+          cd ../..
+          # List files to verify
+          echo "=== Files to publish ==="
+          ls packages/ngx-utils-lite/dist
 
       - name: Publish to npm
         run: |
-          cd dist/ngx-utils-lite
+          cd packages/ngx-utils-lite
           npm publish --access public --tag ${{ steps.version.outputs.channel }}
 
       - name: Create tag (beta only)

@@ -75,15 +75,14 @@ import { CommonModule } from '@angular/common';
 })
 export class RoadmapComponent {
   available = [
-    'NgxStringUtils - slugify, camelCase, kebabCase, truncate, capitalize, titleCase, escapeHtml',
-    'NgxDateUtils - format, relative, isToday, add, diff',
-    'NgxArrayUtils - unique, chunk, groupBy, sortBy, shuffle, compact',
-    'NgxObjectUtils - deepGet, deepClone, merge, omit, pick, isEmpty',
-    'NgxNumberUtils - formatCurrency, formatBytes, clamp, random, round, formatPercent',
-    'NgxValidationUtils - isEmail, isUrl, isPhone, isPostalCode, isStrongPassword',
-    'NgxIdUtils - uuid, nanoid, shortId, hash, snowflake, generateCode',
-    'NgxCookieUtils - get, set, delete, has',
-    'NgxCopyToClipboard - copy text to clipboard'
+    'StringUtils - slugify, camelCase, kebabCase, truncate, capitalize, titleCase, escapeHtml',
+    'DateUtils - format, relative, isToday, add, diff',
+    'ArrayUtils - unique, chunk, groupBy, sortBy, shuffle, compact',
+    'ObjectUtils - deepGet, deepClone, merge, omit, pick, isEmpty',
+    'NumberUtils - formatCurrency, formatBytes, clamp, random, round, formatPercent',
+    'ValidationUtils - isEmail, isUrl, isPhone, isPostalCode, isStrongPassword',
+    'IdUtils - uuid, nanoid, shortId, hash, snowflake, generateCode',
+    'CookieUtils - get, set, delete, has'
   ];
 
   planned = [

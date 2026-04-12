@@ -107,14 +107,13 @@ export class HomeComponent {
   ];
 
   utils = [
-    { name: 'NgxStringUtils', desc: 'slugify, camelCase, truncate, capitalize' },
-    { name: 'NgxDateUtils', desc: 'format, relative, isToday, add, diff' },
-    { name: 'NgxArrayUtils', desc: 'unique, chunk, groupBy, sortBy, shuffle' },
-    { name: 'NgxObjectUtils', desc: 'deepGet, deepClone, merge, omit, pick' },
-    { name: 'NgxNumberUtils', desc: 'formatCurrency, formatBytes, clamp, random' },
-    { name: 'NgxValidationUtils', desc: 'isEmail, isUrl, isPhone, isStrongPassword' },
-    { name: 'NgxIdUtils', desc: 'uuid, nanoid, hash, snowflake, generateCode' },
-    { name: 'NgxCookieUtils', desc: 'get, set, delete, has' },
-    { name: 'NgxCopyToClipboard', desc: 'Copy text to clipboard on click' }
+    { name: 'StringUtils', desc: 'slugify, camelCase, truncate, capitalize' },
+    { name: 'DateUtils', desc: 'format, relative, isToday, add, diff' },
+    { name: 'ArrayUtils', desc: 'unique, chunk, groupBy, sortBy, shuffle' },
+    { name: 'ObjectUtils', desc: 'deepGet, deepClone, merge, omit, pick' },
+    { name: 'NumberUtils', desc: 'formatCurrency, formatBytes, clamp, random' },
+    { name: 'ValidationUtils', desc: 'isEmail, isUrl, isPhone, isStrongPassword' },
+    { name: 'IdUtils', desc: 'uuid, nanoid, hash, snowflake, generateCode' },
+    { name: 'CookieUtils', desc: 'get, set, delete, has' }
   ];
 }
