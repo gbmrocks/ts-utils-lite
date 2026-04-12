@@ -15,7 +15,7 @@ import { RouterModule } from '@angular/router';
       v1.0.0 Released
     </div>
     <h1>Everything you need,<br/><span class="gradient-text">nothing you don't.</span></h1>
-    <p class="tagline">Lightweight, type-safe utility library for Angular developers</p>
+    <p class="tagline">Lightweight, type-safe utility library for web developers</p>
     <div class="cta">
       <a routerLink="/showcase" class="btn-primary">
         <span>📖</span> How to Use
