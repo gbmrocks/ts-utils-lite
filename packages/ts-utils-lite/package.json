@@ -1,5 +1,5 @@
 {
-  "name": "ngx-utils-lite",
+  "name": "ts-utils-lite",
   "version": "1.0.0",
   "description": "Lightweight utility library for TypeScript/JavaScript - like Lodash",
   "main": "./dist/index.js",
