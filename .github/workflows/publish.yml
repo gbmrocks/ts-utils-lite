@@ -25,19 +25,18 @@ jobs:
             echo "channel=latest" >> $GITHUB_OUTPUT
           else
             git fetch --tags
-            LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
-
-            LAST_BETA=$(git tag -l 'v*-beta.*' | sort -V | tail -1 || echo "")
-
+            # Get last stable tag (no beta suffix)
+            LAST_STABLE=$(git tag -l 'v*[0-9]' --sort=-v:refname | head -1 | sed 's/^v//' || echo "0.0.0")
+            LAST_BETA=$(git tag -l 'v*[0-9]-beta.*' --sort=-v:refname | head -1 || echo "")
+            
             if [ -z "$LAST_BETA" ]; then
-              LAST_BETA="v0.0.0-beta.0"
+              BETA_NUM=1
+            else
+              BETA_NUM=$(echo "$LAST_BETA" | grep -oE 'beta\.[0-9]+' | grep -oE '[0-9]+')
+              BETA_NUM=$((BETA_NUM + 1))
             fi
-
-            BETA_NUM=$(echo $LAST_BETA | grep -oE '[0-9]+$' || echo "0")
-            BETA_NUM=$((BETA_NUM + 1))
-
-            LAST_VERSION=${LAST_TAG#v}
-            VERSION="${LAST_VERSION}-beta.${BETA_NUM}"
+            
+            VERSION="${LAST_STABLE}-beta.${BETA_NUM}"
             echo "channel=beta" >> $GITHUB_OUTPUT
           fi
 
@@ -46,8 +45,8 @@ jobs:
       - name: Update package.json version
         run: |
           VERSION='${{ steps.version.outputs.version }}'
-          cd src
-          npm version $VERSION --no-git-tag-version
+          sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" src/package.json
+          cat src/package.json | head -5
 
       - uses: actions/setup-node@v6
         with:
