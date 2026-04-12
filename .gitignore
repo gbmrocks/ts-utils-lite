@@ -41,4 +41,4 @@ testem.log
 Thumbs.db
 
 # Package output
-/packages/ts-utils-lite/dist
+/packages/*/dist

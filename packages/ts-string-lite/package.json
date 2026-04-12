@@ -1,0 +1,19 @@
+{
+  "name": "ts-string-lite",
+  "version": "1.0.0",
+  "description": "Lightweight, type-safe string utility library for web developers",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "keywords": ["utils", "typescript", "string", "helpers", "lite"],
+  "author": "Gaurang Mody - G8X",
+  "license": "MIT"
+}

@@ -1,4 +1,4 @@
-name: Publish Package
+name: Publish Packages
 
 on:
   release:
@@ -14,6 +14,19 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - ts-string-lite
+          - ts-array-lite
+          - ts-date-lite
+          - ts-object-lite
+          - ts-number-lite
+          - ts-validation-lite
+          - ts-id-lite
+          - ts-cookie-lite
+          - ts-utils-lite
     steps:
       - uses: actions/checkout@v6
 
@@ -22,21 +35,12 @@ jobs:
         run: |
           git fetch --tags --all
           
-          echo "=== All tags ==="
-          git tag -l | sort -V
-          
           if [ "${{ github.event_name }}" = "release" ]; then
             VERSION="${GITHUB_REF#refs/tags/v}"
             echo "channel=latest" >> $GITHUB_OUTPUT
-            echo "Release mode: $VERSION"
           else
-            # Get highest stable version (with or without v prefix)
             LAST_STABLE=$(git tag -l | grep -vE 'beta' | sort -V | tail -1 | sed 's/^v//')
-            echo "Last stable: $LAST_STABLE"
-            
-            # Get beta tag for this version
             LAST_BETA=$(git tag -l | grep -E "v?${LAST_STABLE}-beta\." | sort -V | tail -1)
-            echo "Last beta: $LAST_BETA"
             
             if [ -z "$LAST_BETA" ]; then
               BETA_NUM=1
@@ -45,9 +49,7 @@ jobs:
               BETA_NUM=$((BETA_NUM + 1))
             fi
             
-            echo "New beta number: $BETA_NUM"
             VERSION="${LAST_STABLE}-beta.${BETA_NUM}"
-            echo "Beta mode: $VERSION"
             echo "channel=beta" >> $GITHUB_OUTPUT
           fi
           
@@ -56,32 +58,31 @@ jobs:
       - name: Update package.json version
         run: |
           VERSION='${{ steps.version.outputs.version }}'
-          sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" packages/ts-utils-lite/package.json
-          cat packages/ts-utils-lite/package.json | head -5
+          sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"$VERSION\"/" packages/${{ matrix.package }}/package.json
 
       - uses: actions/setup-node@v6
         with:
           node-version: '24'
           registry-url: 'https://registry.npmjs.org'
 
-      - run: npm i
-
-      - name: Build pure TypeScript package
+      - name: Install TypeScript
         run: |
-          cd packages/ts-utils-lite
+          cd packages/${{ matrix.package }}
+          npm install typescript --save-dev
+
+      - name: Build package
+        run: |
+          cd packages/${{ matrix.package }}
           npx tsc
-          cd ../..
-          # List files to verify
-          echo "=== Files to publish ==="
-          ls packages/ts-utils-lite/dist
 
       - name: Publish to npm
         run: |
-          cd packages/ts-utils-lite
+          cd packages/${{ matrix.package }}
           npm publish --access public --tag ${{ steps.version.outputs.channel }}
 
       - name: Create tag (beta only)
         if: github.event_name != 'release'
         run: |
-          git tag ${{ steps.version.outputs.version }}
-          git push origin ${{ steps.version.outputs.version }}
+          COMMON_TAG="v${{ steps.version.outputs.version }}"
+          git tag $COMMON_TAG
+          git push origin $COMMON_TAG
