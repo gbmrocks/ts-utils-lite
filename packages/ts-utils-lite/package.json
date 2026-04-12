@@ -13,7 +13,7 @@
     }
   },
   "dependencies": {
-    "ts-string-lite": "*",
+    "ts-string-lite": "1.0.2",
     "ts-array-lite": "*",
     "ts-date-lite": "*",
     "ts-object-lite": "*",
