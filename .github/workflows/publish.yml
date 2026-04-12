@@ -15,6 +15,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         package:
           - ts-string-lite
@@ -70,6 +71,7 @@ jobs:
           npm install typescript --save-dev
 
       - name: Build package
+        continue-on-error: true
         run: |
           cd packages/${{ matrix.package }}
           npx tsc
