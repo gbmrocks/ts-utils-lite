@@ -3,21 +3,47 @@ name: Publish Package
 on:
   release:
     types: [published]
+  push:
+    branches:
+      - dev
 
 permissions:
   id-token: write
-  contents: read
+  contents: write
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Get version from release
+      - name: Determine version
         id: version
         run: |
-          VERSION=${GITHUB_REF#refs/tags/v}
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            VERSION=${GITHUB_REF#refs/tags/v}
+            echo "channel=latest" >> $GITHUB_OUTPUT
+          else
+            git fetch --tags
+            LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+            
+            LAST_BETA=$(git tag -l 'v*-beta.*' | sort -V | tail -1 || echo "")
+            
+            if [ -z "$LAST_BETA" ]; then
+              LAST_BETA="v0.0.0-beta.0"
+            fi
+            
+            BETA_NUM=$(echo $LAST_BETA | grep -oP 'beta\.\K\d+' || echo "0")
+            BETA_NUM=$((BETA_NUM + 1))
+            
+            LAST_VERSION=${LAST_TAG#v}
+            VERSION="${LAST_VERSION}-beta.${BETA_NUM}"
+            echo "channel=beta" >> $GITHUB_OUTPUT
+          fi
+          
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Update package.json version
@@ -38,4 +64,10 @@ jobs:
       - name: Publish to npm
         run: |
           cd dist/ngx-utils-lite
-          npm publish --access public
+          npm publish --access public --tag ${{ steps.version.outputs.channel }}
+
+      - name: Create tag (beta only)
+        if: github.event_name == 'push'
+        run: |
+          git tag v${{ steps.version.outputs.version }}
+          git push origin v${{ steps.version.outputs.version }}
