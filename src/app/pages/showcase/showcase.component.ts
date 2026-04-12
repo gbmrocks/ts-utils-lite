@@ -56,6 +56,8 @@ import { CookieUtils } from 'ts-cookie-lite';
           <button class="copy-btn" (click)="copyCode('string')">Copy</button>
         </div>
         <pre><code>import &#123; StringUtils &#125; from 'ts-string-lite';
+// or
+import &#123; StringUtils, Utils &#125; from 'ts-utils-lite';
 
 const str = new StringUtils();
 
@@ -84,7 +86,9 @@ str.camelCase('hello world');</code></pre>
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('date')">Copy</button>
         </div>
-        <pre><code>import &#123; DateUtils &#125; from 'ts-string-lite';
+        <pre><code>import &#123; DateUtils &#125; from 'ts-date-lite';
+// or
+import &#123; DateUtils, Utils &#125; from 'ts-utils-lite';
 
 const date = new DateUtils();
 
@@ -118,7 +122,9 @@ date.add(new Date(), 7, 'day');</code></pre>
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('array')">Copy</button>
         </div>
-        <pre><code>import &#123; ArrayUtils &#125; from 'ts-string-lite';
+        <pre><code>import &#123; ArrayUtils &#125; from 'ts-array-lite';
+// or
+import &#123; ArrayUtils, Utils &#125; from 'ts-utils-lite';
 
 const arr = new ArrayUtils();
 
@@ -149,7 +155,9 @@ arr.groupBy(['apple','banana'], s => s[0]);</code></pre>
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('object')">Copy</button>
         </div>
-        <pre><code>import &#123; ObjectUtils &#125; from 'ts-string-lite';
+        <pre><code>import &#123; ObjectUtils &#125; from 'ts-object-lite';
+// or
+import &#123; ObjectUtils, Utils &#125; from 'ts-utils-lite';
 
 const obj = new ObjectUtils();
 
@@ -180,7 +188,9 @@ obj.merge(obj1, obj2);</code></pre>
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('number')">Copy</button>
         </div>
-        <pre><code>import &#123; NumberUtils &#125; from 'ts-string-lite';
+        <pre><code>import &#123; NumberUtils &#125; from 'ts-number-lite';
+// or
+import &#123; NumberUtils, Utils &#125; from 'ts-utils-lite';
 
 const num = new NumberUtils();
 
@@ -214,7 +224,9 @@ num.formatPercent(0.756);</code></pre>
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('validation')">Copy</button>
         </div>
-        <pre><code>import &#123; ValidationUtils &#125; from 'ts-string-lite';
+        <pre><code>import &#123; ValidationUtils &#125; from 'ts-validation-lite';
+// or
+import &#123; ValidationUtils, Utils &#125; from 'ts-utils-lite';
 
 const val = new ValidationUtils();
 
@@ -245,7 +257,9 @@ val.isStrongPassword('Test123!');</code></pre>
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('id')">Copy</button>
         </div>
-        <pre><code>import &#123; IdUtils &#125; from 'ts-string-lite';
+        <pre><code>import &#123; IdUtils &#125; from 'ts-id-lite';
+// or
+import &#123; IdUtils, Utils &#125; from 'ts-utils-lite';
 
 const id = new IdUtils();
 
@@ -282,7 +296,9 @@ id.generateCode(6);</code></pre>
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('cookie')">Copy</button>
         </div>
-        <pre><code>import &#123; CookieUtils &#125; from 'ts-string-lite';
+        <pre><code>import &#123; CookieUtils &#125; from 'ts-cookie-lite';
+// or
+import &#123; CookieUtils, Utils &#125; from 'ts-utils-lite';
 
 const cookie = new CookieUtils();
 
@@ -462,55 +478,71 @@ export class ShowcaseComponent {
   copyCode(tab: string): void {
     const codeMap: Record<string, string> = {
       string: `import { StringUtils } from 'ts-string-lite';
+// or
+import { StringUtils, Utils } from 'ts-utils-lite';
 
 const string = new StringUtils();
 
 string.slugify('Hello World');    // 'hello-world'
 string.camelCase('hello world'); // 'helloWorld'
 string.kebabCase('Hello World'); // 'hello-world'`,
-      date: `import { DateUtils } from 'ts-string-lite';
+      date: `import { DateUtils } from 'ts-date-lite';
+// or
+import { DateUtils, Utils } from 'ts-utils-lite';
 
 const date = new DateUtils();
 
 date.format(new Date(), 'YYYY-MM-DD');                    // '2024-01-15'
 date.relative(new Date(Date.now() - 3600000));            // '1 hour ago'
 date.add(new Date(), 7, 'day');                            // Date + 7 days`,
-      array: `import { ArrayUtils } from 'ts-string-lite';
+      array: `import { ArrayUtils } from 'ts-array-lite';
+// or
+import { ArrayUtils, Utils } from 'ts-utils-lite';
 
 const array = new ArrayUtils();
 
 array.unique([1, 2, 2, 3]);              // [1, 2, 3]
 array.chunk([1,2,3,4], 2);               // [[1,2], [3,4]]
 array.groupBy(['apple','banana'], s => s[0]); // {a: [...], b: [...]}`,
-      object: `import { ObjectUtils } from 'ts-string-lite';
+      object: `import { ObjectUtils } from 'ts-object-lite';
+// or
+import { ObjectUtils, Utils } from 'ts-utils-lite';
 
 const obj = new ObjectUtils();
 
 obj.deepGet({a: {b: 42}}, 'a.b');    // 42
 obj.deepClone({a: 1});               // {a: 1}
 obj.merge({a: 1}, {b: 2});           // {a: 1, b: 2}`,
-      number: `import { NumberUtils } from 'ts-string-lite';
+      number: `import { NumberUtils } from 'ts-number-lite';
+// or
+import { NumberUtils, Utils } from 'ts-utils-lite';
 
 const num = new NumberUtils();
 
 num.formatCurrency(1234.56);         // '$1,234.56'
 num.formatBytes(1048576);            // '1 MB'
-num.formatPercent(0.756);           // '75.6%'`,
-      validation: `import { ValidationUtils } from 'ts-string-lite';
+num.formatPercent(0.756);            // '75.6%'`,
+      validation: `import { ValidationUtils } from 'ts-validation-lite';
+// or
+import { ValidationUtils, Utils } from 'ts-utils-lite';
 
 const val = new ValidationUtils();
 
 val.isEmail('test@example.com');    // true
 val.isUrl('https://google.com');    // true
 val.isStrongPassword('Test123!');  // {valid: true, score: 5, ...}`,
-      id: `import { IdUtils } from 'ts-string-lite';
+      id: `import { IdUtils } from 'ts-id-lite';
+// or
+import { IdUtils, Utils } from 'ts-utils-lite';
 
 const id = new IdUtils();
 
 id.uuid();                // 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
 id.nanoid();              // 'V1StGXR8_Z'
 id.generateCode(6, 'numeric'); // '482921'`,
-      cookie: `import { CookieUtils } from 'ts-string-lite';
+      cookie: `import { CookieUtils } from 'ts-cookie-lite';
+// or
+import { CookieUtils, Utils } from 'ts-utils-lite';
 
 const cookie = new CookieUtils();
 
@@ -521,8 +553,8 @@ cookie.delete('theme');`,
       copy: `// Copy to clipboard (browser API)
 navigator.clipboard.writeText('Hello World');
 
-// Or use the Utils helper
-import { Utils } from 'ts-string-lite';
+// Or use ts-utils-lite for all utilities
+import { Utils } from 'ts-utils-lite';
 Utils.id.generateCode(6); // Generate random code`
     };
     navigator.clipboard.writeText(codeMap[tab] || '');
