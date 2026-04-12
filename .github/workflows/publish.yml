@@ -69,11 +69,8 @@ jobs:
       - name: Build pure TypeScript package
         run: |
           npx tsc -p tsconfig-pure.json
-          # Copy JS and DTS files to root for publishing
-          cp src/*.js .
-          cp src/*.d.ts .
-          # Copy package.json to root
-          cp src/package.json package.json
+          # Copy lib folder contents to root
+          cp -r lib/* .
           # List files to verify
           echo "=== Files to publish ==="
           ls -la
