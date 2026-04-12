@@ -74,9 +74,6 @@ jobs:
           cp src/*.d.ts .
           # Copy package.json to root
           cp src/package.json package.json
-          # Copy README and LICENSE
-          cp README.md .
-          cp LICENSE .
           # List files to verify
           echo "=== Files to publish ==="
           ls -la
