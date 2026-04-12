@@ -77,9 +77,9 @@ jobs:
 
       - name: Publish to npm
         run: |
+          cp README.md packages/${{ matrix.package }}/
+          cp LICENSE packages/${{ matrix.package }}/
           cd packages/${{ matrix.package }}
-          cp README.md .
-          cp LICENSE .
           npm publish --access public --tag ${{ steps.version.outputs.channel }}
 
       - name: Create tag (beta only)
