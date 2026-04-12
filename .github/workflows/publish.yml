@@ -59,11 +59,10 @@ jobs:
       - name: Build pure TypeScript package
         run: |
           npx tsc -p tsconfig-pure.json
-          cp src/package.json dist-pure/package.json
+          cp src/package.json package.json
 
       - name: Publish to npm
         run: |
-          cd dist-pure
           npm publish --access public --tag ${{ steps.version.outputs.channel }}
 
       - name: Create tag (beta only)

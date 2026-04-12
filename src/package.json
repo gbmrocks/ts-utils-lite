@@ -2,18 +2,19 @@
   "name": "ngx-utils-lite",
   "version": "1.0.0",
   "description": "Lightweight utility library for Angular and TypeScript",
-  "main": "dist-pure/index.js",
-  "module": "dist-pure/index.js",
-  "types": "dist-pure/index.d.ts",
+  "main": "./string.js",
+  "module": "./string.js",
+  "types": "./index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist-pure/index.d.ts",
-      "import": "./dist-pure/index.js",
-      "require": "./dist-pure/index.js"
+      "types": "./index.d.ts",
+      "import": "./index.js",
+      "require": "./index.js"
     }
   },
   "files": [
-    "dist-pure"
+    "*.js",
+    "*.d.ts"
   ],
   "keywords": ["utils", "typescript", "angular", "javascript", "helpers", "lodash", "underscore"],
   "author": "Gaurang Mody - G8X",

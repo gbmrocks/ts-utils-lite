@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { StringUtils } from '../../../string';
-import { DateUtils } from '../../../date';
-import { ArrayUtils } from '../../../array';
-import { ObjectUtils } from '../../../object';
-import { NumberUtils } from '../../../number';
-import { ValidationUtils } from '../../../validation';
-import { IdUtils } from '../../../id';
-import { CookieUtils } from '../../../cookie';
+import { StringUtils } from 'ngx-utils-lite';
+import { DateUtils } from 'ngx-utils-lite';
+import { ArrayUtils } from 'ngx-utils-lite';
+import { ObjectUtils } from 'ngx-utils-lite';
+import { NumberUtils } from 'ngx-utils-lite';
+import { ValidationUtils } from 'ngx-utils-lite';
+import { IdUtils } from 'ngx-utils-lite';
+import { CookieUtils } from 'ngx-utils-lite';
 
 @Component({
   selector: 'app-showcase',
@@ -55,18 +55,12 @@ import { CookieUtils } from '../../../cookie';
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('string')">Copy</button>
         </div>
-        <pre><code>import &#123; Injectable &#125; from '&#64;angular/core';
-import &#123; NgxStringUtils &#125; from 'ngx-utils-lite';
+        <pre><code>import &#123; StringUtils &#125; from 'ngx-utils-lite';
 
-&#64;Injectable(&#123; providedIn: 'root' &#125;)
-export class MyService &#123;
-  constructor(private str: NgxStringUtils) &#123; &#125;
-  
-  myMethod(): void &#123;
-    this.str.slugify('Hello World');
-    this.str.camelCase('hello world');
-  &#125;
-&#125;</code></pre>
+const str = new StringUtils();
+
+str.slugify('Hello World');
+str.camelCase('hello world');</code></pre>
       </div>
     </div>
 
@@ -90,19 +84,13 @@ export class MyService &#123;
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('date')">Copy</button>
         </div>
-        <pre><code>import &#123; Injectable &#125; from '&#64;angular/core';
-import &#123; NgxDateUtils &#125; from 'ngx-utils-lite';
+        <pre><code>import &#123; DateUtils &#125; from 'ngx-utils-lite';
 
-&#64;Injectable(&#123; providedIn: 'root' &#125;)
-export class MyService &#123;
-  constructor(private date: NgxDateUtils) &#123; &#125;
-  
-  myMethod(): void &#123;
-    this.date.format(new Date(), 'YYYY-MM-DD');
-    this.date.relative(new Date(Date.now() - 3600000));
-    this.date.add(new Date(), 7, 'day');
-  &#125;
-&#125;</code></pre>
+const date = new DateUtils();
+
+date.format(new Date(), 'YYYY-MM-DD');
+date.relative(new Date(Date.now() - 3600000));
+date.add(new Date(), 7, 'day');</code></pre>
       </div>
     </div>
 
@@ -130,19 +118,13 @@ export class MyService &#123;
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('array')">Copy</button>
         </div>
-        <pre><code>import &#123; Injectable &#125; from '&#64;angular/core';
-import &#123; NgxArrayUtils &#125; from 'ngx-utils-lite';
+        <pre><code>import &#123; ArrayUtils &#125; from 'ngx-utils-lite';
 
-&#64;Injectable(&#123; providedIn: 'root' &#125;)
-export class MyService &#123;
-  constructor(private arr: NgxArrayUtils) &#123; &#125;
-  
-  myMethod(): void &#123;
-    this.arr.unique([1, 2, 2, 3]);
-    this.arr.chunk([1, 2, 3, 4], 2);
-    this.arr.groupBy(['apple', 'banana'], s => s[0]);
-  &#125;
-&#125;</code></pre>
+const arr = new ArrayUtils();
+
+arr.unique([1, 2, 2, 3]);
+arr.chunk([1,2,3,4], 2);
+arr.groupBy(['apple','banana'], s => s[0]);</code></pre>
       </div>
     </div>
 
@@ -167,19 +149,13 @@ export class MyService &#123;
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('object')">Copy</button>
         </div>
-        <pre><code>import &#123; Injectable &#125; from '&#64;angular/core';
-import &#123; NgxObjectUtils &#125; from 'ngx-utils-lite';
+        <pre><code>import &#123; ObjectUtils &#125; from 'ngx-utils-lite';
 
-&#64;Injectable(&#123; providedIn: 'root' &#125;)
-export class MyService &#123;
-  constructor(private obj: NgxObjectUtils) &#123; &#125;
-  
-  myMethod(): void &#123;
-    this.obj.deepGet(&#123;a: &#123;b: 42&#125;&#125;, 'a.b');
-    this.obj.deepClone(&#123;a: 1&#125;);
-    this.obj.merge(&#123;a: 1&#125;, &#123;b: 2&#125;);
-  &#125;
-&#125;</code></pre>
+const obj = new ObjectUtils();
+
+obj.deepGet(nestedObj, 'a.b');
+obj.deepClone(obj);
+obj.merge(obj1, obj2);</code></pre>
       </div>
     </div>
 
@@ -204,19 +180,13 @@ export class MyService &#123;
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('number')">Copy</button>
         </div>
-        <pre><code>import &#123; Injectable &#125; from '&#64;angular/core';
-import &#123; NgxNumberUtils &#125; from 'ngx-utils-lite';
+        <pre><code>import &#123; NumberUtils &#125; from 'ngx-utils-lite';
 
-&#64;Injectable(&#123; providedIn: 'root' &#125;)
-export class MyService &#123;
-  constructor(private num: NgxNumberUtils) &#123; &#125;
-  
-  myMethod(): void &#123;
-    this.num.formatCurrency(1234.56);
-    this.num.formatBytes(1048576);
-    this.num.formatPercent(0.756);
-  &#125;
-&#125;</code></pre>
+const num = new NumberUtils();
+
+num.formatCurrency(1234.56);
+num.formatBytes(1048576);
+num.formatPercent(0.756);</code></pre>
       </div>
     </div>
 
@@ -244,19 +214,13 @@ export class MyService &#123;
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('validation')">Copy</button>
         </div>
-        <pre><code>import &#123; Injectable &#125; from '&#64;angular/core';
-import &#123; NgxValidationUtils &#125; from 'ngx-utils-lite';
+        <pre><code>import &#123; ValidationUtils &#125; from 'ngx-utils-lite';
 
-&#64;Injectable(&#123; providedIn: 'root' &#125;)
-export class MyService &#123;
-  constructor(private val: NgxValidationUtils) &#123; &#125;
-  
-  myMethod(): void &#123;
-    this.val.isEmail('test' + '&#64;example.com');
-    this.val.isUrl('https://google.com');
-    this.val.isStrongPassword('Test123!');
-  &#125;
-&#125;</code></pre>
+const val = new ValidationUtils();
+
+val.isEmail('test&#64;example.com');
+val.isUrl('https://google.com');
+val.isStrongPassword('Test123!');</code></pre>
       </div>
     </div>
 
@@ -281,19 +245,13 @@ export class MyService &#123;
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('id')">Copy</button>
         </div>
-        <pre><code>import &#123; Injectable &#125; from '&#64;angular/core';
-import &#123; NgxIdUtils &#125; from 'ngx-utils-lite';
+        <pre><code>import &#123; IdUtils &#125; from 'ngx-utils-lite';
 
-&#64;Injectable(&#123; providedIn: 'root' &#125;)
-export class MyService &#123;
-  constructor(private id: NgxIdUtils) &#123; &#125;
-  
-  myMethod(): void &#123;
-    this.id.uuid();
-    this.id.nanoid();
-    this.id.generateCode(6, 'numeric');
-  &#125;
-&#125;</code></pre>
+const id = new IdUtils();
+
+id.uuid();
+id.nanoid();
+id.generateCode(6);</code></pre>
       </div>
     </div>
 
@@ -324,55 +282,13 @@ export class MyService &#123;
           <h3>How to use:</h3>
           <button class="copy-btn" (click)="copyCode('cookie')">Copy</button>
         </div>
-        <pre><code>import &#123; Injectable &#125; from '&#64;angular/core';
-import &#123; NgxCookieUtils &#125; from 'ngx-utils-lite';
+        <pre><code>import &#123; CookieUtils &#125; from 'ngx-utils-lite';
 
-&#64;Injectable(&#123; providedIn: 'root' &#125;)
-export class MyService &#123;
-  constructor(private cookie: NgxCookieUtils) &#123; &#125;
-  
-  myMethod(): void &#123;
-    this.cookie.set('theme', 'dark', 7);
-    const theme = this.cookie.get('theme');
-    const has = this.cookie.has('theme');
-  &#125;
-&#125;</code></pre>
-      </div>
-    </div>
+const cookie = new CookieUtils();
 
-    <div *ngIf="activeTab === 'copy'" class="demo">
-      <h2>Copy to Clipboard</h2>
-      <p>Use the browser's clipboard API</p>
-      
-      <div class="demo-box">
-        <div class="input-group">
-          <label>Text to copy:</label>
-          <input [(ngModel)]="copyInput" placeholder="Type something..." />
-        </div>
-        <button (click)="doCopy()">Copy Text</button>
-        <div *ngIf="copyResult" class="result">{{ copyResult }}</div>
-      </div>
-
-      <div class="code-section">
-        <div class="code-header">
-          <h3>How to use:</h3>
-          <button class="copy-btn" (click)="copyCode('copy')">Copy</button>
-        </div>
-        <pre><code><span class="keyword">import</span> <span class="punctuation">&#123;</span> <span class="type">Component</span> <span class="punctuation">&#125;</span> <span class="keyword">from</span> <span class="string">'&#64;angular/core'</span>;
-<span class="keyword">import</span> <span class="punctuation">&#123;</span> <span class="type">NgxCopyToClipboardDirective</span> <span class="punctuation">&#125;</span> <span class="keyword">from</span> <span class="string">'ngx-utils-lite'</span>;
-
-<span class="decorator">&#64;Component</span><span class="punctuation">(&#123;</span>
-  <span class="property">selector</span>: <span class="string">'app-my-component'</span>,
-  <span class="property">standalone</span>: <span class="keyword">true</span>,
-  <span class="property">imports</span>: <span class="punctuation">[</span><span class="type">NgxCopyToClipboardDirective</span><span class="punctuation">]</span>,
-  <span class="property">template</span>: <span class="string">\`</span>
-<span class="string">    &lt;input [(ngModel)]="text" /&gt;</span>
-<span class="string">    &lt;button [ngxCopyToClipboard]="text"&gt;Copy&lt;/button&gt;</span>
-<span class="string">  \`</span>
-<span class="punctuation">&#125;)</span>
-<span class="keyword">export</span> <span class="keyword">class</span> <span class="type">MyComponent</span> <span class="punctuation">&#123;</span>
-  <span class="property">text</span> = <span class="string">'Hello World'</span>;
-<span class="punctuation">&#125;</span></code></pre>
+cookie.set('theme', 'dark', 7);
+cookie.get('theme');
+cookie.delete('theme');</code></pre>
       </div>
     </div>
   </div>
@@ -408,14 +324,14 @@ button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(59, 130,
   `]
 })
 export class ShowcaseComponent {
-  string = inject(StringUtils);
-  date = inject(DateUtils);
-  array = inject(ArrayUtils);
-  object = inject(ObjectUtils);
-  number = inject(NumberUtils);
-  validation = inject(ValidationUtils);
-  id = inject(IdUtils);
-  cookie = inject(CookieUtils);
+  string = new StringUtils();
+  date = new DateUtils();
+  array = new ArrayUtils();
+  object = new ObjectUtils();
+  number = new NumberUtils();
+  validation = new ValidationUtils();
+  id = new IdUtils();
+  cookie = new CookieUtils();
 
   activeTab = 'string';
 
