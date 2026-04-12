@@ -17,7 +17,7 @@ import { CookieUtils } from 'ts-utils-lite';
   template: `
 <div class="showcase-container">
   <h1>ts-utils-lite</h1>
-  <p class="subtitle">Learn how to use ts-utils-lite in your Angular projects</p>
+  <p class="subtitle">Learn how to use ts-utils-lite in your projects</p>
 
   <nav class="tabs">
     <button *ngFor="let tab of tabs" 
@@ -346,7 +346,7 @@ export class ShowcaseComponent {
     { id: 'cookie', name: 'Cookie' }
   ];
 
-  stringInput = 'Hello World from ngx-utils';
+  stringInput = 'Hello World from ts-utils';
   stringResult = '';
   dateInput = new Date();
   dateResult = '';

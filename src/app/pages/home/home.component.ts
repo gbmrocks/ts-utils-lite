@@ -25,14 +25,14 @@ import { RouterModule } from '@angular/router';
       </a>
     </div>
     <div class="npm-badge">
-      <code>npm install ngx-utils-lite</code>
+      <code>npm install ts-utils-lite</code>
     </div>
   </section>
 
   <section class="features">
     <div class="section-header">
-      <h2>Why ngx-utils-lite?</h2>
-      <p>Built for modern Angular apps</p>
+      <h2>Why ts-utils-lite?</h2>
+      <p>Built for modern web apps</p>
     </div>
     <div class="feature-grid">
       <div *ngFor="let feature of features; let i = index" class="feature-card" [style.animation-delay]="i * 0.1 + 's'">
@@ -46,7 +46,7 @@ import { RouterModule } from '@angular/router';
   <section class="utilities">
     <div class="section-header">
       <h2>Available Utilities</h2>
-      <p>9 utilities, countless possibilities</p>
+      <p>8 utilities, countless possibilities</p>
     </div>
     <div class="utils-grid">
       <div *ngFor="let util of utils; let i = index" class="util-card" [style.animation-delay]="i * 0.05 + 's'">
