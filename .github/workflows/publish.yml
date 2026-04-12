@@ -18,14 +18,14 @@ jobs:
       fail-fast: false
       matrix:
         package:
-          - ts-string-lite
-          - ts-array-lite
-          - ts-date-lite
-          - ts-object-lite
-          - ts-number-lite
-          - ts-validation-lite
-          - ts-id-lite
-          - ts-cookie-lite
+#          - ts-string-lite
+#          - ts-array-lite
+#          - ts-date-lite
+#          - ts-object-lite
+#          - ts-number-lite
+#          - ts-validation-lite
+#          - ts-id-lite
+#          - ts-cookie-lite
           - ts-utils-lite
     steps:
       - uses: actions/checkout@v6
