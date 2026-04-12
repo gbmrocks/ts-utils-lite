@@ -34,25 +34,25 @@ jobs:
         id: version
         run: |
           git fetch --tags --all
-          
+
           if [ "${{ github.event_name }}" = "release" ]; then
             VERSION="${GITHUB_REF#refs/tags/v}"
             echo "channel=latest" >> $GITHUB_OUTPUT
           else
             LAST_STABLE=$(git tag -l | grep -vE 'beta' | sort -V | tail -1 | sed 's/^v//')
             LAST_BETA=$(git tag -l | grep -E "v?${LAST_STABLE}-beta\." | sort -V | tail -1)
-            
+
             if [ -z "$LAST_BETA" ]; then
               BETA_NUM=1
             else
               BETA_NUM=$(echo "$LAST_BETA" | grep -oE '[0-9]+$' || echo "1")
               BETA_NUM=$((BETA_NUM + 1))
             fi
-            
+
             VERSION="${LAST_STABLE}-beta.${BETA_NUM}"
             echo "channel=beta" >> $GITHUB_OUTPUT
           fi
-          
+
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Update package.json version
@@ -78,6 +78,8 @@ jobs:
       - name: Publish to npm
         run: |
           cd packages/${{ matrix.package }}
+          cp README.md .
+          cp LICENSE .
           npm publish --access public --tag ${{ steps.version.outputs.channel }}
 
       - name: Create tag (beta only)
