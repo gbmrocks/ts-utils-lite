@@ -1,4 +1,4 @@
-name: Changeset PR
+name: Auto Changeset PR
 
 on:
   push:
@@ -11,16 +11,12 @@ permissions:
 
 jobs:
   changeset:
-    # 🚨 ignore release commits completely
-    if: >
-      !contains(github.event.head_commit.message, 'chore: release') &&
-      !contains(github.event.head_commit.message, 'Version Packages') &&
-      !contains(github.event.head_commit.message, 'changeset-release')
+    # prevent loop from release commits
+    if: "!contains(github.event.head_commit.message, 'chore: release')"
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -29,11 +25,38 @@ jobs:
         with:
           node-version: 24
 
-      - name: Install dependencies
+      - name: Install deps
         run: npm install
 
-      # 🚨 ONLY create PR (NO versioning, NO publish)
-      - name: Create Changeset PR
+      # 🔥 AUTO CREATE CHANGESET (THIS WAS MISSING BEFORE)
+      - name: Generate changeset if needed
+        run: |
+          CHANGED=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} \
+            | grep '^packages/' \
+            | grep -v '/dist/' \
+            | cut -d/ -f2 \
+            | sort -u || true)
+
+          if [ -z "$CHANGED" ]; then
+            echo "No package changes"
+            exit 0
+          fi
+
+          mkdir -p .changeset
+          FILE=".changeset/auto-$(date +%s).md"
+
+          echo "---" > $FILE
+
+          for pkg in $CHANGED; do
+            echo "\"$pkg\": patch" >> $FILE
+          done
+
+          echo "---" >> $FILE
+          echo "" >> $FILE
+          echo "auto release" >> $FILE
+
+      # 🔥 CREATE PR (NOW IT WORKS)
+      - name: Create Release PR
         uses: changesets/action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -11,13 +11,12 @@ permissions:
 
 jobs:
   release:
-    # 🚨 ONLY run on release commits
+    # only run on release commit
     if: contains(github.event.head_commit.message, 'chore: release')
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -27,24 +26,16 @@ jobs:
           node-version: 24
           registry-url: https://registry.npmjs.org
 
-      - name: Install dependencies
+      - name: Install
         run: npm install
 
-      - name: Build packages
+      - name: Build
         run: npm run build --workspaces
 
-      # 🚀 VERSION PACKAGES
-      - name: Version packages
-        run: npx changeset version
-
-      # 🚀 PUBLISH TO NPM
-      - name: Publish packages
+      - name: Publish
         run: npx changeset publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # 🚀 CREATE GITHUB RELEASES
-      - name: Create Git tags + push
+      - name: Commit release
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
