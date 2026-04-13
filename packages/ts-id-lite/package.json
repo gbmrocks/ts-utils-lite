@@ -1,6 +1,6 @@
 {
   "name": "ts-id-lite",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Lightweight, type-safe ID generation utility library for web developers",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -12,11 +12,20 @@
       "require": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json"
   },
-  "keywords": ["utils", "typescript", "id", "uuid", "helpers", "lite"],
+  "keywords": [
+    "utils",
+    "typescript",
+    "id",
+    "uuid",
+    "helpers",
+    "lite"
+  ],
   "author": "Gaurang Mody - G8X",
   "license": "MIT"
 }

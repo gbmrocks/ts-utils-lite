@@ -1,6 +1,6 @@
 {
   "name": "ts-cookie-lite",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Lightweight, type-safe cookie utility library for web developers",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -15,8 +15,16 @@
   "scripts": {
     "build": "tsc -p tsconfig.json"
   },
-  "files": ["dist"],
-  "keywords": ["utils", "typescript", "cookie", "helpers", "lite"],
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "utils",
+    "typescript",
+    "cookie",
+    "helpers",
+    "lite"
+  ],
   "author": "Gaurang Mody - G8X",
   "license": "MIT"
 }

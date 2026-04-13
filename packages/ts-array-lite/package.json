@@ -1,6 +1,6 @@
 {
   "name": "ts-array-lite",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "description": "Lightweight, type-safe array utility library for web developers",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -15,8 +15,16 @@
   "scripts": {
     "build": "tsc -p tsconfig.json"
   },
-  "files": ["dist"],
-  "keywords": ["utils", "typescript", "array", "helpers", "lite"],
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "utils",
+    "typescript",
+    "array",
+    "helpers",
+    "lite"
+  ],
   "author": "Gaurang Mody - G8X",
   "license": "MIT"
 }
