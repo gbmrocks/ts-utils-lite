@@ -11,15 +11,13 @@ permissions:
 
 jobs:
   release:
-    # 🚨 ignore PR automation commits
-    if: |
-      !contains(github.event.head_commit.message, 'chore: release') &&
-      !contains(github.event.head_commit.message, 'Version Packages') &&
-      !contains(github.event.head_commit.message, 'changeset-release')
+    # 🚨 ONLY run on release commits
+    if: contains(github.event.head_commit.message, 'chore: release')
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -29,22 +27,24 @@ jobs:
           node-version: 24
           registry-url: https://registry.npmjs.org
 
-      - name: Install
+      - name: Install dependencies
         run: npm install
 
-      - name: Build
+      - name: Build packages
         run: npm run build --workspaces
 
-      # ONLY version + publish
+      # 🚀 VERSION PACKAGES
       - name: Version packages
         run: npx changeset version
 
+      # 🚀 PUBLISH TO NPM
       - name: Publish packages
         run: npx changeset publish
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Commit release changes
+      # 🚀 CREATE GITHUB RELEASES
+      - name: Create Git tags + push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

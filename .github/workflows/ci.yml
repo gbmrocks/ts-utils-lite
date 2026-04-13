@@ -11,12 +11,16 @@ permissions:
 
 jobs:
   changeset:
-    # 🚨 prevent loop from release commits
-    if: "!contains(github.event.head_commit.message, 'chore: release')"
+    # 🚨 ignore release commits completely
+    if: >
+      !contains(github.event.head_commit.message, 'chore: release') &&
+      !contains(github.event.head_commit.message, 'Version Packages') &&
+      !contains(github.event.head_commit.message, 'changeset-release')
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -25,10 +29,10 @@ jobs:
         with:
           node-version: 24
 
-      - name: Install deps
+      - name: Install dependencies
         run: npm install
 
-      # IMPORTANT: ONLY create PR, DO NOT version/publish
+      # 🚨 ONLY create PR (NO versioning, NO publish)
       - name: Create Changeset PR
         uses: changesets/action@v1
         env:
