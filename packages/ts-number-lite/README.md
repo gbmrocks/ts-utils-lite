@@ -12,11 +12,11 @@ npm install ts-number-lite
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxNumberUtils } from 'ts-number-lite';
+import { NumberUtils } from 'ts-number-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
-  constructor(private num: NgxNumberUtils) { }
+  constructor(private num: NumberUtils) { }
   
   myMethod(): void {
     this.num.formatCurrency(1234.56);         // '$1,234.56'

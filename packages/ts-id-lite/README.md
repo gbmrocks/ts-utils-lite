@@ -12,11 +12,11 @@ npm install ts-id-lite
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxIdUtils } from 'ts-id-lite';
+import { IdUtils } from 'ts-id-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
-  constructor(private id: NgxIdUtils) { }
+  constructor(private id: IdUtils) { }
   
   myMethod(): void {
     this.id.uuid();                  // '550e8400-e29b-41d4-a716-446655440000'

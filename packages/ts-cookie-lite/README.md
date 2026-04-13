@@ -12,11 +12,11 @@ npm install ts-cookie-lite
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxCookieUtils } from 'ts-cookie-lite';
+import { CookieUtils } from 'ts-cookie-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
-  constructor(private cookie: NgxCookieUtils) { }
+  constructor(private cookie: CookieUtils) { }
   
   myMethod(): void {
     this.cookie.set('theme', 'dark', 7);      // Set cookie for 7 days

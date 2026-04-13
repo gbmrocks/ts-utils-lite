@@ -12,11 +12,11 @@ npm install ts-array-lite
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxArrayUtils } from 'ts-array-lite';
+import { ArrayUtils } from 'ts-array-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
-  constructor(private arr: NgxArrayUtils) { }
+  constructor(private arr: ArrayUtils) { }
   
   myMethod(): void {
     this.arr.unique([1, 2, 2, 3]);                    // [1, 2, 3]
