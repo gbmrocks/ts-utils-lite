@@ -1,6 +1,6 @@
 export class ValidationUtils {
   private readonly emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-  private readonly urlRegex = /^(https?:\/\/)?(([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/i;
+  private readonly urlRegex = /^(https?:\/\/)?(([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$//i;
   private readonly phoneRegex = /^\+?[\d\s\-()]{10,}$/;
   private readonly postalCodeRegex = /^\d{5}(-\d{4})?$/;
 
