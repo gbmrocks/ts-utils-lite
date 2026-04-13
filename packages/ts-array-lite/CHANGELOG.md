@@ -1,5 +1,12 @@
 # ts-array-lite
 
+## 0.0.6
+
+### Patch Changes
+
+- ### Changes
+  - chore: remove version 0.0.2 from TRIGGER file
+
 ## 0.0.5
 
 ### Patch Changes
