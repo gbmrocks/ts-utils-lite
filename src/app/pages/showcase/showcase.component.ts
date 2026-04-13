@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { StringUtils } from 'ts-utils-lite';
-import { DateUtils } from 'ts-utils-lite';
-import { ArrayUtils } from 'ts-utils-lite';
-import { ObjectUtils } from 'ts-utils-lite';
-import { NumberUtils } from 'ts-utils-lite';
-import { ValidationUtils } from 'ts-utils-lite';
-import { IdUtils } from 'ts-utils-lite';
-import { CookieUtils } from 'ts-utils-lite';
+import { StringUtils } from 'ts-string-lite';
+import { DateUtils } from 'ts-date-lite';
+import { ArrayUtils } from 'ts-array-lite';
+import { ObjectUtils } from 'ts-object-lite';
+import { NumberUtils } from 'ts-number-lite';
+import { ValidationUtils } from 'ts-validation-lite';
+import { IdUtils } from 'ts-id-lite';
+import { CookieUtils } from 'ts-cookie-lite';
 
 @Component({
   selector: 'app-showcase',
