@@ -1,5 +1,25 @@
 # ts-utils-lite
 
+## 2.0.20
+
+### Patch Changes
+
+- ### Changes
+  - docs: update README badges for improved accuracy and consistency
+  - docs: remove outdated npm badges from README for improved clarity
+  - docs: update README badges for improved accuracy and consistency
+  - docs: add package badges to README for improved visibility
+  - docs: update npm badges in README for improved visibility and accuracy
+- Updated dependencies
+  - ts-array-lite@2.0.20
+  - ts-cookie-lite@2.0.19
+  - ts-date-lite@2.0.19
+  - ts-id-lite@2.0.19
+  - ts-number-lite@2.0.19
+  - ts-object-lite@2.0.19
+  - ts-string-lite@2.0.19
+  - ts-validation-lite@2.0.19
+
 ## 2.0.19
 
 ### Patch Changes
