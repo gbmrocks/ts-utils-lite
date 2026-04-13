@@ -1,5 +1,11 @@
 # ts-array-lite
 
+## 2.0.6
+
+### Patch Changes
+
+- auto release
+
 ## 2.0.5
 
 ### Patch Changes
