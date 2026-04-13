@@ -6,60 +6,7 @@ import { RouterModule } from '@angular/router';
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  template: `
-<div class="home">
-  <section class="hero">
-    <div class="hero-glow"></div>
-    <div class="badge">
-      <span class="badge-dot"></span>
-      v2.0.17 Released
-    </div>
-    <h1>Everything you need,<br/><span class="gradient-text">nothing you don't.</span></h1>
-    <p class="tagline">Lightweight, type-safe utility library for web developers</p>
-    <div class="cta">
-      <a routerLink="/showcase" class="btn-primary">
-        <span>📖</span> How to Use
-      </a>
-      <a routerLink="/roadmap" class="btn-secondary">
-        <span>🗺️</span> Roadmap
-      </a>
-    </div>
-    <div class="npm-badge">
-      <code>npm install ts-utils-lite</code>
-    </div>
-  </section>
-
-  <section class="features">
-    <div class="section-header">
-      <h2>Why ts-utils-lite?</h2>
-      <p>Built for modern web apps</p>
-    </div>
-    <div class="feature-grid">
-      <div *ngFor="let feature of features; let i = index" class="feature-card" [style.animation-delay]="i * 0.1 + 's'">
-        <div class="feature-icon">{{ feature.icon }}</div>
-        <h3>{{ feature.title }}</h3>
-        <p>{{ feature.desc }}</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="utilities">
-    <div class="section-header">
-      <h2>Available Utilities</h2>
-      <p>8 utilities, countless possibilities</p>
-    </div>
-    <div class="utils-grid">
-      <div *ngFor="let util of utils; let i = index" class="util-card" [style.animation-delay]="i * 0.05 + 's'">
-        <div class="util-icon">🔹</div>
-        <div class="util-info">
-          <code>{{ util.name }}</code>
-          <span>{{ util.desc }}</span>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-  `,
+  templateUrl: './home.component.html',
   styles: [`
 .home { min-height: 100vh; background: var(--bg); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
 .hero { position: relative; text-align: center; padding: 5rem 2rem 4rem; overflow: hidden; }
@@ -117,3 +64,4 @@ export class HomeComponent {
     { name: 'CookieUtils', desc: 'get, set, delete, has' }
   ];
 }
+

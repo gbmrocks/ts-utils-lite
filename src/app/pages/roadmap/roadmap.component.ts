@@ -5,46 +5,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-roadmap',
   standalone: true,
   imports: [CommonModule],
-  template: `
-<div class="roadmap-container">
-  <div class="page-header">
-    <h1>What's Next</h1>
-    <p>Available utilities and planned features</p>
-  </div>
-
-  <div class="utilities-grid">
-    <div class="utility-section available">
-      <div class="section-icon">✅</div>
-      <h2>Available Now</h2>
-      <ul class="feature-list">
-        <li *ngFor="let item of available; let i = index" [style.animation-delay]="i * 0.05 + 's'">
-          <span class="check">✓</span>
-          {{ item }}
-        </li>
-      </ul>
-    </div>
-
-    <div class="utility-section coming">
-      <div class="section-icon">🚀</div>
-      <h2>Coming Soon</h2>
-      <ul class="feature-list">
-        <li *ngFor="let item of planned; let i = index" [style.animation-delay]="i * 0.05 + 's'">
-          <span class="bullet">→</span>
-          {{ item }}
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="request-section">
-    <div class="request-icon">💡</div>
-    <p>Can't find what you need?</p>
-    <button class="request-btn" (click)="requestFeature()">
-      <span>✨</span> Request a Feature
-    </button>
-  </div>
-</div>
-  `,
+  templateUrl: './roadmap.component.html',
   styles: [`
 .roadmap-container { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem; }
 .page-header { text-align: center; margin-bottom: 3rem; }
