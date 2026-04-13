@@ -1,5 +1,22 @@
 # ts-utils-lite
 
+## 2.0.18
+
+### Patch Changes
+
+- ### Changes
+  - fix: remove deprecated warnings from package.json files
+  - fix: remove deprecated warnings from package.json files
+- Updated dependencies
+  - ts-array-lite@2.0.18
+  - ts-cookie-lite@2.0.17
+  - ts-date-lite@2.0.17
+  - ts-id-lite@2.0.17
+  - ts-number-lite@2.0.17
+  - ts-object-lite@2.0.17
+  - ts-string-lite@2.0.17
+  - ts-validation-lite@2.0.17
+
 ## 2.0.17
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # ts-array-lite
 
+## 2.0.18
+
+### Patch Changes
+
+- ### Changes
+  - fix: remove deprecated warnings from package.json files
+  - fix: remove deprecated warnings from package.json files
+
 ## 2.0.17
 
 ### Patch Changes

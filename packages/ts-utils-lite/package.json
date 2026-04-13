@@ -1,6 +1,6 @@
 {
   "name": "ts-utils-lite",
-  "version": "2.0.17",
+  "version": "2.0.18",
   "description": "Lightweight, type-safe utility library for web developers",
   "main": "./index.js",
   "module": "./index.js",
@@ -13,14 +13,14 @@
     }
   },
   "dependencies": {
-    "ts-string-lite": "2.0.16",
-    "ts-array-lite": "2.0.17",
-    "ts-date-lite": "2.0.16",
-    "ts-object-lite": "2.0.16",
-    "ts-number-lite": "2.0.16",
-    "ts-validation-lite": "2.0.16",
-    "ts-id-lite": "2.0.16",
-    "ts-cookie-lite": "2.0.16"
+    "ts-string-lite": "2.0.17",
+    "ts-array-lite": "2.0.18",
+    "ts-date-lite": "2.0.17",
+    "ts-object-lite": "2.0.17",
+    "ts-number-lite": "2.0.17",
+    "ts-validation-lite": "2.0.17",
+    "ts-id-lite": "2.0.17",
+    "ts-cookie-lite": "2.0.17"
   },
   "files": [
     "dist"
