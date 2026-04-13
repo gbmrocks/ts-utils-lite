@@ -1,6 +1,6 @@
 {
   "name": "ts-utils-lite",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Lightweight, type-safe utility library for web developers",
   "main": "./index.js",
   "module": "./index.js",
@@ -28,7 +28,13 @@
   "scripts": {
     "build": "tsc -p tsconfig.json"
   },
-  "keywords": ["utils", "typescript", "javascript", "helpers", "lodash"],
+  "keywords": [
+    "utils",
+    "typescript",
+    "javascript",
+    "helpers",
+    "lodash"
+  ],
   "author": "Gaurang Mody - G8X",
   "license": "MIT"
 }
