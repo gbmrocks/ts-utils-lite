@@ -1,5 +1,12 @@
 # ts-date-lite
 
+## 2.0.20
+
+### Patch Changes
+
+- ### Changes
+  - Update TRIGGER
+
 ## 2.0.19
 
 ### Patch Changes

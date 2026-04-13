@@ -1,6 +1,6 @@
 {
   "name": "ts-date-lite",
-  "version": "2.0.19",
+  "version": "2.0.20",
   "description": "Lightweight, type-safe date utility library for web developers",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
