@@ -36,6 +36,6 @@
   },
   "scripts": {
     "build": "npm run build --workspaces",
-    "build:prod": "ng build client --configuration production"
+    "build:prod": "ng build ts-utils-lite-demo --configuration production"
   }
 }
