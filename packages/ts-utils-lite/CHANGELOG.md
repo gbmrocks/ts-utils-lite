@@ -1,5 +1,21 @@
 # ts-utils-lite
 
+## 2.0.5
+
+### Patch Changes
+
+- ### Changes
+  - chore: update package.json to include repository information and format tsconfig.json for consistency
+- Updated dependencies
+  - ts-array-lite@2.0.5
+  - ts-cookie-lite@2.0.3
+  - ts-date-lite@2.0.3
+  - ts-id-lite@2.0.3
+  - ts-number-lite@2.0.3
+  - ts-object-lite@2.0.3
+  - ts-string-lite@2.0.3
+  - ts-validation-lite@2.0.3
+
 ## 2.0.4
 
 ### Patch Changes
