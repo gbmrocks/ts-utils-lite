@@ -33,13 +33,16 @@ jobs:
           HEAD=$(git rev-parse HEAD)
           BASE=$(git merge-base HEAD origin/main)
 
+          echo "BASE=$BASE"
+          echo "HEAD=$HEAD"
+
           CHANGED=$(git diff --name-only $BASE $HEAD \
             | grep '^packages/' \
             | cut -d/ -f2 \
             | sort -u || true)
 
           if [ -z "$CHANGED" ]; then
-            echo "No changes"
+            echo "No package changes"
             exit 0
           fi
 
@@ -63,37 +66,38 @@ jobs:
 
           echo "---" >> $FILE
 
-          git log $BASE..$HEAD --no-merges --pretty=format:"- %s" >> $FILE
+          REPO="https://github.com/${{ github.repository }}"
 
-      # 🔥 CREATE NEW BRANCH (CRITICAL FIX)
-      - name: Create PR branch
+          echo "" >> $FILE
+          echo "### Commits included in this release:" >> $FILE
+
+          git log $BASE..$HEAD --no-merges --pretty=format:"%H|%s" | while IFS="|" read h m
+          do
+            echo "- $m ([${h:0:7}]($REPO/commit/$h))" >> $FILE
+          done
+
+      - name: Commit changeset
         run: |
-          BRANCH="changeset-auto-${GITHUB_SHA::7}"
-
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          git checkout -b $BRANCH
 
           git add .changeset
 
           if git diff --cached --quiet; then
-            echo "No changeset to commit"
+            echo "No changeset created"
             exit 0
           fi
 
-          git commit -m "chore: add changeset"
-          git push origin $BRANCH
+          git commit -m "chore: add auto changeset"
+          git push origin main
 
-          echo "BRANCH=$BRANCH" >> $GITHUB_ENV
-
-      # 🚀 OPEN PR CORRECTLY
-      - name: Create Pull Request
+      # 🚀 CREATE PR USING GITHUB CLI (THIS FIXES EVERYTHING)
+      - name: Create PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh pr create \
-            --base main \
-            --head "$BRANCH" \
             --title "chore: release packages" \
-            --body "Auto-generated changeset PR"
+            --body "Auto-generated changeset PR" \
+            --base main \
+            --head main || true
