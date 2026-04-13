@@ -16,7 +16,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -25,20 +26,27 @@ jobs:
         with:
           node-version: 24
 
-      - name: Install deps
+      - name: Install dependencies
         run: npm install
 
-      # 🔥 Generate meaningful changeset
+      # 🔥 Generate changeset with commits + packages
       - name: Generate changeset if needed
         run: |
-          CHANGED=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} \
+          BASE=${{ github.event.before }}
+          HEAD=${{ github.sha }}
+
+          echo "Base: $BASE"
+          echo "Head: $HEAD"
+
+          # Get changed packages
+          CHANGED=$(git diff --name-only $BASE $HEAD \
             | grep '^packages/' \
             | grep -v '/dist/' \
             | cut -d/ -f2 \
             | sort -u || true)
 
           if [ -z "$CHANGED" ]; then
-            echo "No package changes"
+            echo "No package changes detected"
             exit 0
           fi
 
@@ -47,33 +55,43 @@ jobs:
 
           echo "---" > $FILE
 
-          HAS_PACKAGES=false
+          HAS_VALID=false
 
+          # Map folders → package names
           for pkg in $CHANGED; do
             PKG_NAME=$(node -e "
-              const p=require('./packages/$pkg/package.json');
-              console.log(p.name);
-            " 2>/dev/null)
+              try {
+                const p=require('./packages/$pkg/package.json');
+                console.log(p.name);
+              } catch(e) {
+                process.exit(0);
+              }
+            ")
 
             if [ ! -z "$PKG_NAME" ]; then
               echo "\"$PKG_NAME\": patch" >> $FILE
-              HAS_PACKAGES=true
+              HAS_VALID=true
             fi
           done
 
           echo "---" >> $FILE
 
-          # ✅ meaningful changelog message (FIXED)
-          echo "Updated packages: $(echo $CHANGED | tr '\n' ' ')" >> $FILE
+          # 🔥 REAL commit messages (FIX)
+          echo "" >> $FILE
+          echo "### Commits included in this release:" >> $FILE
+
+          git log $BASE..$HEAD \
+            --pretty=format:"- %s" \
+            --no-merges >> $FILE
 
           # safety check
-          if [ "$HAS_PACKAGES" = false ]; then
-            echo "No valid packages found"
-            rm $FILE
+          if [ "$HAS_VALID" = false ]; then
+            echo "No valid packages found, removing changeset"
+            rm -f $FILE
           fi
 
-      # 🚀 Create PR using changesets
-      - name: Create PR
+      # 🚀 Create PR via Changesets
+      - name: Create Pull Request
         uses: changesets/action@v1
         with:
           title: "chore: release packages"
