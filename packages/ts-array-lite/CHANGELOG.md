@@ -1,5 +1,12 @@
 # ts-array-lite
 
+## 2.0.17
+
+### Patch Changes
+
+- ### Changes
+  - fix: remove obsolete TRIGGER file
+
 ## 2.0.16
 
 ### Patch Changes
