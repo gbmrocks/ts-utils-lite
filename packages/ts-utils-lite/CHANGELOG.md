@@ -1,5 +1,12 @@
 # ts-utils-lite
 
+## 2.0.7
+
+### Patch Changes
+
+- ### Changes
+  - chore: refactor index.ts to use named exports for utility modules
+
 ## 2.0.6
 
 ### Patch Changes
