@@ -11,8 +11,7 @@ permissions:
 
 jobs:
   release:
-    # only run on release commit
-    if: "contains(github.event.head_commit.message, 'chore(release): version packages [skip ci]')"
+    if: contains(github.event.head_commit.message, 'chore: release')
     runs-on: ubuntu-latest
 
     steps:
@@ -32,6 +31,9 @@ jobs:
       - name: Build
         run: npm run build --workspaces
 
+      - name: Version packages
+        run: npx changeset version
+
       - name: Publish
         run: npx changeset publish
 
@@ -41,5 +43,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add .
-          git commit -m "chore: release packages" || echo "no changes"
+          git commit -m "chore: release" || echo "no changes"
           git push
