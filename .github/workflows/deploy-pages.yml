@@ -46,6 +46,11 @@ jobs:
       - name: Build Angular
         run: npm run build:prod
 
+      - name: Add SPA fallback
+        run: |
+          cp dist/ts-utils-lite-demo/browser/index.html \
+             dist/ts-utils-lite-demo/browser/404.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
