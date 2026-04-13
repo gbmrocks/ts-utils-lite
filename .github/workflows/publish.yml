@@ -12,16 +12,18 @@ permissions:
 
 jobs:
   release:
+    # 🚨 CRITICAL: prevent infinite loop from release commits
+    if: "!contains(github.event.head_commit.message, 'chore: release packages')"
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout full history (IMPORTANT)
+      # 1️⃣ Checkout full history (required for changesets)
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # 2️⃣ Setup Node 24
+      # 2️⃣ Setup Node 24 + npm
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -32,7 +34,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # 4️⃣ Detect changed packages (FIXED)
+      # 4️⃣ Detect changed packages (safe + no src dependency)
       - name: Detect changed packages
         id: changes
         run: |
@@ -45,7 +47,7 @@ jobs:
 
           echo "changed=$CHANGED" >> $GITHUB_OUTPUT
 
-      # 5️⃣ Create changeset if anything changed
+      # 5️⃣ Auto-create changeset only if needed
       - name: Create auto changeset
         if: steps.changes.outputs.changed != ''
         run: |
@@ -62,7 +64,7 @@ jobs:
           echo "" >> $FILE
           echo "Auto release" >> $FILE
 
-      # 6️⃣ Version + Publish + GitHub Release
+      # 6️⃣ Release via Changesets (version + publish + PR/release)
       - name: Changesets Release
         uses: changesets/action@v1
         with:
@@ -74,6 +76,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 7️⃣ Cleanup
+      # 7️⃣ Cleanup working tree (safety)
       - name: Clean git state
         run: git reset --hard
