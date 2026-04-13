@@ -424,10 +424,10 @@ export class ShowcaseComponent {
   runValidation(method: string): void {
     switch (method) {
       case 'isEmail': this.validationResult = this.validation.isEmail(this.validationInput) ? 'Valid' : 'Invalid'; break;
-      case 'isUrl': this.validationResult = this.validation.isUrl('https://google.com') ? 'Valid' : 'Invalid'; break;
-      case 'isPhone': this.validationResult = this.validation.isPhone('1234567890') ? 'Valid' : 'Invalid'; break;
-      case 'isPostalCode': this.validationResult = this.validation.isPostalCode('12345') ? 'Valid' : 'Invalid'; break;
-      case 'isStrongPassword': const r = this.validation.isStrongPassword('Test123!'); this.validationResult = 'Score: ' + r.score + '/5, ' + (r.valid ? 'Valid' : 'Weak'); break;
+      case 'isUrl': this.validationResult = this.validation.isUrl(this.validationInput) ? 'Valid' : 'Invalid'; break;
+      case 'isPhone': this.validationResult = this.validation.isPhone(this.validationInput) ? 'Valid' : 'Invalid'; break;
+      case 'isPostalCode': this.validationResult = this.validation.isPostalCode(this.validationInput) ? 'Valid' : 'Invalid'; break;
+      case 'isStrongPassword': const r = this.validation.isStrongPassword(this.validationInput); this.validationResult = 'Score: ' + r.score + '/5, ' + (r.valid ? 'Valid' : 'Weak'); break;
     }
   }
 
