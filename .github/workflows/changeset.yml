@@ -28,7 +28,7 @@ jobs:
       - name: Install deps
         run: npm install
 
-      # 🔥 AUTO CHANGESET GENERATION
+      # 🔥 Generate meaningful changeset
       - name: Generate changeset if needed
         run: |
           CHANGED=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} \
@@ -47,22 +47,32 @@ jobs:
 
           echo "---" > $FILE
 
+          HAS_PACKAGES=false
+
           for pkg in $CHANGED; do
-            # convert folder → real package name
             PKG_NAME=$(node -e "
-              const fs=require('fs');
               const p=require('./packages/$pkg/package.json');
               console.log(p.name);
             " 2>/dev/null)
 
-            echo "\"$PKG_NAME\": patch" >> $FILE
+            if [ ! -z "$PKG_NAME" ]; then
+              echo "\"$PKG_NAME\": patch" >> $FILE
+              HAS_PACKAGES=true
+            fi
           done
 
           echo "---" >> $FILE
-          echo "" >> $FILE
-          echo "auto release" >> $FILE
 
-      # 🚀 CREATE PR ONLY (IMPORTANT FIX)
+          # ✅ meaningful changelog message (FIXED)
+          echo "Updated packages: $(echo $CHANGED | tr '\n' ' ')" >> $FILE
+
+          # safety check
+          if [ "$HAS_PACKAGES" = false ]; then
+            echo "No valid packages found"
+            rm $FILE
+          fi
+
+      # 🚀 Create PR using changesets
       - name: Create PR
         uses: changesets/action@v1
         with:
