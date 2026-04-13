@@ -23,16 +23,14 @@ npm install ts-utils-lite
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { 
-  StringUtils, 
-  DateUtils, 
-  ArrayUtils, 
-  ObjectUtils, 
-  NumberUtils, 
-  ValidationUtils, 
-  IdUtils, 
-  CookieUtils 
-} from 'ts-utils-lite';
+import { StringUtils } from 'ts-string-lite';
+import { DateUtils } from 'ts-date-lite';
+import { ArrayUtils } from 'ts-array-lite';
+import { ObjectUtils } from 'ts-object-lite';
+import { NumberUtils } from 'ts-number-lite';
+import { ValidationUtils } from 'ts-validation-lite';
+import { IdUtils } from 'ts-id-lite';
+import { CookieUtils } from 'ts-cookie-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
@@ -90,19 +88,6 @@ export class MyService {
     this.cookie.delete('theme');              // Delete cookie
   }
 }
-```
-
-Or import individually:
-
-```typescript
-import { StringUtils } from 'ts-string-lite';
-import { DateUtils } from 'ts-date-lite';
-import { ArrayUtils } from 'ts-array-lite';
-import { ObjectUtils } from 'ts-object-lite';
-import { NumberUtils } from 'ts-number-lite';
-import { ValidationUtils } from 'ts-validation-lite';
-import { IdUtils } from 'ts-id-lite';
-import { CookieUtils } from 'ts-cookie-lite';
 ```
 
 ## Demo
