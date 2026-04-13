@@ -8,41 +8,44 @@ on:
 permissions:
   contents: write
   id-token: write
+  pull-requests: write
 
 jobs:
   release:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout
+      # 1️⃣ Checkout full history (IMPORTANT)
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # 2️⃣ Setup Node (OIDC ready)
+      # 2️⃣ Setup Node 24
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
 
-      # 3️⃣ Install deps (workspace safe)
+      # 3️⃣ Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # 4️⃣ Create changeset ONLY if src changed (ignore dist/node_modules)
+      # 4️⃣ Detect changed packages (FIXED)
       - name: Detect changed packages
         id: changes
         run: |
           CHANGED=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} \
-            | grep '^packages/.*/src/' \
+            | grep '^packages/' \
+            | grep -v '/dist/' \
+            | grep -v 'node_modules' \
             | cut -d/ -f2 \
             | sort -u || true)
 
           echo "changed=$CHANGED" >> $GITHUB_OUTPUT
 
-      # 5️⃣ Auto create changeset (NO git push here!)
+      # 5️⃣ Create changeset if anything changed
       - name: Create auto changeset
         if: steps.changes.outputs.changed != ''
         run: |
@@ -50,14 +53,16 @@ jobs:
           FILE=".changeset/auto-$(date +%s).md"
 
           echo "---" > $FILE
+
           for pkg in ${{ steps.changes.outputs.changed }}; do
             echo "\"$pkg\": patch" >> $FILE
           done
+
           echo "---" >> $FILE
           echo "" >> $FILE
           echo "Auto release" >> $FILE
 
-      # 6️⃣ Version + commit + tag + PR/release handling
+      # 6️⃣ Version + Publish + GitHub Release
       - name: Changesets Release
         uses: changesets/action@v1
         with:
@@ -69,6 +74,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 7️⃣ Safety cleanup (prevents dirty workspace issues)
+      # 7️⃣ Cleanup
       - name: Clean git state
         run: git reset --hard
