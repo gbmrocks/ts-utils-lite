@@ -1,5 +1,12 @@
 # ts-utils-lite
 
+## 2.0.21
+
+### Patch Changes
+
+- Updated dependencies
+  - ts-array-lite@2.0.21
+
 ## 2.0.20
 
 ### Patch Changes

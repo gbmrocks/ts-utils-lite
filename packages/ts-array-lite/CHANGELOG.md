@@ -1,5 +1,12 @@
 # ts-array-lite
 
+## 2.0.21
+
+### Patch Changes
+
+- ### Changes
+  - feat: add scheduler workflow for periodic execution and heartbeat logging
+
 ## 2.0.20
 
 ### Patch Changes
