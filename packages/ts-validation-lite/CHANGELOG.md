@@ -1,5 +1,12 @@
 # ts-validation-lite
 
+## 2.0.5
+
+### Patch Changes
+
+- ### Changes
+  - fix: correct regex pattern for URL validation
+
 ## 2.0.4
 
 ### Patch Changes
