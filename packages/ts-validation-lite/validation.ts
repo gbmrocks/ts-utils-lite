@@ -1,6 +1,6 @@
 export class ValidationUtils {
-  private readonly emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  private readonly urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+  private readonly emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  private readonly urlRegex = /^(https?:\/\/)?(([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/i;
   private readonly phoneRegex = /^\+?[\d\s\-()]{10,}$/;
   private readonly postalCodeRegex = /^\d{5}(-\d{4})?$/;
 
@@ -17,6 +17,7 @@ export class ValidationUtils {
   }
 
   isPostalCode(value: string): boolean {
+    // US postal code format (XXXXX or XXXXX-XXXX)
     return this.postalCodeRegex.test(value);
   }
 
@@ -46,7 +47,8 @@ export class ValidationUtils {
   }
 
   isDate(value: string): boolean {
-    return !isNaN(Date.parse(value));
+    const date = new Date(value);
+    return date instanceof Date && !isNaN(date.getTime());
   }
 
   isJSON(value: string): boolean {
