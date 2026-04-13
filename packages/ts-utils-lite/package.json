@@ -29,11 +29,7 @@
     "build": "tsc -p tsconfig.json"
   },
   "keywords": [
-    "utils",
-    "typescript",
-    "javascript",
-    "helpers",
-    "lodash"
+    "angular", "ngx", "utility", "helpers", "typescript", "javascript", "es6", "utils", "library", "npm", "node", "angular17", "angular18", "angular19", "angular20", "angular14", "angular15", "angular16", "frontend", "web", "webdev", "development", "codegen", "cli", "component", "directive", "service", "injectable", "module", "standalone", "rxjs", "reactive", "state", "form", "validation", "input", "output", "pipe", "decorator", " decorator", "string-utils", "string-manipulation", "string-formatting", "slugify", "camelcase", "kebabcase", "truncate", "capitalize", "escape-html", "date-utils", "date-format", "date-manipulation", "timestamp", "time", "datetime", "calendar", "moment", "dayjs", "array-utils", "array-manipulation", "filter", "map", "reduce", "sort", "unique", "chunk", "group-by", "shuffle", "compact", "object-utils", "object-manipulation", "deep-clone", "deep-get", "merge", "omit", "pick", "number-utils", "number-format", "currency", "bytes", "percentage", "clamp", "random", "math", "uuid", "uuid-generator", "nanoid", "id-generator", "unique-id", "snowflake", "hash", "cookie", "cookie-manager", "browser", "clipboard", "copy-to-clipboard", "underscore", "ramda", "functional", "immutable", "tree-shakable", "tree-shaking", "bundle-size", "performance", "lightweight", "minimal", "es-module", "esm", "cjs", "fesm", "ivy", "ng-packagr", "publish", "open-source", "oss", "mit", "gaurang", "g8x"
   ],
   "author": "Gaurang Mody - G8X",
   "license": "MIT"
