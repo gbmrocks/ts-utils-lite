@@ -1,6 +1,6 @@
 {
   "name": "ts-utils-lite",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "description": "Lightweight, type-safe utility library for web developers",
   "main": "./index.js",
   "module": "./index.js",
@@ -18,7 +18,7 @@
     "ts-date-lite": "2.0.3",
     "ts-object-lite": "2.0.3",
     "ts-number-lite": "2.0.3",
-    "ts-validation-lite": "2.0.3",
+    "ts-validation-lite": "2.0.4",
     "ts-id-lite": "2.0.3",
     "ts-cookie-lite": "2.0.3"
   },

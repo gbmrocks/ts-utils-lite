@@ -1,5 +1,12 @@
 # ts-validation-lite
 
+## 2.0.4
+
+### Patch Changes
+
+- ### Changes
+  - fix: improve regex patterns for email and URL validation; enhance date validation logic
+
 ## 2.0.3
 
 ### Patch Changes
