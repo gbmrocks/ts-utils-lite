@@ -1,6 +1,6 @@
 # ts-cookie-lite
 
-[![npm downloads](https://img.shields.io/npm/d18m/ts-cookie-lite.svg)](https://www.npmjs.com/package/ts-cookie-lite) [![npm version](https://img.shields.io/npm/v/ts-cookie-lite.svg)](https://www.npmjs.com/package/ts-cookie-lite)
+[![npm downloads](https://img.shields.io/npm/dt/ts-cookie-lite.svg)](https://www.npmjs.com/package/ts-cookie-lite) [![npm version](https://img.shields.io/npm/v/ts-cookie-lite.svg)](https://www.npmjs.com/package/ts-cookie-lite) [![npm license](https://img.shields.io/npm/l/ts-cookie-lite.svg)](https://www.npmjs.com/package/ts-cookie-lite) [![npm types](https://img.shields.io/npm/types/ts-cookie-lite.svg)](https://www.npmjs.com/package/ts-cookie-lite) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/ts-cookie-lite.svg)](https://bundlephobia.com/result?p=ts-cookie-lite)
 
 Lightweight, type-safe cookie utility library for web developers.
 
@@ -41,3 +41,5 @@ export class MyService {
 ## License
 
 MIT
+
+

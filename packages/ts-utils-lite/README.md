@@ -1,6 +1,6 @@
 # ts-utils-lite
 
-[![npm downloads](https://img.shields.io/npm/d18m/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite) [![npm version](https://img.shields.io/npm/v/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite)
+[![npm downloads](https://img.shields.io/npm/dt/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite) [![npm version](https://img.shields.io/npm/v/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite) [![npm license](https://img.shields.io/npm/l/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite) [![npm types](https://img.shields.io/npm/types/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/ts-utils-lite.svg)](https://bundlephobia.com/result?p=ts-utils-lite)
 
 Lightweight, type-safe utility library for web developers.
 
@@ -110,3 +110,5 @@ import { CookieUtils } from 'ts-cookie-lite';
 ## License
 
 MIT
+
+

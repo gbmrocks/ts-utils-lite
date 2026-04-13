@@ -1,6 +1,6 @@
 # ts-validation-lite
 
-[![npm downloads](https://img.shields.io/npm/d18m/ts-validation-lite.svg)](https://www.npmjs.com/package/ts-validation-lite) [![npm version](https://img.shields.io/npm/v/ts-validation-lite.svg)](https://www.npmjs.com/package/ts-validation-lite)
+[![npm downloads](https://img.shields.io/npm/dt/ts-validation-lite.svg)](https://www.npmjs.com/package/ts-validation-lite) [![npm version](https://img.shields.io/npm/v/ts-validation-lite.svg)](https://www.npmjs.com/package/ts-validation-lite) [![npm license](https://img.shields.io/npm/l/ts-validation-lite.svg)](https://www.npmjs.com/package/ts-validation-lite) [![npm types](https://img.shields.io/npm/types/ts-validation-lite.svg)](https://www.npmjs.com/package/ts-validation-lite) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/ts-validation-lite.svg)](https://bundlephobia.com/result?p=ts-validation-lite)
 
 Lightweight, type-safe validation utility library for web developers.
 
@@ -43,3 +43,5 @@ export class MyService {
 ## License
 
 MIT
+
+

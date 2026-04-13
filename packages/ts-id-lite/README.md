@@ -1,6 +1,6 @@
 # ts-id-lite
 
-[![npm downloads](https://img.shields.io/npm/d18m/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite) [![npm version](https://img.shields.io/npm/v/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite)
+[![npm downloads](https://img.shields.io/npm/dt/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite) [![npm version](https://img.shields.io/npm/v/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite) [![npm license](https://img.shields.io/npm/l/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite) [![npm types](https://img.shields.io/npm/types/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/ts-id-lite.svg)](https://bundlephobia.com/result?p=ts-id-lite)
 
 Lightweight, type-safe ID generation utility library for web developers.
 
@@ -45,3 +45,5 @@ export class MyService {
 ## License
 
 MIT
+
+
