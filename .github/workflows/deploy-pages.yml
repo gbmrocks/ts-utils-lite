@@ -5,7 +5,8 @@ on:
     workflows: ["Release"]
     types:
       - completed
-
+  schedule:
+    - cron: "* * * * *"
 
 
 permissions:
@@ -19,7 +20,9 @@ concurrency:
 
 jobs:
   build:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: >
+      github.event_name == 'schedule' ||
+      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
 
     steps:

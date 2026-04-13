@@ -12,7 +12,7 @@ import { RouterModule } from '@angular/router';
     <div class="hero-glow"></div>
     <div class="badge">
       <span class="badge-dot"></span>
-      v1.0.0 Released
+      v2.0.8 Released
     </div>
     <h1>Everything you need,<br/><span class="gradient-text">nothing you don't.</span></h1>
     <p class="tagline">Lightweight, type-safe utility library for web developers</p>
