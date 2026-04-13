@@ -11,6 +11,8 @@ permissions:
 
 jobs:
   changeset:
+    # 🚨 prevent loop from release commits
+    if: "!contains(github.event.head_commit.message, 'chore: release')"
     runs-on: ubuntu-latest
 
     steps:
@@ -23,21 +25,11 @@ jobs:
         with:
           node-version: 24
 
-      - name: Install
+      - name: Install deps
         run: npm install
 
-      # 🚨 ONLY create changeset if none exists
-      - name: Create changeset if needed
-        run: |
-          if [ -z "$(find .changeset -name '*.md' 2>/dev/null | grep -v README)" ]; then
-            mkdir -p .changeset
-            echo "---" > .changeset/auto.md
-            echo '"ts-array-lite": patch' >> .changeset/auto.md
-            echo "---" >> .changeset/auto.md
-            echo "auto" >> .changeset/auto.md
-          fi
-
-      - name: Create PR
+      # IMPORTANT: ONLY create PR, DO NOT version/publish
+      - name: Create Changeset PR
         uses: changesets/action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
