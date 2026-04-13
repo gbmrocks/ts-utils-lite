@@ -12,11 +12,11 @@ npm install ts-validation-lite
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxValidationUtils } from 'ts-validation-lite';
+import { ValidationUtils } from 'ts-validation-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
-  constructor(private val: NgxValidationUtils) { }
+  constructor(private val: ValidationUtils) { }
   
   myMethod(): void {
     this.val.isEmail('test@example.com');       // true

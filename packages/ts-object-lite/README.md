@@ -12,11 +12,11 @@ npm install ts-object-lite
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxObjectUtils } from 'ts-object-lite';
+import { ObjectUtils } from 'ts-object-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
-  constructor(private obj: NgxObjectUtils) { }
+  constructor(private obj: ObjectUtils) { }
   
   myMethod(): void {
     this.obj.deepGet({a: {b: 42}}, 'a.b');       // 42

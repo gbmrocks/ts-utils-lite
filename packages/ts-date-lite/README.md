@@ -12,11 +12,11 @@ npm install ts-date-lite
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxDateUtils } from 'ts-date-lite';
+import { DateUtils } from 'ts-date-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
-  constructor(private date: NgxDateUtils) { }
+  constructor(private date: DateUtils) { }
   
   myMethod(): void {
     this.date.format(new Date(), 'YYYY-MM-DD');              // '2026-04-11'

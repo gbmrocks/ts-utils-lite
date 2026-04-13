@@ -12,11 +12,11 @@ npm install ts-utils-lite
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxStringUtils } from 'ts-utils-lite';
+import { StringUtils } from 'ts-utils-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
-  constructor(private str: NgxStringUtils) { }
+  constructor(private str: StringUtils) { }
   
   myMethod(): void {
     this.str.slugify('Hello World');       // 'hello-world'
