@@ -13,14 +13,14 @@
     }
   },
   "dependencies": {
-    "ts-string-lite": "workspace:*",
-    "ts-array-lite": "workspace:*",
-    "ts-date-lite": "workspace:*",
-    "ts-object-lite": "workspace:*",
-    "ts-number-lite": "workspace:*",
-    "ts-validation-lite": "workspace:*",
-    "ts-id-lite": "workspace:*",
-    "ts-cookie-lite": "workspace:*"
+    "ts-string-lite": "2.0.3",
+    "ts-array-lite": "2.0.5",
+    "ts-date-lite": "2.0.3",
+    "ts-object-lite": "2.0.3",
+    "ts-number-lite": "2.0.3",
+    "ts-validation-lite": "2.0.3",
+    "ts-id-lite": "2.0.3",
+    "ts-cookie-lite": "2.0.3"
   },
   "files": [
     "dist"
