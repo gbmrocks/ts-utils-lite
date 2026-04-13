@@ -15,12 +15,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # -----------------------------
+      # Checkout
+      # -----------------------------
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       # -----------------------------
-      # Node Setup
+      # Setup Node
       # -----------------------------
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -31,7 +34,7 @@ jobs:
       # -----------------------------
       # Install dependencies
       # -----------------------------
-      - name: Install
+      - name: Install dependencies
         run: npm install
 
       # -----------------------------
@@ -41,7 +44,7 @@ jobs:
         run: npm run build --workspaces
 
       # -----------------------------
-      # Version packages (changesets)
+      # Version packages
       # -----------------------------
       - name: Version packages
         run: npx changeset version
@@ -49,22 +52,28 @@ jobs:
       # -----------------------------
       # Publish packages
       # -----------------------------
-      - name: Publish
+      - name: Publish packages
         run: npx changeset publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # -----------------------------
-      # Install jq (CORRECT WAY)
+      # Install jq
       # -----------------------------
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
 
       # -----------------------------
-      # Deprecate older versions
-      # Keep only latest 2 versions
+      # WAIT (IMPORTANT)
       # -----------------------------
-      - name: Deprecate old versions (keep latest 2)
+      - name: Wait for npm registry sync
+        run: sleep 60
+
+      # -----------------------------
+      # Deprecate old versions
+      # Keep latest 2 only
+      # -----------------------------
+      - name: Deprecate old versions safely
         run: |
           set -e
 
@@ -81,23 +90,31 @@ jobs:
           )
 
           for pkg in "${PACKAGES[@]}"; do
-            echo "=============================="
+            echo "====================================="
             echo "Processing $pkg"
-            echo "=============================="
+            echo "====================================="
 
-            # Get all versions sorted properly
-            versions=$(npm view "$pkg" versions --json | jq -r '.[]' | sort -V)
+            versions_json=$(npm view "$pkg" versions --json 2>/dev/null || echo "[]")
 
-            # Get latest 2 versions
+            if [ "$versions_json" = "[]" ]; then
+              echo "Skipping $pkg (no versions found)"
+              continue
+            fi
+
+            versions=$(echo "$versions_json" | jq -r '.[]' | sort -V)
+
             latest_two=$(echo "$versions" | tail -n 2)
 
-            echo "Keeping versions:"
+            echo "Keeping:"
             echo "$latest_two"
 
             for v in $versions; do
               if ! echo "$latest_two" | grep -qx "$v"; then
                 echo "Deprecating $pkg@$v"
-                npm deprecate "$pkg@$v" "Deprecated: please use latest 2 versions"
+
+                npm deprecate "$pkg@$v" \
+                  "Deprecated: please use latest 2 versions" || \
+                  echo "⚠️ Failed $pkg@$v"
               fi
             done
 
@@ -106,7 +123,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # -----------------------------
-      # Commit release changes
+      # Commit changes
       # -----------------------------
       - name: Commit release
         run: |
