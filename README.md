@@ -1,4 +1,4 @@
-# ngx-utils-lite
+# ts-utils-lite
 
 Everything you need, nothing you don't.
 
@@ -17,7 +17,7 @@ Everything you need, nothing you don't.
 ## Installation
 
 ```bash
-npm install ngx-utils-lite
+npm install ts-utils-lite
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ npm install ngx-utils-lite
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxStringUtils } from 'ngx-utils-lite';
+import { NgxStringUtils } from 'ts-utils-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
@@ -44,7 +44,7 @@ export class MyService {
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxDateUtils } from 'ngx-utils-lite';
+import { NgxDateUtils } from 'ts-utils-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
@@ -62,7 +62,7 @@ export class MyService {
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxArrayUtils } from 'ngx-utils-lite';
+import { NgxArrayUtils } from 'ts-utils-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
@@ -80,7 +80,7 @@ export class MyService {
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxObjectUtils } from 'ngx-utils-lite';
+import { NgxObjectUtils } from 'ts-utils-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
@@ -98,7 +98,7 @@ export class MyService {
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxNumberUtils } from 'ngx-utils-lite';
+import { NgxNumberUtils } from 'ts-utils-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
@@ -116,7 +116,7 @@ export class MyService {
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxValidationUtils } from 'ngx-utils-lite';
+import { NgxValidationUtils } from 'ts-utils-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
@@ -134,7 +134,7 @@ export class MyService {
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxIdUtils } from 'ngx-utils-lite';
+import { NgxIdUtils } from 'ts-utils-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
@@ -152,7 +152,7 @@ export class MyService {
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxCookieUtils } from 'ngx-utils-lite';
+import { NgxCookieUtils } from 'ts-utils-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
@@ -171,7 +171,7 @@ export class MyService {
 
 ```typescript
 import { Component } from '@angular/core';
-import { NgxCopyToClipboardDirective } from 'ngx-utils-lite';
+import { NgxCopyToClipboardDirective } from 'ts-utils-lite';
 
 @Component({
   selector: 'app-my-component',
