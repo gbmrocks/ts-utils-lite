@@ -36,6 +36,45 @@ jobs:
 
       - name: Publish
         run: npx changeset publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # ✅ KEEP ONLY LAST 2 VERSIONS PER PACKAGE
+      - name: Deprecate old versions (keep latest 2)
+        run: |
+          npm install -g jq
+
+          PACKAGES=(
+            ts-string-lite
+            ts-array-lite
+            ts-date-lite
+            ts-object-lite
+            ts-number-lite
+            ts-validation-lite
+            ts-id-lite
+            ts-cookie-lite
+            ts-utils-lite
+          )
+
+          for pkg in "${PACKAGES[@]}"; do
+            echo "Processing $pkg..."
+
+            # get all versions sorted
+            versions=$(npm view $pkg versions --json | jq -r '.[]')
+
+            # get latest 2 versions
+            latest_two=$(echo "$versions" | tail -n 2)
+
+            for v in $versions; do
+              if ! echo "$latest_two" | grep -qx "$v"; then
+                echo "Deprecating $pkg@$v"
+                npm deprecate "$pkg@$v" "Deprecated: please use latest 2 versions"
+              fi
+            done
+
+          done
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Commit release
         run: |
