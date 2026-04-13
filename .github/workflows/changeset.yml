@@ -24,6 +24,10 @@ jobs:
         with:
           node-version: 24
 
+      - name: Install dependencies
+        run: npm install
+
+      # 🔥 Generate changeset
       - name: Generate changeset
         run: |
           set -e
@@ -42,7 +46,7 @@ jobs:
             | sort -u || true)
 
           if [ -z "$CHANGED" ]; then
-            echo "No package changes"
+            echo "No package changes detected"
             exit 0
           fi
 
@@ -74,25 +78,33 @@ jobs:
           echo "" >> $FILE
           echo "### Commits included in this release:" >> $FILE
 
-          git log $BASE..$HEAD \
-            --no-merges \
-            --pretty=format:"%H|%s" | while IFS="|" read -r hash msg
+          git log $BASE..$HEAD --no-merges --pretty=format:"%H|%s" | while IFS="|" read -r hash msg
           do
             short=${hash:0:7}
             echo "- $msg ([${short}]($REPO_URL/commit/$hash))" >> $FILE
           done
 
-      # 🔥 CREATE BRANCH + COMMIT + PUSH (FIXED)
-      - name: Commit changeset and push branch
+          if [ "$HAS_VALID" = false ]; then
+            echo "No valid packages found"
+            rm -f $FILE
+            exit 0
+          fi
+
+      # 🔥 CREATE BRANCH + PUSH + COMMIT (FIXED RELIABLY)
+      - name: Commit and push branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -e
 
           BRANCH="changeset-auto-${GITHUB_SHA::7}"
 
+          echo "Using branch: $BRANCH"
+
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git checkout -b $BRANCH
+          git checkout -b "$BRANCH"
 
           git add .changeset
 
@@ -103,16 +115,12 @@ jobs:
 
           git commit -m "chore: add auto changeset"
 
-          # 🔥 CRITICAL FIX
-          git push origin $BRANCH
+          # 🔥 CRITICAL FIX (must succeed)
+          git push origin "$BRANCH"
 
-          echo "BRANCH=$BRANCH" >> $GITHUB_ENV
+          echo "Branch pushed successfully"
 
-      # 🚀 CREATE PR (CORRECT HEAD BRANCH)
-      - name: Create Pull Request
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
+          # 🔥 Create PR safely
           gh pr create \
             --base main \
             --head "$BRANCH" \
