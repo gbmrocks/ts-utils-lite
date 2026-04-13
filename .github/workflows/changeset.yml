@@ -29,7 +29,7 @@ jobs:
         run: npm install
 
       # 🔥 Generate changeset
-      - name: Generate changeset if needed
+      - name: Generate changeset
         run: |
           set -e
 
@@ -38,9 +38,6 @@ jobs:
           HEAD=$(git rev-parse HEAD)
           BASE=$(git merge-base HEAD origin/main)
 
-          echo "HEAD=$HEAD"
-          echo "BASE=$BASE"
-
           CHANGED=$(git diff --name-only $BASE $HEAD \
             | grep '^packages/' \
             | grep -v '/dist/' \
@@ -48,7 +45,7 @@ jobs:
             | sort -u || true)
 
           if [ -z "$CHANGED" ]; then
-            echo "No package changes detected"
+            echo "No package changes"
             exit 0
           fi
 
@@ -56,8 +53,6 @@ jobs:
           FILE=".changeset/auto-$(date +%s).md"
 
           echo "---" > $FILE
-
-          HAS_VALID=false
 
           for pkg in $CHANGED; do
             PKG_NAME=$(node -e "
@@ -71,7 +66,6 @@ jobs:
 
             if [ ! -z "$PKG_NAME" ]; then
               echo "\"$PKG_NAME\": patch" >> $FILE
-              HAS_VALID=true
             fi
           done
 
@@ -90,23 +84,27 @@ jobs:
             echo "- $msg ([${short}]($REPO_URL/commit/$hash))" >> $FILE
           done
 
-          if [ "$HAS_VALID" = false ]; then
-            echo "No valid packages found"
-            rm -f $FILE
+      # 🔥 IMPORTANT FIX: COMMIT THE CHANGESET
+      - name: Commit changeset
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add .changeset
+
+          if git diff --cached --quiet; then
+            echo "No changeset to commit"
+            exit 0
           fi
 
-      # 🔥 IMPORTANT FIX: stage changes (THIS WAS MISSING)
-      - name: Stage changeset
-        run: |
-          git status
-          git add .changeset || true
+          git commit -m "chore: add changeset"
+          git push
 
-      # 🚀 Create PR (now it WILL trigger)
+      # 🚀 Now changesets can detect it
       - name: Create Pull Request
         uses: changesets/action@v1
         with:
           title: "chore: release packages"
           commit: "chore: release packages"
-          publish: echo "skip"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
