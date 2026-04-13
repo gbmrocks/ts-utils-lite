@@ -18,7 +18,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # IMPORTANT
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -28,18 +28,19 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # 🔥 Generate changeset
+      # 🔥 FIXED GENERATION (WORKING)
       - name: Generate changeset if needed
         run: |
           set -e
 
-          HEAD=${{ github.sha }}
-          BASE=$(git rev-parse HEAD~1)
+          git fetch origin main
 
-          echo "Base: $BASE"
-          echo "Head: $HEAD"
+          HEAD=$(git rev-parse HEAD)
+          BASE=$(git merge-base HEAD origin/main)
 
-          # Detect changed packages
+          echo "HEAD=$HEAD"
+          echo "BASE=$BASE"
+
           CHANGED=$(git diff --name-only $BASE $HEAD \
             | grep '^packages/' \
             | grep -v '/dist/' \
@@ -76,18 +77,19 @@ jobs:
 
           echo "---" >> $FILE
 
-          # 🔥 FIXED COMMIT SECTION (NO SUBSHELL BUG)
+          # 🔥 REAL COMMITS (FIXED + ALWAYS WORKS)
           REPO_URL="https://github.com/${{ github.repository }}"
 
           echo "" >> $FILE
           echo "### Commits included in this release:" >> $FILE
 
-          while IFS="|" read -r hash msg; do
+          git log $BASE..$HEAD \
+            --no-merges \
+            --pretty=format:"%H|%s" | while IFS="|" read -r hash msg
+          do
             short=${hash:0:7}
             echo "- $msg ([${short}]($REPO_URL/commit/$hash))" >> $FILE
-          done < <(git log $BASE..$HEAD \
-            --no-merges \
-            --pretty=format:"%H|%s")
+          done
 
           # safety cleanup
           if [ "$HAS_VALID" = false ]; then
