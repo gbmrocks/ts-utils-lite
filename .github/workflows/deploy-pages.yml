@@ -27,9 +27,15 @@ jobs:
         with:
           node-version: 24
 
+      # 🚨 IMPORTANT: clean install
       - name: Install dependencies
         run: npm install
 
+      # 🚨 CRITICAL: build ALL workspace libs first
+      - name: Build packages (monorepo libs)
+        run: npm run build --workspaces
+
+      # 🚨 THEN build Angular app
       - name: Build Angular
         run: npm run build:prod
 
