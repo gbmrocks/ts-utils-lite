@@ -1,5 +1,12 @@
 # ts-utils-lite
 
+## 2.0.25
+
+### Patch Changes
+
+- ### Changes
+  - feat: add AI utilities for JSON validation, safe parsing, and prompt management
+
 ## 2.0.24
 
 ### Patch Changes
