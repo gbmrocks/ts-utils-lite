@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
   id-token: write
 
 jobs:
@@ -16,12 +15,12 @@ jobs:
 
     steps:
       # 1️⃣ Checkout full history
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # 2️⃣ Setup Node with OIDC
+      # 2️⃣ Setup Node (OIDC enabled)
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -32,18 +31,18 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # 4️⃣ Detect changed packages
+      # 4️⃣ Detect ONLY source changes (IGNORE dist)
       - name: Detect changed packages
         id: changes
         run: |
           CHANGED=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} \
-            | grep '^packages/' \
+            | grep '^packages/.*/src/' \
             | cut -d/ -f2 \
             | sort -u)
 
           echo "changed=$CHANGED" >> $GITHUB_OUTPUT
 
-      # 5️⃣ Auto-create changeset if needed (NO PUSH HERE)
+      # 5️⃣ Auto create changeset (NO dist included)
       - name: Auto create changeset
         if: steps.changes.outputs.changed != ''
         run: |
@@ -58,8 +57,15 @@ jobs:
           echo "" >> $FILE
           echo "Auto release" >> $FILE
 
-      # 6️⃣ Let official changesets action handle everything
-      - name: Version, Tag, Publish, Release
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add .changeset
+          git commit -m "chore: auto changeset [skip ci]"
+          git push origin main
+
+      # 6️⃣ Version + Publish + GitHub Release (Changesets handles everything)
+      - name: Version, Tag, Publish
         uses: changesets/action@v1
         with:
           publish: npx changeset publish
@@ -69,3 +75,7 @@ jobs:
           createGithubReleases: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # 7️⃣ Safety: ensure dist never leaks into git state
+      - name: Cleanup git staging
+        run: git reset --hard
