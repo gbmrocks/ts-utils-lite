@@ -1,5 +1,11 @@
 # ts-array-lite
 
+## 0.0.3
+
+### Patch Changes
+
+- Updated packages: ts-array-lite
+
 ## 0.0.2
 
 ### Patch Changes
