@@ -1,6 +1,7 @@
 {
   "name": "ts-array-lite",
-  "version": "2.0.7",
+  "version": "2.0.15",
+  "deprecated": "Previous versions are deprecated. Please upgrade to 2.0.15 or later.",
   "description": "Lightweight, type-safe array utility library for web developers",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
