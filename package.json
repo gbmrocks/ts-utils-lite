@@ -35,6 +35,7 @@
     "typescript": "~5.7.2"
   },
   "scripts": {
-    "build": "npm run build --workspaces"
+    "build": "npm run build --workspaces",
+    "build:prod": "ng build client --configuration production --base-href=/ts-utils-lite/"
   }
 }
