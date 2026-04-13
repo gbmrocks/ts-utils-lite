@@ -1,6 +1,6 @@
 # ts-string-lite
 
-[![npm downloads](https://img.shields.io/npm/d18m/ts-string-lite.svg)](https://www.npmjs.com/package/ts-string-lite) [![npm version](https://img.shields.io/npm/v/ts-string-lite.svg)](https://www.npmjs.com/package/ts-string-lite)
+[![npm downloads](https://img.shields.io/npm/dt/ts-string-lite.svg)](https://www.npmjs.com/package/ts-string-lite) [![npm version](https://img.shields.io/npm/v/ts-string-lite.svg)](https://www.npmjs.com/package/ts-string-lite) [![npm license](https://img.shields.io/npm/l/ts-string-lite.svg)](https://www.npmjs.com/package/ts-string-lite) [![npm types](https://img.shields.io/npm/types/ts-string-lite.svg)](https://www.npmjs.com/package/ts-string-lite) [![node version](https://img.shields.io/node/v/ts-string-lite.svg)](https://www.npmjs.com/package/ts-string-lite) [![bundle size](https://img.shields.io/bundlephobia/minzip/ts-string-lite.svg)](https://bundlephobia.com/package/ts-string-lite)
 
 Lightweight, type-safe string utility library for web developers.
 

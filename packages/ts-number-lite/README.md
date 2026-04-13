@@ -1,6 +1,6 @@
 # ts-number-lite
 
-[![npm downloads](https://img.shields.io/npm/d18m/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite) [![npm version](https://img.shields.io/npm/v/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite)
+[![npm downloads](https://img.shields.io/npm/dt/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite) [![npm version](https://img.shields.io/npm/v/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite) [![npm license](https://img.shields.io/npm/l/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite) [![npm types](https://img.shields.io/npm/types/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite) [![node version](https://img.shields.io/node/v/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite) [![bundle size](https://img.shields.io/bundlephobia/minzip/ts-number-lite.svg)](https://bundlephobia.com/package/ts-number-lite)
 
 Lightweight, type-safe number utility library for web developers.
 

@@ -1,6 +1,6 @@
 # ts-object-lite
 
-[![npm downloads](https://img.shields.io/npm/d18m/ts-object-lite.svg)](https://www.npmjs.com/package/ts-object-lite) [![npm version](https://img.shields.io/npm/v/ts-object-lite.svg)](https://www.npmjs.com/package/ts-object-lite)
+[![npm downloads](https://img.shields.io/npm/dt/ts-object-lite.svg)](https://www.npmjs.com/package/ts-object-lite) [![npm version](https://img.shields.io/npm/v/ts-object-lite.svg)](https://www.npmjs.com/package/ts-object-lite) [![npm license](https://img.shields.io/npm/l/ts-object-lite.svg)](https://www.npmjs.com/package/ts-object-lite) [![npm types](https://img.shields.io/npm/types/ts-object-lite.svg)](https://www.npmjs.com/package/ts-object-lite) [![node version](https://img.shields.io/node/v/ts-object-lite.svg)](https://www.npmjs.com/package/ts-object-lite) [![bundle size](https://img.shields.io/bundlephobia/minzip/ts-object-lite.svg)](https://bundlephobia.com/package/ts-object-lite)
 
 Lightweight, type-safe object utility library for web developers.
 
