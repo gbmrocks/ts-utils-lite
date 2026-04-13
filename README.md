@@ -26,11 +26,11 @@ npm install ts-utils-lite
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxStringUtils } from 'ts-utils-lite';
+import { StringUtils } from 'ts-utils-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
-  constructor(private str: NgxStringUtils) { }
+  constructor(private str: StringUtils) { }
   
   myMethod(): void {
     this.str.slugify('Hello World');       // 'hello-world'
@@ -44,11 +44,11 @@ export class MyService {
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxDateUtils } from 'ts-utils-lite';
+import { DateUtils } from 'ts-utils-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
-  constructor(private date: NgxDateUtils) { }
+  constructor(private date: DateUtils) { }
   
   myMethod(): void {
     this.date.format(new Date(), 'YYYY-MM-DD');              // '2026-04-11'
@@ -62,11 +62,11 @@ export class MyService {
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxArrayUtils } from 'ts-utils-lite';
+import { ArrayUtils } from 'ts-utils-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
-  constructor(private arr: NgxArrayUtils) { }
+  constructor(private arr: ArrayUtils) { }
   
   myMethod(): void {
     this.arr.unique([1, 2, 2, 3]);                           // [1, 2, 3]
@@ -80,11 +80,11 @@ export class MyService {
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxObjectUtils } from 'ts-utils-lite';
+import { ObjectUtils } from 'ts-utils-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
-  constructor(private obj: NgxObjectUtils) { }
+  constructor(private obj: ObjectUtils) { }
   
   myMethod(): void {
     this.obj.deepGet({a: {b: 42}}, 'a.b');    // 42
@@ -98,11 +98,11 @@ export class MyService {
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxNumberUtils } from 'ts-utils-lite';
+import { NumberUtils } from 'ts-utils-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
-  constructor(private num: NgxNumberUtils) { }
+  constructor(private num: NumberUtils) { }
   
   myMethod(): void {
     this.num.formatCurrency(1234.56);         // '$1,234.56'
@@ -116,11 +116,11 @@ export class MyService {
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxValidationUtils } from 'ts-utils-lite';
+import { ValidationUtils } from 'ts-utils-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
-  constructor(private val: NgxValidationUtils) { }
+  constructor(private val: ValidationUtils) { }
   
   myMethod(): void {
     this.val.isEmail('test@example.com');    // true
@@ -134,11 +134,11 @@ export class MyService {
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxIdUtils } from 'ts-utils-lite';
+import { IdUtils } from 'ts-utils-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
-  constructor(private id: NgxIdUtils) { }
+  constructor(private id: IdUtils) { }
   
   myMethod(): void {
     this.id.uuid();                // '550e8400-e29b-41d4-a716-446655440000'
@@ -152,11 +152,11 @@ export class MyService {
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { NgxCookieUtils } from 'ts-utils-lite';
+import { CookieUtils } from 'ts-utils-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
-  constructor(private cookie: NgxCookieUtils) { }
+  constructor(private cookie: CookieUtils) { }
   
   myMethod(): void {
     this.cookie.set('theme', 'dark', 7);      // Set cookie for 7 days
