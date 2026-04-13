@@ -18,7 +18,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # IMPORTANT FIX
+          fetch-depth: 0   # IMPORTANT
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -28,21 +28,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # 🔥 FIXED GENERATION LOGIC
+      # 🔥 Generate changeset
       - name: Generate changeset if needed
         run: |
           set -e
 
-          # Always use HEAD commit context safely
           HEAD=${{ github.sha }}
-
-          # Find previous commit safely
-          BASE=$(git rev-parse HEAD~1 || echo "")
-
-          if [ -z "$BASE" ]; then
-            echo "No base commit found"
-            exit 0
-          fi
+          BASE=$(git rev-parse HEAD~1)
 
           echo "Base: $BASE"
           echo "Head: $HEAD"
@@ -84,22 +76,22 @@ jobs:
 
           echo "---" >> $FILE
 
-          # 🔥 FIXED COMMIT LOG (THIS IS THE IMPORTANT PART)
+          # 🔥 FIXED COMMIT SECTION (NO SUBSHELL BUG)
           REPO_URL="https://github.com/${{ github.repository }}"
 
           echo "" >> $FILE
           echo "### Commits included in this release:" >> $FILE
 
-          git log $BASE..$HEAD \
-            --pretty=format:"%H|%s" \
-            --no-merges | while IFS="|" read hash msg
-          do
+          while IFS="|" read -r hash msg; do
             short=${hash:0:7}
             echo "- $msg ([${short}]($REPO_URL/commit/$hash))" >> $FILE
-          done
+          done < <(git log $BASE..$HEAD \
+            --no-merges \
+            --pretty=format:"%H|%s")
 
+          # safety cleanup
           if [ "$HAS_VALID" = false ]; then
-            echo "No valid packages found"
+            echo "No valid packages found, removing changeset"
             rm -f $FILE
           fi
 
