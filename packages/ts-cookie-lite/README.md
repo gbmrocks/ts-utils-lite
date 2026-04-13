@@ -1,6 +1,6 @@
 # ts-cookie-lite
 
-[![npm downloads](https://img.shields.io/npm/dt/ts-cookie-lite.svg)](https://www.npmjs.com/package/ts-cookie-lite) [![npm version](https://img.shields.io/npm/v/ts-cookie-lite.svg)](https://www.npmjs.com/package/ts-cookie-lite) [![npm license](https://img.shields.io/npm/l/ts-cookie-lite.svg)](https://www.npmjs.com/package/ts-cookie-lite) [![npm types](https://img.shields.io/npm/types/ts-cookie-lite.svg)](https://www.npmjs.com/package/ts-cookie-lite) [![node version](https://img.shields.io/node/v/ts-cookie-lite.svg)](https://www.npmjs.com/package/ts-cookie-lite) [![bundle size](https://img.shields.io/bundlephobia/minzip/ts-cookie-lite.svg)](https://bundlephobia.com/package/ts-cookie-lite)
+[![npm downloads](https://img.shields.io/npm/dt/ts-cookie-lite.svg)](https://www.npmjs.com/package/ts-cookie-lite) [![npm version](https://img.shields.io/npm/v/ts-cookie-lite.svg)](https://www.npmjs.com/package/ts-cookie-lite) [![npm license](https://img.shields.io/npm/l/ts-cookie-lite.svg)](https://www.npmjs.com/package/ts-cookie-lite) [![npm types](https://img.shields.io/npm/types/ts-cookie-lite.svg)](https://www.npmjs.com/package/ts-cookie-lite) [![npm size](https://img.shields.io/packagephobia/minzip/ts-cookie-lite.svg)](https://packagephobia.com/result?p=ts-cookie-lite)
 
 Lightweight, type-safe cookie utility library for web developers.
 

@@ -1,6 +1,6 @@
 # ts-date-lite
 
-[![npm downloads](https://img.shields.io/npm/dt/ts-date-lite.svg)](https://www.npmjs.com/package/ts-date-lite) [![npm version](https://img.shields.io/npm/v/ts-date-lite.svg)](https://www.npmjs.com/package/ts-date-lite) [![npm license](https://img.shields.io/npm/l/ts-date-lite.svg)](https://www.npmjs.com/package/ts-date-lite) [![npm types](https://img.shields.io/npm/types/ts-date-lite.svg)](https://www.npmjs.com/package/ts-date-lite) [![node version](https://img.shields.io/node/v/ts-date-lite.svg)](https://www.npmjs.com/package/ts-date-lite) [![bundle size](https://img.shields.io/bundlephobia/minzip/ts-date-lite.svg)](https://bundlephobia.com/package/ts-date-lite)
+[![npm downloads](https://img.shields.io/npm/dt/ts-date-lite.svg)](https://www.npmjs.com/package/ts-date-lite) [![npm version](https://img.shields.io/npm/v/ts-date-lite.svg)](https://www.npmjs.com/package/ts-date-lite) [![npm license](https://img.shields.io/npm/l/ts-date-lite.svg)](https://www.npmjs.com/package/ts-date-lite) [![npm types](https://img.shields.io/npm/types/ts-date-lite.svg)](https://www.npmjs.com/package/ts-date-lite) [![npm size](https://img.shields.io/packagephobia/minzip/ts-date-lite.svg)](https://packagephobia.com/result?p=ts-date-lite)
 
 Lightweight, type-safe date utility library for web developers.
 

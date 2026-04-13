@@ -1,6 +1,6 @@
 # ts-id-lite
 
-[![npm downloads](https://img.shields.io/npm/dt/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite) [![npm version](https://img.shields.io/npm/v/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite) [![npm license](https://img.shields.io/npm/l/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite) [![npm types](https://img.shields.io/npm/types/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite) [![node version](https://img.shields.io/node/v/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite) [![bundle size](https://img.shields.io/bundlephobia/minzip/ts-id-lite.svg)](https://bundlephobia.com/package/ts-id-lite)
+[![npm downloads](https://img.shields.io/npm/dt/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite) [![npm version](https://img.shields.io/npm/v/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite) [![npm license](https://img.shields.io/npm/l/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite) [![npm types](https://img.shields.io/npm/types/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite) [![npm size](https://img.shields.io/packagephobia/minzip/ts-id-lite.svg)](https://packagephobia.com/result?p=ts-id-lite)
 
 Lightweight, type-safe ID generation utility library for web developers.
 

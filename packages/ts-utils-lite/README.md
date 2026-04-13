@@ -1,6 +1,6 @@
 # ts-utils-lite
 
-[![npm downloads](https://img.shields.io/npm/dt/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite) [![npm version](https://img.shields.io/npm/v/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite) [![npm license](https://img.shields.io/npm/l/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite) [![npm types](https://img.shields.io/npm/types/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite) [![node version](https://img.shields.io/node/v/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite) [![bundle size](https://img.shields.io/bundlephobia/minzip/ts-utils-lite.svg)](https://bundlephobia.com/package/ts-utils-lite)
+[![npm downloads](https://img.shields.io/npm/dt/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite) [![npm version](https://img.shields.io/npm/v/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite) [![npm license](https://img.shields.io/npm/l/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite) [![npm types](https://img.shields.io/npm/types/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite) [![npm size](https://img.shields.io/packagephobia/minzip/ts-utils-lite.svg)](https://packagephobia.com/result?p=ts-utils-lite)
 
 Lightweight, type-safe utility library for web developers.
 

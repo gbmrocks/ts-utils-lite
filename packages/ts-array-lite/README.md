@@ -1,6 +1,6 @@
 # ts-array-lite
 
-[![npm downloads](https://img.shields.io/npm/dt/ts-array-lite.svg)](https://www.npmjs.com/package/ts-array-lite) [![npm version](https://img.shields.io/npm/v/ts-array-lite.svg)](https://www.npmjs.com/package/ts-array-lite) [![npm license](https://img.shields.io/npm/l/ts-array-lite.svg)](https://www.npmjs.com/package/ts-array-lite) [![npm types](https://img.shields.io/npm/types/ts-array-lite.svg)](https://www.npmjs.com/package/ts-array-lite) [![node version](https://img.shields.io/node/v/ts-array-lite.svg)](https://www.npmjs.com/package/ts-array-lite) [![bundle size](https://img.shields.io/bundlephobia/minzip/ts-array-lite.svg)](https://bundlephobia.com/package/ts-array-lite)
+[![npm downloads](https://img.shields.io/npm/dt/ts-array-lite.svg)](https://www.npmjs.com/package/ts-array-lite) [![npm version](https://img.shields.io/npm/v/ts-array-lite.svg)](https://www.npmjs.com/package/ts-array-lite) [![npm license](https://img.shields.io/npm/l/ts-array-lite.svg)](https://www.npmjs.com/package/ts-array-lite) [![npm types](https://img.shields.io/npm/types/ts-array-lite.svg)](https://www.npmjs.com/package/ts-array-lite) [![npm size](https://img.shields.io/packagephobia/minzip/ts-array-lite.svg)](https://packagephobia.com/result?p=ts-array-lite)
 
 Lightweight, type-safe array utility library for web developers.
 
