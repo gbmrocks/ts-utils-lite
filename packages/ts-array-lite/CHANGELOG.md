@@ -1,5 +1,11 @@
 # ts-array-lite
 
+## 0.0.5
+
+### Patch Changes
+
+- ### Commits included in this release:
+
 ## 0.0.4
 
 ### Patch Changes
