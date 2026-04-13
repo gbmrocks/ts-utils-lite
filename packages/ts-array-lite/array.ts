@@ -1,3 +1,4 @@
+
 export class ArrayUtils {
   unique<T>(arr: T[]): T[] {
     return [...new Set(arr)];
@@ -58,7 +59,7 @@ export class ArrayUtils {
   }
 
   flattenDeep<T>(arr: unknown[]): T[] {
-    return arr.reduce<T[]>((flat, item) => 
+    return arr.reduce<T[]>((flat, item) =>
       flat.concat(Array.isArray(item) ? this.flattenDeep(item) : item as T), []);
   }
 
@@ -93,7 +94,7 @@ export class ArrayUtils {
     return Array(maxLen).fill(0).map((_, i) => arrays.map(a => a[i]));
   }
 
-  uniqBy<T>(arr: T[], key: keyof T): T[] {
+  uniqueBy<T>(arr: T[], key: keyof T): T[] {
     const seen = new Set();
     return arr.filter(item => { const v = item[key]; if (seen.has(v)) return false; seen.add(v); return true; });
   }
