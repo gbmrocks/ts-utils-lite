@@ -1,6 +1,6 @@
 {
   "name": "ts-cookie-lite",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Lightweight, type-safe cookie utility library for web developers",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
