@@ -11,7 +11,6 @@ permissions:
 
 jobs:
   changeset:
-    # ignore release commits
     if: "!contains(github.event.head_commit.message, 'chore: release')"
     runs-on: ubuntu-latest
 
@@ -19,7 +18,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0   # IMPORTANT FIX
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -29,11 +28,21 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # 🔥 Generate changeset with commits + links
+      # 🔥 FIXED GENERATION LOGIC
       - name: Generate changeset if needed
         run: |
-          BASE=${{ github.event.before }}
+          set -e
+
+          # Always use HEAD commit context safely
           HEAD=${{ github.sha }}
+
+          # Find previous commit safely
+          BASE=$(git rev-parse HEAD~1 || echo "")
+
+          if [ -z "$BASE" ]; then
+            echo "No base commit found"
+            exit 0
+          fi
 
           echo "Base: $BASE"
           echo "Head: $HEAD"
@@ -57,7 +66,6 @@ jobs:
 
           HAS_VALID=false
 
-          # Map folder → package.json name
           for pkg in $CHANGED; do
             PKG_NAME=$(node -e "
               try {
@@ -76,21 +84,22 @@ jobs:
 
           echo "---" >> $FILE
 
-          # 🔥 Commit section with GitHub links
+          # 🔥 FIXED COMMIT LOG (THIS IS THE IMPORTANT PART)
           REPO_URL="https://github.com/${{ github.repository }}"
 
           echo "" >> $FILE
           echo "### Commits included in this release:" >> $FILE
 
-          git log $BASE..$HEAD --no-merges --pretty=format:"%H|%s" | while IFS="|" read hash msg
+          git log $BASE..$HEAD \
+            --pretty=format:"%H|%s" \
+            --no-merges | while IFS="|" read hash msg
           do
-            short_hash=$(echo $hash | cut -c1-7)
-            echo "- $msg ([${short_hash}]($REPO_URL/commit/$hash))" >> $FILE
+            short=${hash:0:7}
+            echo "- $msg ([${short}]($REPO_URL/commit/$hash))" >> $FILE
           done
 
-          # safety cleanup
           if [ "$HAS_VALID" = false ]; then
-            echo "No valid packages found, deleting changeset"
+            echo "No valid packages found"
             rm -f $FILE
           fi
 
