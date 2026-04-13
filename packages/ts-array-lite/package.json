@@ -1,6 +1,6 @@
 {
   "name": "ts-array-lite",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Lightweight, type-safe array utility library for web developers",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
