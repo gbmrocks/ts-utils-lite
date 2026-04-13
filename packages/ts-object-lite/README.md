@@ -1,0 +1,45 @@
+# ts-object-lite
+
+Lightweight, type-safe object utility library for web developers.
+
+## Installation
+
+```bash
+npm install ts-object-lite
+```
+
+## Usage
+
+```typescript
+import { Injectable } from '@angular/core';
+import { NgxObjectUtils } from 'ts-object-lite';
+
+@Injectable({ providedIn: 'root' })
+export class MyService {
+  constructor(private obj: NgxObjectUtils) { }
+  
+  myMethod(): void {
+    this.obj.deepGet({a: {b: 42}}, 'a.b');       // 42
+    this.obj.deepClone({a: 1});                  // {a: 1}
+    this.obj.merge({a: 1}, {b: 2});              // {a: 1, b: 2}
+    this.obj.omit({a: 1, b: 2}, ['b']);          // {a: 1}
+    this.obj.pick({a: 1, b: 2}, ['a']);          // {a: 1}
+    this.obj.isEmpty({});                        // true
+  }
+}
+```
+
+## Methods
+
+| Method | Description | Example |
+|--------|-------------|---------|
+| `deepGet` | Get nested value | `{a:{b:42}}, 'a.b'` → `42` |
+| `deepClone` | Deep clone object | `{a:1}` → `{a:1}` |
+| `merge` | Merge objects | `{a:1}, {b:2}` → `{a:1,b:2}` |
+| `omit` | Remove keys | `{a:1,b:2}, ['b']` → `{a:1}` |
+| `pick` | Pick keys | `{a:1,b:2}, ['a']` → `{a:1}` |
+| `isEmpty` | Check if empty | `{}` → `true` |
+
+## License
+
+MIT
