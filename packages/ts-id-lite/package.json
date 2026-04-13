@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "ts-id-lite",
   "version": "2.0.2",
   "description": "Lightweight, type-safe ID generation utility library for web developers",
@@ -27,5 +27,9 @@
     "lite"
   ],
   "author": "Gaurang Mody - G8X",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gbmrocks/ts-utils-lite.git"
+  }
 }

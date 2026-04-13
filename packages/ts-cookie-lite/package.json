@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "ts-cookie-lite",
   "version": "2.0.2",
   "description": "Lightweight, type-safe cookie utility library for web developers",
@@ -26,5 +26,9 @@
     "lite"
   ],
   "author": "Gaurang Mody - G8X",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gbmrocks/ts-utils-lite.git"
+  }
 }

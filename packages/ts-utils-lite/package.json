@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "ts-utils-lite",
   "version": "2.0.4",
   "description": "Lightweight, type-safe utility library for web developers",
@@ -149,5 +149,9 @@
     "g8x"
   ],
   "author": "Gaurang Mody - G8X",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gbmrocks/ts-utils-lite.git"
+  }
 }
