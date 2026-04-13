@@ -36,6 +36,6 @@
   },
   "scripts": {
     "build": "npm run build --workspaces",
-    "build:prod": "ng build client --configuration production --base-href=/ts-utils-lite/"
+    "build:prod": "ng build client --configuration production"
   }
 }
