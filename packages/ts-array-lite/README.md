@@ -1,0 +1,43 @@
+# ts-array-lite
+
+Lightweight, type-safe array utility library for web developers.
+
+## Installation
+
+```bash
+npm install ts-array-lite
+```
+
+## Usage
+
+```typescript
+import { Injectable } from '@angular/core';
+import { NgxArrayUtils } from 'ts-array-lite';
+
+@Injectable({ providedIn: 'root' })
+export class MyService {
+  constructor(private arr: NgxArrayUtils) { }
+  
+  myMethod(): void {
+    this.arr.unique([1, 2, 2, 3]);                    // [1, 2, 3]
+    this.arr.chunk([1, 2, 3, 4], 2);                  // [[1,2], [3,4]]
+    this.arr.groupBy(['apple', 'banana'], s => s[0]); // {a: ['apple'], b: ['banana']}
+    this.arr.shuffle([1, 2, 3]);                      // randomized array
+    this.arr.compact([0, 1, false, 2]);               // [1, 2]
+  }
+}
+```
+
+## Methods
+
+| Method | Description | Example |
+|--------|-------------|---------|
+| `unique` | Remove duplicates | `[1,2,2,3]` → `[1,2,3]` |
+| `chunk` | Split into chunks | `[1,2,3,4], 2` → `[[1,2], [3,4]]` |
+| `groupBy` | Group by callback | `['apple','banana'], s=>s[0]` → `{a:['apple'],b:['banana']}` |
+| `shuffle` | Randomize array | `[1,2,3]` → random order |
+| `compact` | Remove falsy values | `[0,1,false,2]` → `[1,2]` |
+
+## License
+
+MIT
