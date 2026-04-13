@@ -1,5 +1,12 @@
 # ts-utils-lite
 
+## 2.0.3
+
+### Patch Changes
+
+- ### Changes
+  - chore: update README to include usage examples for all utility classes
+
 ## 2.0.2
 
 ### Patch Changes
