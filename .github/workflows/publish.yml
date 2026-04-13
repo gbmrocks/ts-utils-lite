@@ -67,60 +67,7 @@ jobs:
       # WAIT (IMPORTANT)
       # -----------------------------
       - name: Wait for npm registry sync
-        run: sleep 60
-
-      # -----------------------------
-      # Deprecate old versions
-      # Keep latest 2 only
-      # -----------------------------
-      - name: Deprecate old versions safely
-        run: |
-          set -e
-
-          PACKAGES=(
-            ts-string-lite
-            ts-array-lite
-            ts-date-lite
-            ts-object-lite
-            ts-number-lite
-            ts-validation-lite
-            ts-id-lite
-            ts-cookie-lite
-            ts-utils-lite
-          )
-
-          for pkg in "${PACKAGES[@]}"; do
-            echo "====================================="
-            echo "Processing $pkg"
-            echo "====================================="
-
-            versions_json=$(npm view "$pkg" versions --json 2>/dev/null || echo "[]")
-
-            if [ "$versions_json" = "[]" ]; then
-              echo "Skipping $pkg (no versions found)"
-              continue
-            fi
-
-            versions=$(echo "$versions_json" | jq -r '.[]' | sort -V)
-
-            latest_two=$(echo "$versions" | tail -n 2)
-
-            echo "Keeping:"
-            echo "$latest_two"
-
-            for v in $versions; do
-              if ! echo "$latest_two" | grep -qx "$v"; then
-                echo "Deprecating $pkg@$v"
-
-                npm deprecate "$pkg@$v" \
-                  "Deprecated: please use latest 2 versions" || \
-                  echo "⚠️ Failed $pkg@$v"
-              fi
-            done
-
-          done
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: sleep 180
 
       # -----------------------------
       # Commit changes
