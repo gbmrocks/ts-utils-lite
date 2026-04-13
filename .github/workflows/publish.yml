@@ -19,30 +19,54 @@ jobs:
         with:
           fetch-depth: 0
 
+      # -----------------------------
+      # Node Setup
+      # -----------------------------
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
 
+      # -----------------------------
+      # Install dependencies
+      # -----------------------------
       - name: Install
         run: npm install
 
+      # -----------------------------
+      # Build
+      # -----------------------------
       - name: Build
         run: npm run build --workspaces
 
+      # -----------------------------
+      # Version packages (changesets)
+      # -----------------------------
       - name: Version packages
         run: npx changeset version
 
+      # -----------------------------
+      # Publish packages
+      # -----------------------------
       - name: Publish
         run: npx changeset publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # ✅ KEEP ONLY LAST 2 VERSIONS PER PACKAGE
+      # -----------------------------
+      # Install jq (CORRECT WAY)
+      # -----------------------------
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      # -----------------------------
+      # Deprecate older versions
+      # Keep only latest 2 versions
+      # -----------------------------
       - name: Deprecate old versions (keep latest 2)
         run: |
-          npm install -g jq
+          set -e
 
           PACKAGES=(
             ts-string-lite
@@ -57,13 +81,18 @@ jobs:
           )
 
           for pkg in "${PACKAGES[@]}"; do
-            echo "Processing $pkg..."
+            echo "=============================="
+            echo "Processing $pkg"
+            echo "=============================="
 
-            # get all versions sorted
-            versions=$(npm view $pkg versions --json | jq -r '.[]')
+            # Get all versions sorted properly
+            versions=$(npm view "$pkg" versions --json | jq -r '.[]' | sort -V)
 
-            # get latest 2 versions
+            # Get latest 2 versions
             latest_two=$(echo "$versions" | tail -n 2)
+
+            echo "Keeping versions:"
+            echo "$latest_two"
 
             for v in $versions; do
               if ! echo "$latest_two" | grep -qx "$v"; then
@@ -76,6 +105,9 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      # -----------------------------
+      # Commit release changes
+      # -----------------------------
       - name: Commit release
         run: |
           git config user.name "gbmrocks"
