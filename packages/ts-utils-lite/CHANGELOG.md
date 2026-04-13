@@ -1,5 +1,12 @@
 # ts-utils-lite
 
+## 2.0.6
+
+### Patch Changes
+
+- ### Changes
+  - chore: update dependencies in package.json to specific versions and modify npm install command in changeset.yml
+
 ## 2.0.5
 
 ### Patch Changes
