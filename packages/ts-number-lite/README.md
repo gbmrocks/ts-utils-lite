@@ -1,6 +1,6 @@
 # ts-number-lite
 
-[![npm downloads](https://img.shields.io/npm/dt/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite) [![npm version](https://img.shields.io/npm/v/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite) [![npm license](https://img.shields.io/npm/l/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite) [![npm types](https://img.shields.io/npm/types/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite) [![npm size](https://img.shields.io/packagephobia/minzip/ts-number-lite.svg)](https://packagephobia.com/result?p=ts-number-lite)
+[![npm downloads](https://img.shields.io/npm/dt/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite) [![npm version](https://img.shields.io/npm/v/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite) [![npm license](https://img.shields.io/npm/l/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite) [![npm types](https://img.shields.io/npm/types/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/ts-number-lite.svg)](https://bundlephobia.com/result?p=ts-number-lite)
 
 Lightweight, type-safe number utility library for web developers.
 
@@ -45,3 +45,5 @@ export class MyService {
 ## License
 
 MIT
+
+
