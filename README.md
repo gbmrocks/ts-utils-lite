@@ -12,7 +12,6 @@ Everything you need, nothing you don't.
 - **Validation Utils** - isEmail, isUrl, isPhone, isPostalCode, isStrongPassword
 - **ID Utils** - uuid, nanoid, shortId, hash, snowflake, generateCode
 - **Cookie Utils** - get, set, delete, has
-- **Copy to Clipboard** - Directive to copy text to clipboard on click
 
 ## Installation
 
@@ -104,26 +103,6 @@ import { NumberUtils } from 'ts-number-lite';
 import { ValidationUtils } from 'ts-validation-lite';
 import { IdUtils } from 'ts-id-lite';
 import { CookieUtils } from 'ts-cookie-lite';
-```
-
-### Copy to Clipboard Directive
-
-```typescript
-import { Component } from '@angular/core';
-import { CopyToClipboardDirective } from 'ts-utils-lite';
-
-@Component({
-  selector: 'app-my-component',
-  standalone: true,
-  imports: [CopyToClipboardDirective],
-  template: `
-    <input [(ngModel)]="text" placeholder="Enter text" />
-    <button [copyToClipboard]="text">Copy</button>
-  `
-})
-export class MyComponent {
-  text = 'Hello World';
-}
 ```
 
 ## Demo
