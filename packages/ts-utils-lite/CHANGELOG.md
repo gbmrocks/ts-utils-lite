@@ -1,5 +1,21 @@
 # ts-utils-lite
 
+## 2.0.16
+
+### Patch Changes
+
+- ### Changes
+  - fix: update package versions to 2.0.15 and mark previous versions as deprecated; correct URL regex pattern
+- Updated dependencies
+  - ts-array-lite@2.0.16
+  - ts-cookie-lite@2.0.16
+  - ts-date-lite@2.0.16
+  - ts-id-lite@2.0.16
+  - ts-number-lite@2.0.16
+  - ts-object-lite@2.0.16
+  - ts-string-lite@2.0.16
+  - ts-validation-lite@2.0.16
+
 ## 2.0.11
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # ts-cookie-lite
 
+## 2.0.16
+
+### Patch Changes
+
+- ### Changes
+  - fix: update package versions to 2.0.15 and mark previous versions as deprecated; correct URL regex pattern
+
 ## 2.0.3
 
 ### Patch Changes

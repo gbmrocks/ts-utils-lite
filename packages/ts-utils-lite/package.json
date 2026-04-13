@@ -1,6 +1,6 @@
 {
   "name": "ts-utils-lite",
-  "version": "2.0.15",
+  "version": "2.0.16",
   "deprecated": "Previous versions are deprecated. Please upgrade to 2.0.15 or later.",
   "description": "Lightweight, type-safe utility library for web developers",
   "main": "./index.js",
@@ -14,14 +14,14 @@
     }
   },
   "dependencies": {
-    "ts-string-lite": "2.0.15",
-    "ts-array-lite": "2.0.15",
-    "ts-date-lite": "2.0.15",
-    "ts-object-lite": "2.0.15",
-    "ts-number-lite": "2.0.15",
-    "ts-validation-lite": "2.0.15",
-    "ts-id-lite": "2.0.15",
-    "ts-cookie-lite": "2.0.15"
+    "ts-string-lite": "2.0.16",
+    "ts-array-lite": "2.0.16",
+    "ts-date-lite": "2.0.16",
+    "ts-object-lite": "2.0.16",
+    "ts-number-lite": "2.0.16",
+    "ts-validation-lite": "2.0.16",
+    "ts-id-lite": "2.0.16",
+    "ts-cookie-lite": "2.0.16"
   },
   "files": [
     "dist"
