@@ -94,7 +94,7 @@ export class ArrayUtils {
     return Array(maxLen).fill(0).map((_, i) => arrays.map(a => a[i]));
   }
 
-  uniqueBy<T>(arr: T[], key: keyof T): T[] {
+  uniqBy<T>(arr: T[], key: keyof T): T[] {
     const seen = new Set();
     return arr.filter(item => { const v = item[key]; if (seen.has(v)) return false; seen.add(v); return true; });
   }
