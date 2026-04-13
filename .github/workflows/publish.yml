@@ -7,36 +7,43 @@ on:
 
 permissions:
   contents: write
-  id-token: write
   pull-requests: write
+  id-token: write
 
 jobs:
   release:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout full history
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      # 2️⃣ Setup Node with OIDC
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
 
+      # 3️⃣ Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # 🔍 Detect changed packages
+      # 4️⃣ Detect changed packages
       - name: Detect changed packages
         id: changes
         run: |
-          CHANGED=$(git diff --name-only HEAD~1 HEAD | grep '^packages/' | cut -d/ -f2 | sort -u)
+          CHANGED=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} \
+            | grep '^packages/' \
+            | cut -d/ -f2 \
+            | sort -u)
+
           echo "changed=$CHANGED" >> $GITHUB_OUTPUT
 
-      # 🦋 Auto create changeset if packages changed
+      # 5️⃣ Auto-create changeset if needed (NO PUSH HERE)
       - name: Auto create changeset
         if: steps.changes.outputs.changed != ''
         run: |
@@ -51,18 +58,14 @@ jobs:
           echo "" >> $FILE
           echo "Auto release" >> $FILE
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .changeset
-          git commit -m "chore: auto changeset"
-          git push
-
-      # 🚀 Version + Publish + GitHub Release
-      - name: Create Release & Publish
+      # 6️⃣ Let official changesets action handle everything
+      - name: Version, Tag, Publish, Release
         uses: changesets/action@v1
         with:
           publish: npx changeset publish
+          version: npx changeset version
           commit: "chore: release packages"
           title: "Release packages"
+          createGithubReleases: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
