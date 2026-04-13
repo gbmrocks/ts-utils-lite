@@ -15,34 +15,7 @@ import { CookieUtils } from 'ts-cookie-lite';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './showcase.component.html',
-  styles: [`
-.showcase-container { max-width: 900px; margin: 0 auto; padding: 2rem; }
-h1 { font-size: 2.5rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; margin-bottom: 0.5rem; }
-.subtitle { color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem; }
-.tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
-.tabs button { padding: 0.6rem 1.2rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; color: var(--text-muted); cursor: pointer; transition: all 0.2s; font-weight: 500; }
-.tabs button:hover { background: var(--bg-hover); color: var(--text); }
-.tabs button.active { background: var(--gradient); color: white; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); }
-.demo-panel { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; padding: 2rem; }
-.demo h2 { font-size: 1.5rem; color: var(--text); font-weight: 700; margin-bottom: 0.5rem; }
-.demo p { color: var(--text-muted); margin-bottom: 1.5rem; }
-.demo-box { background: var(--bg); border-radius: 14px; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; border: 1px solid var(--border-color); margin-bottom: 1.5rem; }
-.input-group { display: flex; flex-direction: column; gap: 0.5rem; }
-.input-group label { color: var(--text-muted); font-size: 0.875rem; }
-input { padding: 0.75rem 1rem; background: var(--bg-input); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text); }
-input:focus { outline: none; border-color: var(--accent); }
-.btn-group { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-button { padding: 0.75rem 1.5rem; background: var(--gradient); border: none; border-radius: 12px; color: white; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3); }
-.code-section { position: relative; margin-top: 1.5rem; }
-.code-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
-.code-header h3 { color: var(--text); font-size: 1rem; margin: 0; }
-.copy-btn { padding: 0.4rem 0.8rem; font-size: 0.75rem; background: var(--bg-card); border: 1px solid var(--border-color); color: var(--accent); }
-.copy-btn:hover { background: var(--bg-hover); transform: none; box-shadow: none; }
-.result { padding: 1rem; background: var(--bg); border: 1px solid var(--border-color); border-radius: 10px; color: var(--accent); font-family: monospace; word-break: break-all; }
-.code-section pre { background: var(--bg); border: 1px solid var(--border-color); border-radius: 14px; padding: 1.25rem; overflow-x: auto; margin: 0; }
-.code-section code { display: block; font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace; font-size: 0.875rem; line-height: 1.7; white-space: pre; color: var(--text); }
-  `]
+  styleUrls: ['./showcase.component.css']
 })
 export class ShowcaseComponent {
   string = new StringUtils();
