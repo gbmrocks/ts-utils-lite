@@ -1,5 +1,12 @@
 # ts-array-lite
 
+## 2.0.23
+
+### Patch Changes
+
+- ### Changes
+  - Update TRIGGER
+
 ## 2.0.22
 
 ### Patch Changes
