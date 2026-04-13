@@ -1,4 +1,4 @@
-name: Release
+name: Publish
 
 on:
   push:
@@ -8,74 +8,31 @@ on:
 permissions:
   contents: write
   id-token: write
-  pull-requests: write
 
 jobs:
-  release:
-    # 🚨 CRITICAL: prevent infinite loop from release commits
-    if: "!contains(github.event.head_commit.message, 'chore: release packages')"
+  publish:
+    # 🚨 ONLY run if changeset exists
+    if: contains(github.event.head_commit.message, 'Version Packages')
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout full history (required for changesets)
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # 2️⃣ Setup Node 24 + npm
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
 
-      # 3️⃣ Install dependencies
-      - name: Install dependencies
+      - name: Install
         run: npm install
 
-      # 4️⃣ Detect changed packages (safe + no src dependency)
-      - name: Detect changed packages
-        id: changes
-        run: |
-          CHANGED=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} \
-            | grep '^packages/' \
-            | grep -v '/dist/' \
-            | grep -v 'node_modules' \
-            | cut -d/ -f2 \
-            | sort -u || true)
+      - name: Build
+        run: npm run build --workspaces
 
-          echo "changed=$CHANGED" >> $GITHUB_OUTPUT
-
-      # 5️⃣ Auto-create changeset only if needed
-      - name: Create auto changeset
-        if: steps.changes.outputs.changed != ''
-        run: |
-          mkdir -p .changeset
-          FILE=".changeset/auto-$(date +%s).md"
-
-          echo "---" > $FILE
-
-          for pkg in ${{ steps.changes.outputs.changed }}; do
-            echo "\"$pkg\": patch" >> $FILE
-          done
-
-          echo "---" >> $FILE
-          echo "" >> $FILE
-          echo "Auto release" >> $FILE
-
-      # 6️⃣ Release via Changesets (version + publish + PR/release)
-      - name: Changesets Release
-        uses: changesets/action@v1
-        with:
-          publish: npx changeset publish
-          version: npx changeset version
-          commit: "chore: release packages"
-          title: "Release packages"
-          createGithubReleases: true
+      - name: Publish
+        run: npx changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # 7️⃣ Cleanup working tree (safety)
-      - name: Clean git state
-        run: git reset --hard
