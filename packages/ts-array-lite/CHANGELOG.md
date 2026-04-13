@@ -1,5 +1,12 @@
 # ts-array-lite
 
+## 2.0.19
+
+### Patch Changes
+
+- ### Changes
+  - docs: add npm badges for download counts and versions in README
+
 ## 2.0.18
 
 ### Patch Changes
