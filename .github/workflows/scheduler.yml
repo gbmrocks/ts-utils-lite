@@ -1,0 +1,21 @@
+name: Scheduler
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/1 * * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Print schedule heartbeat
+        run: |
+          echo "Scheduler triggered at $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
