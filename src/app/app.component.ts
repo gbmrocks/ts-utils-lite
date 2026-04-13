@@ -35,6 +35,23 @@ import { FormsModule } from '@angular/forms';
       </div>
     </nav>
     <router-outlet></router-outlet>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>Contact</h4>
+            <p>Email: <a href="mailto:gaurangmody25@gmail.com">gaurangmody25&#64;gmail.com</a></p>
+          </div>
+          <div class="footer-section">
+            <h4>Project</h4>
+            <p><a href="https://github.com/gbmrocks/ts-utils-lite" target="_blank">GitHub Repository</a></p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; {{ currentYear }} Gaurang Mody. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
   `,
   styles: [`
     .navbar {
@@ -47,7 +64,7 @@ import { FormsModule } from '@angular/forms';
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border-color);
     }
-    
+
     .nav-container {
       max-width: 1200px;
       margin: 0 auto;
@@ -56,7 +73,7 @@ import { FormsModule } from '@angular/forms';
       align-items: center;
       padding: 0.875rem 2rem;
     }
-    
+
     .logo {
       display: flex;
       align-items: center;
@@ -65,21 +82,21 @@ import { FormsModule } from '@angular/forms';
       font-size: 1.25rem;
       font-weight: 800;
     }
-    
+
     .logo-icon { font-size: 1.5rem; }
-    
+
     .logo-text {
       background: linear-gradient(135deg, #3b82f6, #6366f1);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    
+
     .nav-links {
       display: flex;
       gap: 0.25rem;
     }
-    
+
     .nav-links a {
       display: flex;
       align-items: center;
@@ -92,26 +109,26 @@ import { FormsModule } from '@angular/forms';
       font-size: 0.9rem;
       font-weight: 500;
     }
-    
+
     .nav-icon { font-size: 1rem; }
-    
+
     .nav-links a:hover {
       color: var(--text);
       background: var(--bg-hover);
     }
-    
+
     .nav-links a.active {
       color: #fff;
       background: linear-gradient(135deg, #3b82f6, #6366f1);
       box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
     }
-    
+
     .nav-right {
       display: flex;
       align-items: center;
       gap: 0.75rem;
     }
-    
+
     .theme-toggle {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
@@ -121,11 +138,11 @@ import { FormsModule } from '@angular/forms';
       cursor: pointer;
       transition: all 0.2s;
     }
-    
+
     .theme-toggle:hover {
       transform: scale(1.05);
     }
-    
+
     .github-btn {
       display: flex;
       align-items: center;
@@ -140,12 +157,12 @@ import { FormsModule } from '@angular/forms';
       font-size: 0.875rem;
       transition: all 0.25s ease;
     }
-    
+
     .github-btn:hover {
       background: var(--bg-hover);
       color: var(--text);
     }
-    
+
     :host {
       display: block;
       padding-top: 64px;
@@ -153,11 +170,71 @@ import { FormsModule } from '@angular/forms';
       min-height: 100vh;
       transition: background 0.3s, color 0.3s;
     }
+
+    .footer {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border-color);
+      padding: 3rem 2rem 2rem;
+      margin-top: 4rem;
+      margin-bottom: 0;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h4 {
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    .footer-section p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .footer-section a {
+      color: #3b82f6;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-section a:hover {
+      color: #6366f1;
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.5rem;
+      text-align: center;
+    }
+
+    .footer-bottom p {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin: 0;
+    }
   `]
 })
 export class AppComponent {
   title = 'ts-utils-lite';
   isDark = true;
+  currentYear = new Date().getFullYear();
 
   toggleTheme(): void {
     this.isDark = !this.isDark;
