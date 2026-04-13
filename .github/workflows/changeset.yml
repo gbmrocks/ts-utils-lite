@@ -29,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # 🔥 Generate changeset with commits + packages
+      # 🔥 Generate changeset with commits + links
       - name: Generate changeset if needed
         run: |
           BASE=${{ github.event.before }}
@@ -38,7 +38,7 @@ jobs:
           echo "Base: $BASE"
           echo "Head: $HEAD"
 
-          # Get changed packages
+          # Detect changed packages
           CHANGED=$(git diff --name-only $BASE $HEAD \
             | grep '^packages/' \
             | grep -v '/dist/' \
@@ -57,7 +57,7 @@ jobs:
 
           HAS_VALID=false
 
-          # Map folders → package names
+          # Map folder → package.json name
           for pkg in $CHANGED; do
             PKG_NAME=$(node -e "
               try {
@@ -76,21 +76,25 @@ jobs:
 
           echo "---" >> $FILE
 
-          # 🔥 REAL commit messages (FIX)
+          # 🔥 Commit section with GitHub links
+          REPO_URL="https://github.com/${{ github.repository }}"
+
           echo "" >> $FILE
           echo "### Commits included in this release:" >> $FILE
 
-          git log $BASE..$HEAD \
-            --pretty=format:"- %s" \
-            --no-merges >> $FILE
+          git log $BASE..$HEAD --no-merges --pretty=format:"%H|%s" | while IFS="|" read hash msg
+          do
+            short_hash=$(echo $hash | cut -c1-7)
+            echo "- $msg ([${short_hash}]($REPO_URL/commit/$hash))" >> $FILE
+          done
 
-          # safety check
+          # safety cleanup
           if [ "$HAS_VALID" = false ]; then
-            echo "No valid packages found, removing changeset"
+            echo "No valid packages found, deleting changeset"
             rm -f $FILE
           fi
 
-      # 🚀 Create PR via Changesets
+      # 🚀 Create PR
       - name: Create Pull Request
         uses: changesets/action@v1
         with:
