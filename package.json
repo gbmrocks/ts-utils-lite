@@ -30,7 +30,8 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "ng-packagr": "^19.2.0",
     "typescript": "~5.7.2",
-    "ts-utils-lite": "^0.0.6"
+    "ts-utils-lite": "^0.0.6",
+    "@changesets/cli": "^2.30.0"
   },
   "scripts": {
     "build": "npm run build --workspaces"
