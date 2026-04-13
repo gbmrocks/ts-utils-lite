@@ -1,5 +1,5 @@
 {
-  "name": "t1s-utils-lite",
+  "name": "ts-utils-lite",
   "version": "1.0.0",
   "description": "Lightweight, type-safe utility library for web developers",
   "main": "./index.js",

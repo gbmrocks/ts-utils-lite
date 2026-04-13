@@ -1,4 +1,4 @@
-# t1s-utils-lite
+# ts-utils-lite
 
 ## 2.0.0
 
