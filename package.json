@@ -1,23 +1,13 @@
 {
-  "name": "client",
-  "version": "0.0.0",
+  "name": "ts-utils-monorepo",
   "private": true,
-  "dependencies": {
-    "@angular/core": "^19.2.0",
-    "@angular/common": "^19.2.0",
-    "@angular/router": "^19.2.0",
-
-    "ts-array-lite": "workspace:*",
-    "ts-cookie-lite": "workspace:*",
-    "ts-date-lite": "workspace:*",
-    "ts-id-lite": "workspace:*",
-    "ts-number-lite": "workspace:*",
-    "ts-object-lite": "workspace:*",
-    "ts-string-lite": "workspace:*",
-    "ts-validation-lite": "workspace:*"
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@changesets/cli": "^2.30.0"
   },
   "scripts": {
-    "start": "ng serve",
-    "build": "ng build"
+    "build": "npm run build --workspaces"
   }
 }

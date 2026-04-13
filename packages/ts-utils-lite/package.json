@@ -1,6 +1,6 @@
 {
   "name": "t1s-utils-lite",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "Lightweight, type-safe utility library for web developers",
   "main": "./index.js",
   "module": "./index.js",
@@ -13,14 +13,14 @@
     }
   },
   "dependencies": {
-    "ts-string-lite": "workspace:*",
-    "ts-array-lite": "workspace:*",
-    "ts-date-lite": "workspace:*",
-    "ts-object-lite": "workspace:*",
-    "ts-number-lite": "workspace:*",
-    "ts-validation-lite": "workspace:*",
-    "ts-id-lite": "workspace:*",
-    "ts-cookie-lite": "workspace:*"
+    "ts-string-lite": "1.0.2",
+    "ts-array-lite": "1.0.2",
+    "ts-date-lite": "1.0.2",
+    "ts-object-lite": "1.0.2",
+    "ts-number-lite": "1.0.2",
+    "ts-validation-lite": "1.0.2",
+    "ts-id-lite": "1.0.2",
+    "ts-cookie-lite": "1.0.2"
   },
   "files": [
     "dist"
@@ -28,13 +28,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json"
   },
-  "keywords": [
-    "utils",
-    "typescript",
-    "javascript",
-    "helpers",
-    "lodash"
-  ],
+  "keywords": ["utils", "typescript", "javascript", "helpers", "lodash"],
   "author": "Gaurang Mody - G8X",
   "license": "MIT"
 }
