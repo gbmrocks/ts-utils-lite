@@ -1,5 +1,16 @@
 # ts-string-lite
 
+## 2.0.19
+
+### Patch Changes
+
+- ### Changes
+  - docs: update README badges for improved accuracy and consistency
+  - docs: remove outdated npm badges from README for improved clarity
+  - docs: update README badges for improved accuracy and consistency
+  - docs: add package badges to README for improved visibility
+  - docs: update npm badges in README for improved visibility and accuracy
+
 ## 2.0.18
 
 ### Patch Changes

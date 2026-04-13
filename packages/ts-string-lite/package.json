@@ -1,6 +1,6 @@
 {
   "name": "ts-string-lite",
-  "version": "2.0.18",
+  "version": "2.0.19",
   "description": "Lightweight, type-safe string utility library for web developers",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
