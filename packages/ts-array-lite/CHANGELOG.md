@@ -1,5 +1,12 @@
 # ts-array-lite
 
+## 2.0.5
+
+### Patch Changes
+
+- ### Changes
+  - chore: update package.json to include repository information and format tsconfig.json for consistency
+
 ## 2.0.4
 
 ### Patch Changes

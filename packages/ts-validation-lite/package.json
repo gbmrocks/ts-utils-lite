@@ -1,6 +1,6 @@
-﻿{
+{
   "name": "ts-validation-lite",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Lightweight, type-safe validation utility library for web developers",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
