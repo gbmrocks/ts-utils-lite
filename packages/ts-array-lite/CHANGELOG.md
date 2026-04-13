@@ -1,5 +1,12 @@
 # ts-array-lite
 
+## 2.0.22
+
+### Patch Changes
+
+- ### Changes
+  - feat: add SPA fallback for 404 handling in deployment
+
 ## 2.0.21
 
 ### Patch Changes
