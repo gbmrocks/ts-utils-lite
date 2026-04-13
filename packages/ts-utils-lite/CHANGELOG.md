@@ -1,5 +1,21 @@
 # ts-utils-lite
 
+## 2.0.19
+
+### Patch Changes
+
+- ### Changes
+  - docs: add npm badges for download counts and versions in README
+- Updated dependencies
+  - ts-array-lite@2.0.19
+  - ts-cookie-lite@2.0.18
+  - ts-date-lite@2.0.18
+  - ts-id-lite@2.0.18
+  - ts-number-lite@2.0.18
+  - ts-object-lite@2.0.18
+  - ts-string-lite@2.0.18
+  - ts-validation-lite@2.0.18
+
 ## 2.0.18
 
 ### Patch Changes
