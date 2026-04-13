@@ -1,5 +1,15 @@
 # ts-utils-lite
 
+[![npm downloads](https://img.shields.io/npm/d18m/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite) [![npm version](https://img.shields.io/npm/v/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite)
+[![npm downloads](https://img.shields.io/npm/d18m/ts-array-lite.svg)](https://www.npmjs.com/package/ts-array-lite) [![npm version](https://img.shields.io/npm/v/ts-array-lite.svg)](https://www.npmjs.com/package/ts-array-lite)
+[![npm downloads](https://img.shields.io/npm/d18m/ts-cookie-lite.svg)](https://www.npmjs.com/package/ts-cookie-lite) [![npm version](https://img.shields.io/npm/v/ts-cookie-lite.svg)](https://www.npmjs.com/package/ts-cookie-lite)
+[![npm downloads](https://img.shields.io/npm/d18m/ts-date-lite.svg)](https://www.npmjs.com/package/ts-date-lite) [![npm version](https://img.shields.io/npm/v/ts-date-lite.svg)](https://www.npmjs.com/package/ts-date-lite)
+[![npm downloads](https://img.shields.io/npm/d18m/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite) [![npm version](https://img.shields.io/npm/v/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite)
+[![npm downloads](https://img.shields.io/npm/d18m/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite) [![npm version](https://img.shields.io/npm/v/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite)
+[![npm downloads](https://img.shields.io/npm/d18m/ts-object-lite.svg)](https://www.npmjs.com/package/ts-object-lite) [![npm version](https://img.shields.io/npm/v/ts-object-lite.svg)](https://www.npmjs.com/package/ts-object-lite)
+[![npm downloads](https://img.shields.io/npm/d18m/ts-string-lite.svg)](https://www.npmjs.com/package/ts-string-lite) [![npm version](https://img.shields.io/npm/v/ts-string-lite.svg)](https://www.npmjs.com/package/ts-string-lite)
+[![npm downloads](https://img.shields.io/npm/d18m/ts-validation-lite.svg)](https://www.npmjs.com/package/ts-validation-lite) [![npm version](https://img.shields.io/npm/v/ts-validation-lite.svg)](https://www.npmjs.com/package/ts-validation-lite)
+
 Everything you need, nothing you don't.
 
 ## Features

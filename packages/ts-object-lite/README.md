@@ -1,5 +1,7 @@
 # ts-object-lite
 
+[![npm downloads](https://img.shields.io/npm/d18m/ts-object-lite.svg)](https://www.npmjs.com/package/ts-object-lite) [![npm version](https://img.shields.io/npm/v/ts-object-lite.svg)](https://www.npmjs.com/package/ts-object-lite)
+
 Lightweight, type-safe object utility library for web developers.
 
 ## Installation

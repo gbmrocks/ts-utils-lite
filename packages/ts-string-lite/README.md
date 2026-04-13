@@ -1,5 +1,7 @@
 # ts-string-lite
 
+[![npm downloads](https://img.shields.io/npm/d18m/ts-string-lite.svg)](https://www.npmjs.com/package/ts-string-lite) [![npm version](https://img.shields.io/npm/v/ts-string-lite.svg)](https://www.npmjs.com/package/ts-string-lite)
+
 Lightweight, type-safe string utility library for web developers.
 
 ## Installation
