@@ -189,7 +189,7 @@ export class MyComponent {
 
 ## Demo
 
-Visit the [demo page](http://localhost:4200/showcase) to see all utilities in action.
+Visit the [demo page](https://gbmrocks.github.io/ts-utils-lite/) to see all utilities in action.
 
 ## Compatibility
 
