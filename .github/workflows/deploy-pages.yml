@@ -2,7 +2,7 @@ name: Deploy Angular to GitHub Pages
 
 on:
   workflow_run:
-    workflows: ["Release"]
+    workflows: ["Release","Scheduler"]
     types:
       - completed
   schedule:
