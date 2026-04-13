@@ -1,5 +1,12 @@
 # ts-utils-lite
 
+## 2.0.4
+
+### Patch Changes
+
+- ### Changes
+  - chore: update TRIGGER file to add additional ellipsis
+
 ## 2.0.3
 
 ### Patch Changes
