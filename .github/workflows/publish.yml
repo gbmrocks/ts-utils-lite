@@ -1,4 +1,4 @@
-name: Release & Publish
+name: Auto Release & Publish
 
 on:
   push:
@@ -29,12 +29,35 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # 🧠 Changesets handles:
-      # - Version bump
-      # - Git commit
-      # - Git tag
-      # - GitHub Release
-      # - npm publish
+      # 🔍 Detect changed packages
+      - name: Detect changed packages
+        id: changes
+        run: |
+          CHANGED=$(git diff --name-only HEAD~1 HEAD | grep '^packages/' | cut -d/ -f2 | sort -u)
+          echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+
+      # 🦋 Auto create changeset if packages changed
+      - name: Auto create changeset
+        if: steps.changes.outputs.changed != ''
+        run: |
+          mkdir -p .changeset
+          FILE=".changeset/auto-$(date +%s).md"
+
+          echo "---" > $FILE
+          for pkg in ${{ steps.changes.outputs.changed }}; do
+            echo "\"$pkg\": patch" >> $FILE
+          done
+          echo "---" >> $FILE
+          echo "" >> $FILE
+          echo "Auto release" >> $FILE
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .changeset
+          git commit -m "chore: auto changeset"
+          git push
+
+      # 🚀 Version + Publish + GitHub Release
       - name: Create Release & Publish
         uses: changesets/action@v1
         with:
