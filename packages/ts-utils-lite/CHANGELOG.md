@@ -1,5 +1,12 @@
 # ts-utils-lite
 
+## 2.0.11
+
+### Patch Changes
+
+- Updated dependencies
+  - ts-validation-lite@2.0.5
+
 ## 2.0.10
 
 ### Patch Changes
