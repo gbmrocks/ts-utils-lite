@@ -1,5 +1,7 @@
 # ts-utils-lite
 
+[![npm downloads](https://img.shields.io/npm/d18m/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite) [![npm version](https://img.shields.io/npm/v/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite)
+
 Lightweight, type-safe utility library for web developers.
 
 ## Installation

@@ -1,5 +1,7 @@
 # ts-number-lite
 
+[![npm downloads](https://img.shields.io/npm/d18m/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite) [![npm version](https://img.shields.io/npm/v/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite)
+
 Lightweight, type-safe number utility library for web developers.
 
 ## Installation

@@ -1,5 +1,7 @@
 # ts-date-lite
 
+[![npm downloads](https://img.shields.io/npm/d18m/ts-date-lite.svg)](https://www.npmjs.com/package/ts-date-lite) [![npm version](https://img.shields.io/npm/v/ts-date-lite.svg)](https://www.npmjs.com/package/ts-date-lite)
+
 Lightweight, type-safe date utility library for web developers.
 
 ## Installation

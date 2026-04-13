@@ -1,5 +1,7 @@
 # ts-array-lite
 
+[![npm downloads](https://img.shields.io/npm/d18m/ts-array-lite.svg)](https://www.npmjs.com/package/ts-array-lite) [![npm version](https://img.shields.io/npm/v/ts-array-lite.svg)](https://www.npmjs.com/package/ts-array-lite)
+
 Lightweight, type-safe array utility library for web developers.
 
 ## Installation

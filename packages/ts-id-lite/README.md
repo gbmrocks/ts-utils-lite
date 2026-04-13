@@ -1,5 +1,7 @@
 # ts-id-lite
 
+[![npm downloads](https://img.shields.io/npm/d18m/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite) [![npm version](https://img.shields.io/npm/v/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite)
+
 Lightweight, type-safe ID generation utility library for web developers.
 
 ## Installation

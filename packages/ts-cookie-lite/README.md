@@ -1,5 +1,7 @@
 # ts-cookie-lite
 
+[![npm downloads](https://img.shields.io/npm/d18m/ts-cookie-lite.svg)](https://www.npmjs.com/package/ts-cookie-lite) [![npm version](https://img.shields.io/npm/v/ts-cookie-lite.svg)](https://www.npmjs.com/package/ts-cookie-lite)
+
 Lightweight, type-safe cookie utility library for web developers.
 
 ## Installation
