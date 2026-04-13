@@ -1,5 +1,12 @@
 # ts-array-lite
 
+## 0.0.8
+
+### Patch Changes
+
+- ### Changes
+  - chore: update TRIGGER file to reflect new content structure
+
 ## 0.0.7
 
 ### Patch Changes
