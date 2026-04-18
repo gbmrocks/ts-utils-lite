@@ -12,6 +12,7 @@ Everything you need, nothing you don't.
 | `ts-id-lite` | [![npm downloads](https://img.shields.io/npm/dt/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite) [![npm version](https://img.shields.io/npm/v/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite) [![npm license](https://img.shields.io/npm/l/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite) [![npm types](https://img.shields.io/npm/types/ts-id-lite.svg)](https://www.npmjs.com/package/ts-id-lite) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/ts-id-lite.svg)](https://bundlephobia.com/result?p=ts-id-lite) |
 | `ts-number-lite` | [![npm downloads](https://img.shields.io/npm/dt/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite) [![npm version](https://img.shields.io/npm/v/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite) [![npm license](https://img.shields.io/npm/l/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite) [![npm types](https://img.shields.io/npm/types/ts-number-lite.svg)](https://www.npmjs.com/package/ts-number-lite) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/ts-number-lite.svg)](https://bundlephobia.com/result?p=ts-number-lite) |
 | `ts-object-lite` | [![npm downloads](https://img.shields.io/npm/dt/ts-object-lite.svg)](https://www.npmjs.com/package/ts-object-lite) [![npm version](https://img.shields.io/npm/v/ts-object-lite.svg)](https://www.npmjs.com/package/ts-object-lite) [![npm license](https://img.shields.io/npm/l/ts-object-lite.svg)](https://www.npmjs.com/package/ts-object-lite) [![npm types](https://img.shields.io/npm/types/ts-object-lite.svg)](https://www.npmjs.com/package/ts-object-lite) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/ts-object-lite.svg)](https://bundlephobia.com/result?p=ts-object-lite) |
+| `ts-storage-lite` | [![npm downloads](https://img.shields.io/npm/dt/ts-storage-lite.svg)](https://www.npmjs.com/package/ts-storage-lite) [![npm version](https://img.shields.io/npm/v/ts-storage-lite.svg)](https://www.npmjs.com/package/ts-storage-lite) [![npm license](https://img.shields.io/npm/l/ts-storage-lite.svg)](https://www.npmjs.com/package/ts-storage-lite) [![npm types](https://img.shields.io/npm/types/ts-storage-lite.svg)](https://www.npmjs.com/package/ts-storage-lite) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/ts-storage-lite.svg)](https://bundlephobia.com/result?p=ts-storage-lite) |
 | `ts-string-lite` | [![npm downloads](https://img.shields.io/npm/dt/ts-string-lite.svg)](https://www.npmjs.com/package/ts-string-lite) [![npm version](https://img.shields.io/npm/v/ts-string-lite.svg)](https://www.npmjs.com/package/ts-string-lite) [![npm license](https://img.shields.io/npm/l/ts-string-lite.svg)](https://www.npmjs.com/package/ts-string-lite) [![npm types](https://img.shields.io/npm/types/ts-string-lite.svg)](https://www.npmjs.com/package/ts-string-lite) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/ts-string-lite.svg)](https://bundlephobia.com/result?p=ts-string-lite) |
 | `ts-validation-lite` | [![npm downloads](https://img.shields.io/npm/dt/ts-validation-lite.svg)](https://www.npmjs.com/package/ts-validation-lite) [![npm version](https://img.shields.io/npm/v/ts-validation-lite.svg)](https://www.npmjs.com/package/ts-validation-lite) [![npm license](https://img.shields.io/npm/l/ts-validation-lite.svg)](https://www.npmjs.com/package/ts-validation-lite) [![npm types](https://img.shields.io/npm/types/ts-validation-lite.svg)](https://www.npmjs.com/package/ts-validation-lite) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/ts-validation-lite.svg)](https://bundlephobia.com/result?p=ts-validation-lite) |
 
@@ -25,6 +26,7 @@ Everything you need, nothing you don't.
 - **Validation Utils** - isEmail, isUrl, isPhone, isPostalCode, isStrongPassword
 - **ID Utils** - uuid, nanoid, shortId, hash, snowflake, generateCode
 - **Cookie Utils** - get, set, delete, has
+- **Storage Utils** - set, get, has, remove, clear
 
 ## Installation
 
@@ -44,6 +46,7 @@ import { NumberUtils } from 'ts-number-lite';
 import { ValidationUtils } from 'ts-validation-lite';
 import { IdUtils } from 'ts-id-lite';
 import { CookieUtils } from 'ts-cookie-lite';
+import { StorageUtils } from 'ts-storage-lite';
 
 @Injectable({ providedIn: 'root' })
 export class MyService {
@@ -55,7 +58,8 @@ export class MyService {
     private num: NumberUtils,
     private val: ValidationUtils,
     private id: IdUtils,
-    private cookie: CookieUtils
+    private cookie: CookieUtils,
+    private storage: StorageUtils
   ) { }
   
   myMethod(): void {
@@ -97,8 +101,10 @@ export class MyService {
     // Cookie Utils
     this.cookie.set('theme', 'dark', 7);      // Set cookie for 7 days
     this.cookie.get('theme');                 // Get cookie
-    this.cookie.has('theme');                 // Check if exists
-    this.cookie.delete('theme');              // Delete cookie
+    
+    // Storage Utils
+    this.storage.set('user', { name: 'John' }); // Set to localStorage
+    this.storage.get('user');                   // Get from localStorage
   }
 }
 ```
@@ -115,7 +121,3 @@ Visit the [demo page](https://gbmrocks.github.io/ts-utils-lite/) to see all util
 ## License
 
 MIT
-
-
-
-

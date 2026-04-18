@@ -20,7 +20,8 @@
     "ts-number-lite": "2.0.20",
     "ts-validation-lite": "2.0.20",
     "ts-id-lite": "2.0.20",
-    "ts-cookie-lite": "2.0.20"
+    "ts-cookie-lite": "2.0.20",
+    "ts-storage-lite": "1.0.1"
   },
   "files": [
     "dist"
@@ -146,7 +147,10 @@
     "oss",
     "mit",
     "gaurang",
-    "g8x"
+    "g8x",
+    "storage",
+    "localStorage",
+    "sessionStorage"
   ],
   "author": "Gaurang Mody",
   "license": "MIT",
