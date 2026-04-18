@@ -11,6 +11,7 @@ import { NumberUtils } from 'ts-number-lite';
 import { ValidationUtils } from 'ts-validation-lite';
 import { IdUtils } from 'ts-id-lite';
 import { CookieUtils } from 'ts-cookie-lite';
+import { StorageUtils } from 'ts-storage-lite';
 
 @Component({
   selector: 'app-showcase',
@@ -30,6 +31,7 @@ export class ShowcaseComponent {
   validation = new ValidationUtils();
   id = new IdUtils();
   cookie = new CookieUtils();
+  storage = new StorageUtils();
 
   activeTab = 'string';
   markdownPath = '';
@@ -42,7 +44,8 @@ export class ShowcaseComponent {
     { id: 'number', name: 'Number', pkg: 'ts-number-lite' },
     { id: 'validation', name: 'Validation', pkg: 'ts-validation-lite' },
     { id: 'id', name: 'ID', pkg: 'ts-id-lite' },
-    { id: 'cookie', name: 'Cookie', pkg: 'ts-cookie-lite' }
+    { id: 'cookie', name: 'Cookie', pkg: 'ts-cookie-lite' },
+    { id: 'storage', name: 'Storage', pkg: 'ts-storage-lite' }
   ];
 
   stringInput = 'Hello World from ts-utils';
@@ -60,6 +63,9 @@ export class ShowcaseComponent {
   cookieKey = 'theme';
   cookieValue = 'dark';
   cookieResult = '';
+  storageKey = 'user_preference';
+  storageValue = '{"theme": "dark", "fontSize": 14}';
+  storageResult = '';
 
   constructor() {
     this.updateMarkdownPath();
@@ -172,6 +178,37 @@ export class ShowcaseComponent {
       case 'delete': this.cookie.delete(this.cookieKey); this.cookieResult = 'Deleted ' + this.cookieKey; break;
       case 'has': this.cookieResult = this.cookie.has(this.cookieKey) ? 'Exists' : 'Not found'; break;
       case 'all': this.cookieResult = JSON.stringify(this.cookie.all()); break;
+    }
+  }
+
+  runStorage(method: string, storage: Storage = localStorage): void {
+    const engineName = storage === localStorage ? 'localStorage' : 'sessionStorage';
+    switch (method) {
+      case 'set':
+        try {
+          const val = JSON.parse(this.storageValue);
+          this.storage.set(this.storageKey, val, storage);
+          this.storageResult = `Set ${this.storageKey} in ${engineName}`;
+        } catch (e) {
+          this.storage.set(this.storageKey, this.storageValue, storage);
+          this.storageResult = `Set ${this.storageKey} as string in ${engineName}`;
+        }
+        break;
+      case 'get':
+        const item = this.storage.get(this.storageKey, null, storage);
+        this.storageResult = item ? JSON.stringify(item) : `Not found in ${engineName}`;
+        break;
+      case 'remove':
+        this.storage.remove(this.storageKey, storage);
+        this.storageResult = `Removed ${this.storageKey} from ${engineName}`;
+        break;
+      case 'has':
+        this.storageResult = this.storage.has(this.storageKey, storage) ? `Exists in ${engineName}` : `Not found in ${engineName}`;
+        break;
+      case 'clear':
+        this.storage.clear(storage);
+        this.storageResult = `Cleared ${engineName}`;
+        break;
     }
   }
 }

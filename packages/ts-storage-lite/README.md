@@ -21,9 +21,15 @@ export class MyService {
   constructor(private storage: StorageUtils) { }
   
   myMethod(): void {
-    this.storage.set('user', { id: 1, name: 'John' }); // Automatic serialization
+    // Default is localStorage
+    this.storage.set('user', { id: 1, name: 'John' }); 
     const user = this.storage.get<{ id: number; name: string }>('user');
-    const hasUser = this.storage.has('user');
+    
+    // Use sessionStorage by passing it as the last parameter
+    this.storage.set('session_key', 'value', sessionStorage);
+    const sessionVal = this.storage.get('session_key', null, sessionStorage);
+    
+    const hasKey = this.storage.has('user');
     this.storage.remove('user');
     this.storage.clear();
   }
@@ -34,11 +40,13 @@ export class MyService {
 
 | Method | Description | Example |
 |--------|-------------|---------|
-| `set<T>` | Save a value with serialization | `set('key', value)` |
-| `get<T>` | Retrieve and parse a value | `get<T>('key')` |
-| `has` | Check if key exists | `has('key')` |
-| `remove` | Delete a single item | `remove('key')` |
-| `clear` | Clear all items | `clear()` |
+| `set<T>` | Save a value with serialization | `set('key', value, storage?)` |
+| `get<T>` | Retrieve and parse a value | `get<T>('key', defaultValue?, storage?)` |
+| `has` | Check if key exists | `has('key', storage?)` |
+| `remove` | Delete a single item | `remove('key', storage?)` |
+| `clear` | Clear all items | `clear(storage?)` |
+
+*Note: `storage` parameter defaults to `localStorage`.*
 
 ## License
 

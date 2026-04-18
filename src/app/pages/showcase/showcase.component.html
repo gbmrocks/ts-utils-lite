@@ -176,10 +176,35 @@
           <button (click)="runCookie('set')">set</button>
           <button (click)="runCookie('get')">get</button>
           <button (click)="runCookie('has')">has</button>
-          <button (click)="runCookie('delete')">delete</button>
-          <button (click)="runCookie('all')">all (json)</button>
+          <button (click)='runCookie("delete")'>delete</button>
+          <button (click)='runCookie("all")'>all (json)</button>
         </div>
         <div *ngIf="cookieResult" class="result">{{ cookieResult }}</div>
+      </div>
+    </div>
+
+    <!-- Storage Utils -->
+    <div *ngIf="activeTab === 'storage'" class="demo">
+      <h2>Storage Utils</h2>
+      <p>Type-safe wrapper for localStorage and sessionStorage.</p>
+
+      <div class="demo-box">
+        <div class="input-group">
+          <label>Key:</label>
+          <input [(ngModel)]="storageKey" />
+        </div>
+        <div class="input-group">
+          <label>Value (JSON or string):</label>
+          <input [(ngModel)]="storageValue" />
+        </div>
+        <div class="btn-group">
+          <button (click)="runStorage('set')">set</button>
+          <button (click)="runStorage('get')">get</button>
+          <button (click)="runStorage('has')">has</button>
+          <button (click)="runStorage('remove')">remove</button>
+          <button (click)="runStorage('clear')">clear</button>
+        </div>
+        <div *ngIf="storageResult" class="result">{{ storageResult }}</div>
       </div>
     </div>
   </div>

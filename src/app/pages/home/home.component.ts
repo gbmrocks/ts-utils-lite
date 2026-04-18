@@ -25,7 +25,8 @@ export class HomeComponent {
     { name: 'NumberUtils', desc: 'formatCurrency, formatBytes, clamp, random' },
     { name: 'ValidationUtils', desc: 'isEmail, isUrl, isPhone, isStrongPassword' },
     { name: 'IdUtils', desc: 'uuid, nanoid, hash, snowflake, generateCode' },
-    { name: 'CookieUtils', desc: 'get, set, delete, has' }
+    { name: 'CookieUtils', desc: 'get, set, delete, has' },
+    { name: 'StorageUtils', desc: 'get, set, remove, clear, has' }
   ];
 
   requestFeature(): void {
