@@ -11,9 +11,9 @@
       <a routerLink="/showcase" class="btn-primary">
         <span>📖</span> How to Use
       </a>
-      <a routerLink="/roadmap" class="btn-secondary">
-        <span>🗺️</span> Roadmap
-      </a>
+      <button class="btn-secondary" (click)="requestFeature()">
+        <span>✨</span> Request a Feature
+      </button>
     </div>
     <div class="npm-badge">
       <code>npm install ts-utils-lite</code>
@@ -37,7 +37,7 @@
   <section class="utilities">
     <div class="section-header">
       <h2>Available Utilities</h2>
-      <p>8 utilities, countless possibilities</p>
+      <p>8+ utilities, countless possibilities</p>
     </div>
     <div class="utils-grid">
       <div *ngFor="let util of utils; let i = index" class="util-card" [style.animation-delay]="i * 0.05 + 's'">
@@ -47,6 +47,17 @@
           <span>{{ util.desc }}</span>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="request-section">
+    <div class="request-box">
+      <div class="request-icon">💡</div>
+      <h3>Have an idea for a new utility?</h3>
+      <p>We're always looking to expand our library with high-quality, lightweight helpers.</p>
+      <button class="request-btn" (click)="requestFeature()">
+        <span>✨</span> Suggest a Utility
+      </button>
     </div>
   </section>
 </div>

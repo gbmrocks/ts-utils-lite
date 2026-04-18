@@ -9,7 +9,7 @@ h1 { position: relative; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; 
 @keyframes gradient { 0% { background-position: 0% center; } 50% { background-position: 100% center; } 100% { background-position: 0% center; } }
 .tagline { font-size: 1.25rem; color: var(--text-muted); max-width: 500px; margin: 0 auto 2.5rem; }
 .cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
-.btn-primary, .btn-secondary { display: flex; align-items: center; gap: 0.5rem; padding: 0.875rem 2rem; border-radius: 14px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; font-size: 1rem; }
+.btn-primary, .btn-secondary { display: flex; align-items: center; gap: 0.5rem; padding: 0.875rem 2rem; border-radius: 14px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; font-size: 1rem; cursor: pointer; border: none;}
 .btn-primary { background: var(--gradient); color: white; box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4); }
 .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(59, 130, 246, 0.5); }
 .btn-secondary { background: var(--bg-card); color: var(--text-muted); border: 1px solid var(--border-color); }
@@ -33,3 +33,38 @@ section { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; }
 .util-icon { font-size: 1.25rem; opacity: 0.7; }
 .util-info code { display: block; color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
 .util-info span { color: var(--text-muted); font-size: 0.8rem; }
+
+/* Request Section */
+.request-section { padding-bottom: 6rem; }
+.request-box {
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-hover) 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.request-icon { font-size: 3rem; margin-bottom: 1.5rem; filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.3)); }
+.request-box h3 { font-size: 1.75rem; color: var(--text); margin-bottom: 1rem; font-weight: 700; }
+.request-box p { color: var(--text-muted); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+.request-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2.5rem;
+    background: var(--gradient);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+}
+.request-btn:hover {
+    transform: scale(1.05) translateY(-3px);
+    box-shadow: 0 15px 35px rgba(59, 130, 246, 0.5);
+}
+.request-btn span { font-size: 1.2rem; }

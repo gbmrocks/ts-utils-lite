@@ -27,5 +27,20 @@ export class HomeComponent {
     { name: 'IdUtils', desc: 'uuid, nanoid, hash, snowflake, generateCode' },
     { name: 'CookieUtils', desc: 'get, set, delete, has' }
   ];
-}
 
+  requestFeature(): void {
+    const title = encodeURIComponent('[Feature Request] ');
+    const body = encodeURIComponent(`## Description
+Please describe the feature you'd like to see...
+
+## Use Case
+How would you use this feature?
+
+## Example
+\`\`\`typescript
+// What would you like to call?
+\`\`\`
+`);
+    window.open(`https://github.com/gbmrocks/ts-utils-lite/issues/new?title=${title}&body=${body}`, '_blank');
+  }
+}
