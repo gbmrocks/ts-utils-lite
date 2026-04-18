@@ -1,5 +1,12 @@
 # ts-storage-lite
 
+## 1.0.2
+
+### Patch Changes
+
+- ### Changes
+  - feat: update StorageUtils to support custom storage engines and add showcase demo
+
 ## 1.0.1
 
 ### Patch Changes

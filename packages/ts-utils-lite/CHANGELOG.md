@@ -1,5 +1,12 @@
 # ts-utils-lite
 
+## 2.0.31
+
+### Patch Changes
+
+- Updated dependencies
+  - ts-storage-lite@1.0.2
+
 ## 2.0.30
 
 ### Patch Changes
