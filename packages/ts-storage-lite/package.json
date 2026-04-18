@@ -18,7 +18,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json && terser dist/index.js -o dist/index.js -m -c"
+    "build": "tsc -p tsconfig.json"
   },
   "keywords": [
     "utils",
@@ -28,7 +28,7 @@
     "sessionStorage",
     "lite"
   ],
-  "author": "Gaurang Mody - G8X",
+  "author": "Gaurang Mody",
   "license": "MIT",
   "repository": {
     "type": "git",
