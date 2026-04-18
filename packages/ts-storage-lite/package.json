@@ -1,6 +1,6 @@
 {
   "name": "ts-storage-lite",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Lightweight, type-safe storage utility library for web developers",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
