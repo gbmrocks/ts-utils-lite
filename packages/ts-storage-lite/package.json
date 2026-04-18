@@ -1,0 +1,37 @@
+{
+  "name": "ts-storage-lite",
+  "version": "1.0.0",
+  "description": "Lightweight, type-safe storage utility library for web developers",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "keywords": [
+    "utils",
+    "typescript",
+    "storage",
+    "localStorage",
+    "sessionStorage",
+    "lite"
+  ],
+  "author": "Gaurang Mody",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gbmrocks/ts-utils-lite.git"
+  }
+}
