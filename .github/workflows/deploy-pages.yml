@@ -36,7 +36,7 @@ jobs:
 
       # 🚨 IMPORTANT: clean install
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       # 🚨 CRITICAL: build ALL workspace libs first
       - name: Build packages (monorepo libs)

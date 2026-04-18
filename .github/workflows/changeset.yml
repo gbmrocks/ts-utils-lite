@@ -29,7 +29,7 @@ jobs:
 
       # 3️⃣ Install deps
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       # 4️⃣ Detect changed packages + generate changeset
       - name: Generate changeset if needed
