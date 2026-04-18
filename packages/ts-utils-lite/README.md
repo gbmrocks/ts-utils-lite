@@ -2,7 +2,7 @@
 
 [![npm downloads](https://img.shields.io/npm/dt/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite) [![npm version](https://img.shields.io/npm/v/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite) [![npm license](https://img.shields.io/npm/l/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite) [![npm types](https://img.shields.io/npm/types/ts-utils-lite.svg)](https://www.npmjs.com/package/ts-utils-lite) [![npm bundle size](https://img.shields.io/bundlephobia/minzip/ts-utils-lite.svg)](https://bundlephobia.com/result?p=ts-utils-lite)
 
-Lightweight, type-safe utility library for web developers.
+Lightweight, type-safe utility library for web developers. This is the main package that includes all sub-packages.
 
 ## Installation
 
@@ -41,49 +41,32 @@ export class MyService {
   myMethod(): void {
     // String Utils
     this.str.slugify('Hello World');       // 'hello-world'
-    this.str.camelCase('hello world');     // 'helloWorld'
-    this.str.truncate('Hello World', 10);  // 'Hello W...'
     
     // Date Utils
-    this.date.format(new Date(), 'YYYY-MM-DD');              // '2026-04-11'
-    this.date.relative(new Date(Date.now() - 3600000));      // '1 hour ago'
-    this.date.add(new Date(), 7, 'day');                     // +7 days
+    this.date.format(new Date(), 'YYYY-MM-DD'); // '2026-04-11'
     
     // Array Utils
-    this.arr.unique([1, 2, 2, 3]);                           // [1, 2, 3]
-    this.arr.chunk([1, 2, 3, 4], 2);                         // [[1,2], [3,4]]
-    this.arr.groupBy(['apple', 'banana'], s => s[0]);        // {a: ['apple'], b: ['banana']}
+    this.arr.unique([1, 2, 2, 3]);         // [1, 2, 3]
     
     // Object Utils
-    this.obj.deepGet({a: {b: 42}}, 'a.b');    // 42
-    this.obj.deepClone({a: 1});               // {a: 1}
-    this.obj.merge({a: 1}, {b: 2});           // {a: 1, b: 2}
+    this.obj.deepGet({a: {b: 42}}, 'a.b'); // 42
     
     // Number Utils
-    this.num.formatCurrency(1234.56);         // '$1,234.56'
-    this.num.formatBytes(1048576);            // '1 MB'
-    this.num.formatPercent(0.756);           // '75.6%'
+    this.num.formatCurrency(1234.56);      // '$1,234.56'
     
     // Validation Utils
-    this.val.isEmail('test@example.com');     // true
-    this.val.isUrl('https://google.com');     // true
-    this.val.isStrongPassword('Test123!');    // {valid: true, score: 4}
+    this.val.isEmail('test@example.com');  // true
     
     // ID Utils
-    this.id.uuid();                           // '550e8400-e29b-41d4-a716-446655440000'
-    this.id.nanoid();                         // 'V1StGXR8_Z'
-    this.id.generateCode(6, 'numeric');       // '482931'
+    this.id.uuid();                        // '550e8400-e29b-41d4-a716-446655440000'
     
     // Cookie Utils
-    this.cookie.set('theme', 'dark', 7);      // Set cookie for 7 days
-    this.cookie.get('theme');                 // Get cookie
-    this.cookie.has('theme');                 // Check if exists
-    this.cookie.delete('theme');              // Delete cookie
+    this.cookie.set('theme', 'dark', 7);   // Set cookie
   }
 }
 ```
 
-Or import individually:
+Or import individual sub-packages:
 
 ```typescript
 import { StringUtils } from 'ts-string-lite';
@@ -98,17 +81,15 @@ import { CookieUtils } from 'ts-cookie-lite';
 
 ## Features
 
-- **String Utils** - slugify, camelCase, kebabCase, pascalCase, truncate, capitalize, titleCase, escapeHtml
-- **Date Utils** - format, relative time, isToday, add, diff
-- **Array Utils** - unique, chunk, groupBy, shuffle, compact
-- **Object Utils** - deepGet, deepClone, merge, omit, pick, isEmpty
-- **Number Utils** - formatCurrency, formatBytes, formatPercent, clamp, round, randomInt
-- **Validation Utils** - isEmail, isUrl, isPhone, isPostalCode, isStrongPassword
-- **ID Utils** - uuid, nanoid, shortId, hash, snowflake, generateCode
-- **Cookie Utils** - get, set, delete, has
+- **String Utils** - slugify, camelCase, kebabCase, pascalCase, truncate, capitalize, titleCase, escapeHtml, unescapeHtml, repeat, reverse, base64, random, trim, words, countWords, levenshtein
+- **Date Utils** - format, relative time, isToday, add, diff, startOf, endOf, isBefore, isAfter, isSame, parse, now
+- **Array Utils** - unique, uniqBy, chunk, groupBy, sortBy, shuffle, sample, intersection, difference, compact, flatten, flattenDeep, partition, pluck, first, last, drop, take, range, zip, sum, average, min, max
+- **Object Utils** - deepGet, deepSet, deepClone, clone, merge, omit, pick, isEmpty, isEqual, keys, values, entries, has, size, mapValues, invert
+- **Number Utils** - formatCurrency, formatBytes, formatPercent, clamp, round, randomInt, randomFloat, isEven, isOdd, isPositive, isNegative, isInteger, isNaN, isFinite, abs, floor, ceil, sqrt, pow, sum, avg, min, max, range
+- **Validation Utils** - isEmail, isUrl, isPhone, isPostalCode, isStrongPassword, isNumeric, isAlpha, isAlphanumeric, isDate, isJSON, isCreditCard
+- **ID Utils** - uuid, nanoid, shortId, snowflake, hash, generateCode, generateToken
+- **Cookie Utils** - set, get, has, delete, clear, all
 
 ## License
 
 MIT
-
-

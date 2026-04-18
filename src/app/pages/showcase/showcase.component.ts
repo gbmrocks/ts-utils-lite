@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { MarkdownComponent } from 'ngx-markdown';
 import { StringUtils } from 'ts-string-lite';
 import { DateUtils } from 'ts-date-lite';
 import { ArrayUtils } from 'ts-array-lite';
@@ -13,11 +15,13 @@ import { CookieUtils } from 'ts-cookie-lite';
 @Component({
   selector: 'app-showcase',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MarkdownComponent],
   templateUrl: './showcase.component.html',
   styleUrls: ['./showcase.component.css']
 })
 export class ShowcaseComponent {
+  private http = inject(HttpClient);
+
   string = new StringUtils();
   date = new DateUtils();
   array = new ArrayUtils();
@@ -28,16 +32,17 @@ export class ShowcaseComponent {
   cookie = new CookieUtils();
 
   activeTab = 'string';
+  markdownPath = '';
 
   tabs = [
-    { id: 'string', name: 'String' },
-    { id: 'date', name: 'Date' },
-    { id: 'array', name: 'Array' },
-    { id: 'object', name: 'Object' },
-    { id: 'number', name: 'Number' },
-    { id: 'validation', name: 'Validation' },
-    { id: 'id', name: 'ID' },
-    { id: 'cookie', name: 'Cookie' }
+    { id: 'string', name: 'String', pkg: 'ts-string-lite' },
+    { id: 'date', name: 'Date', pkg: 'ts-date-lite' },
+    { id: 'array', name: 'Array', pkg: 'ts-array-lite' },
+    { id: 'object', name: 'Object', pkg: 'ts-object-lite' },
+    { id: 'number', name: 'Number', pkg: 'ts-number-lite' },
+    { id: 'validation', name: 'Validation', pkg: 'ts-validation-lite' },
+    { id: 'id', name: 'ID', pkg: 'ts-id-lite' },
+    { id: 'cookie', name: 'Cookie', pkg: 'ts-cookie-lite' }
   ];
 
   stringInput = 'Hello World from ts-utils';
@@ -55,8 +60,22 @@ export class ShowcaseComponent {
   cookieKey = 'theme';
   cookieValue = 'dark';
   cookieResult = '';
-  copyInput = '';
-  copyResult = '';
+
+  constructor() {
+    this.updateMarkdownPath();
+  }
+
+  setTab(tabId: string): void {
+    this.activeTab = tabId;
+    this.updateMarkdownPath();
+  }
+
+  private updateMarkdownPath(): void {
+    const tab = this.tabs.find(t => t.id === this.activeTab);
+    if (tab) {
+      this.markdownPath = `/ts-utils-lite/assets/docs/${tab.pkg}/README.md`;
+    }
+  }
 
   runString(method: string): void {
     switch (method) {
@@ -68,6 +87,8 @@ export class ShowcaseComponent {
       case 'capitalize': this.stringResult = this.string.capitalize(this.stringInput); break;
       case 'titleCase': this.stringResult = this.string.titleCase(this.stringInput); break;
       case 'escapeHtml': this.stringResult = this.string.escapeHtml('<div>test</div>'); break;
+      case 'levenshtein': this.stringResult = String(this.string.levenshtein(this.stringInput, 'Hello World')); break;
+      case 'reverse': this.stringResult = this.string.reverse(this.stringInput); break;
     }
   }
 
@@ -78,6 +99,8 @@ export class ShowcaseComponent {
       case 'isToday': this.dateResult = this.date.isToday(this.dateInput) ? 'Yes' : 'No'; break;
       case 'add': this.dateResult = this.date.add(this.dateInput, 7, 'day').toISOString(); break;
       case 'diff': this.dateResult = this.date.diff(this.dateInput, new Date()) + ' days'; break;
+      case 'startOf': this.dateResult = this.date.startOf(this.dateInput, 'month').toISOString(); break;
+      case 'endOf': this.dateResult = this.date.endOf(this.dateInput, 'month').toISOString(); break;
     }
   }
 
@@ -89,6 +112,8 @@ export class ShowcaseComponent {
       case 'groupBy': this.arrayResult = JSON.stringify(this.array.groupBy(arr, (s: string) => s[0])); break;
       case 'shuffle': this.arrayResult = JSON.stringify(this.array.shuffle(arr)); break;
       case 'compact': this.arrayResult = JSON.stringify(this.array.compact([0, '', false, null, 1, 'text', true])); break;
+      case 'range': this.arrayResult = JSON.stringify(this.array.range(1, 10)); break;
+      case 'sample': this.arrayResult = JSON.stringify(this.array.sample(arr)); break;
     }
   }
 
@@ -101,6 +126,7 @@ export class ShowcaseComponent {
       case 'omit': this.objectResult = JSON.stringify(this.object.omit(obj, ['c'])); break;
       case 'pick': this.objectResult = JSON.stringify(this.object.pick(obj, ['a', 'b'])); break;
       case 'isEmpty': this.objectResult = this.object.isEmpty({}) ? 'Empty' : 'Not empty'; break;
+      case 'isEqual': this.objectResult = this.object.isEqual({a:1}, {a:1}) ? 'Equal' : 'Not equal'; break;
     }
   }
 
@@ -112,6 +138,7 @@ export class ShowcaseComponent {
       case 'clamp': this.numberResult = String(this.number.clamp(150, 0, 100)); break;
       case 'round': this.numberResult = String(this.number.round(3.14159, 2)); break;
       case 'randomInt': this.numberResult = String(this.number.randomInt(1, 100)); break;
+      case 'isEven': this.numberResult = this.number.isEven(Math.round(this.numberInput)) ? 'Even' : 'Odd'; break;
     }
   }
 
@@ -122,6 +149,7 @@ export class ShowcaseComponent {
       case 'isPhone': this.validationResult = this.validation.isPhone(this.validationInput) ? 'Valid' : 'Invalid'; break;
       case 'isPostalCode': this.validationResult = this.validation.isPostalCode(this.validationInput) ? 'Valid' : 'Invalid'; break;
       case 'isStrongPassword': const r = this.validation.isStrongPassword(this.validationInput); this.validationResult = 'Score: ' + r.score + '/5, ' + (r.valid ? 'Valid' : 'Weak'); break;
+      case 'isJSON': this.validationResult = this.validation.isJSON('{"a":1}') ? 'Valid JSON' : 'Invalid JSON'; break;
     }
   }
 
@@ -133,6 +161,7 @@ export class ShowcaseComponent {
       case 'hash': this.idResult = this.id.hash('hello'); break;
       case 'snowflake': this.idResult = this.id.snowflake(); break;
       case 'generateCode': this.idResult = this.id.generateCode(6, 'numeric'); break;
+      case 'generateToken': this.idResult = this.id.generateToken(16); break;
     }
   }
 
@@ -142,84 +171,7 @@ export class ShowcaseComponent {
       case 'get': this.cookieResult = this.cookie.get(this.cookieKey) || 'Not found'; break;
       case 'delete': this.cookie.delete(this.cookieKey); this.cookieResult = 'Deleted ' + this.cookieKey; break;
       case 'has': this.cookieResult = this.cookie.has(this.cookieKey) ? 'Exists' : 'Not found'; break;
+      case 'all': this.cookieResult = JSON.stringify(this.cookie.all()); break;
     }
   }
-
-  doCopy(): void {
-    navigator.clipboard.writeText(this.copyInput).then(() => {
-      this.copyResult = 'Copied to clipboard!';
-    }).catch(() => {
-      this.copyResult = 'Failed to copy';
-    });
-  }
-
-  copyCode(tab: string): void {
-    const codeMap: Record<string, string> = {
-      string: `import { StringUtils } from 'ts-string-lite';
-
-const string = new StringUtils();
-
-string.slugify('Hello World');    // 'hello-world'
-string.camelCase('hello world'); // 'helloWorld'
-string.kebabCase('Hello World'); // 'hello-world'`,
-      date: `import { DateUtils } from 'ts-date-lite';
-
-const date = new DateUtils();
-
-date.format(new Date(), 'YYYY-MM-DD');                    // '2024-01-15'
-date.relative(new Date(Date.now() - 3600000));            // '1 hour ago'
-date.add(new Date(), 7, 'day');                            // Date + 7 days`,
-      array: `import { ArrayUtils } from 'ts-array-lite';
-
-const array = new ArrayUtils();
-
-array.unique([1, 2, 2, 3]);              // [1, 2, 3]
-array.chunk([1,2,3,4], 2);               // [[1,2], [3,4]]
-array.groupBy(['apple','banana'], s => s[0]); // {a: [...], b: [...]}`,
-      object: `import { ObjectUtils } from 'ts-object-lite';
-
-const obj = new ObjectUtils();
-
-obj.deepGet({a: {b: 42}}, 'a.b');    // 42
-obj.deepClone({a: 1});               // {a: 1}
-obj.merge({a: 1}, {b: 2});           // {a: 1, b: 2}`,
-      number: `import { NumberUtils } from 'ts-number-lite';
-
-const num = new NumberUtils();
-
-num.formatCurrency(1234.56);         // '$1,234.56'
-num.formatBytes(1048576);            // '1 MB'
-num.formatPercent(0.756);            // '75.6%'`,
-      validation: `import { ValidationUtils } from 'ts-validation-lite';
-
-const val = new ValidationUtils();
-
-val.isEmail('test@example.com');    // true
-val.isUrl('https://google.com');    // true
-val.isStrongPassword('Test123!');  // {valid: true, score: 5, ...}`,
-      id: `import { IdUtils } from 'ts-id-lite';
-
-const id = new IdUtils();
-
-id.uuid();                // 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
-id.nanoid();              // 'V1StGXR8_Z'
-id.generateCode(6, 'numeric'); // '482921'`,
-      cookie: `import { CookieUtils } from 'ts-cookie-lite';
-
-const cookie = new CookieUtils();
-
-cookie.set('theme', 'dark', 7);
-const theme = cookie.get('theme');  // 'dark'
-cookie.has('theme');                // true
-cookie.delete('theme');`,
-      copy: `// Copy to clipboard (browser API)
-navigator.clipboard.writeText('Hello World');
-
-
-import { Utils } from 'ts-utils-lite';
-Utils.id.generateCode(6); // Generate random code`
-    };
-    navigator.clipboard.writeText(codeMap[tab] || '');
-  }
 }
-

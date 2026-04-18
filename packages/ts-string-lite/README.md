@@ -22,13 +22,7 @@ export class MyService {
   
   myMethod(): void {
     this.str.slugify('Hello World');       // 'hello-world'
-    this.str.camelCase('hello world');     // 'helloWorld'
-    this.str.kebabCase('HelloWorld');      // 'hello-world'
-    this.str.pascalCase('hello world');    // 'HelloWorld'
-    this.str.truncate('Hello World', 10);  // 'Hello W...'
-    this.str.capitalize('hello');          // 'Hello'
-    this.str.titleCase('hello world');     // 'Hello World'
-    this.str.escapeHtml('<script>');       // '&lt;script&gt;'
+    this.str.levenshtein('kitten', 'sitting'); // 3
   }
 }
 ```
@@ -40,14 +34,24 @@ export class MyService {
 | `slugify` | Convert string to URL-friendly slug | `'Hello World'` → `'hello-world'` |
 | `camelCase` | Convert to camelCase | `'hello world'` → `'helloWorld'` |
 | `kebabCase` | Convert to kebab-case | `'HelloWorld'` → `'hello-world'` |
+| `snakeCase` | Convert to snake_case | `'HelloWorld'` → `'hello_world'` |
 | `pascalCase` | Convert to PascalCase | `'hello world'` → `'HelloWorld'` |
+| `titleCase` | Convert to Title Case | `'hello world'` → `'Hello World'` |
 | `truncate` | Truncate string to length | `'Hello World', 10` → `'Hello W...'` |
 | `capitalize` | Capitalize first letter | `'hello'` → `'Hello'` |
-| `titleCase` | Convert to Title Case | `'hello world'` → `'Hello World'` |
 | `escapeHtml` | Escape HTML characters | `'<script>'` → `'&lt;script&gt;'` |
+| `unescapeHtml` | Unescape HTML characters | `'&lt;script&gt;'` → `'<script>'` |
+| `repeat` | Repeat string N times | `'a', 3` → `'aaa'` |
+| `reverse` | Reverse string | `'abc'` → `'cba'` |
+| `base64Encode`| Encode string to Base64 | `'hello'` → `'aGVsbG8='` |
+| `base64Decode`| Decode string from Base64 | `'aGVsbG8='` → `'hello'` |
+| `randomString`| Generate random string | `10` → `'aB3kL9... '` |
+| `trimStart` | Trim specified chars from start | `'--abc', '-'` → `'abc'` |
+| `trimEnd` | Trim specified chars from end | `'abc--', '-'` → `'abc'` |
+| `words` | Split string into words | `'hello world'` → `['hello', 'world']` |
+| `countWords` | Count words in string | `'hello world'` → `2` |
+| `levenshtein` | Calculate edit distance | `'kitten', 'sitting'` → `3` |
 
 ## License
 
 MIT
-
-

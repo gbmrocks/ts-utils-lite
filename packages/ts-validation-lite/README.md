@@ -22,9 +22,6 @@ export class MyService {
   
   myMethod(): void {
     this.val.isEmail('test@example.com');       // true
-    this.val.isUrl('https://google.com');      // true
-    this.val.isPhone('+1234567890');            // true
-    this.val.isPostalCode('12345');             // true
     this.val.isStrongPassword('Test123!');     // {valid: true, score: 4}
   }
 }
@@ -34,14 +31,18 @@ export class MyService {
 
 | Method | Description | Example |
 |--------|-------------|---------|
-| `isEmail` | Validate email | `'test@example.com'` → `true` |
-| `isUrl` | Validate URL | `'https://google.com'` → `true` |
-| `isPhone` | Validate phone | `'+1234567890'` → `true` |
-| `isPostalCode` | Validate postal code | `'12345'` → `true` |
-| `isStrongPassword` | Check password strength | `'Test123!'` → `{valid: true, score: 4}` |
+| `isEmail` | Validate email format | `'test@example.com'` → `true` |
+| `isUrl` | Validate URL format | `'https://google.com'` → `true` |
+| `isPhone` | Validate phone number | `'+1234567890'` → `true` |
+| `isPostalCode` | Validate US postal code | `'12345'` → `true` |
+| `isStrongPassword` | Check password complexity | `'Test123!'` → `{valid: true, score: 4}` |
+| `isNumeric` | Check if string is only numbers | `'123'` → `true` |
+| `isAlpha` | Check if string is only letters | `'abc'` → `true` |
+| `isAlphanumeric`| Check if string is letters/numbers | `'abc123'` → `true` |
+| `isDate` | Check if string is valid date | `'2024-01-01'` → `true` |
+| `isJSON` | Check if string is valid JSON | `'{"a":1}'` → `true` |
+| `isCreditCard` | Validate credit card (Luhn) | `'4111...'` → `true` |
 
 ## License
 
 MIT
-
-

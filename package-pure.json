@@ -17,7 +17,7 @@
     "prepublishOnly": "npm run build"
   },
   "keywords": ["utils", "typescript", "angular", "javascript", "helpers"],
-  "author": "Gaurang Mody - G8X",
+  "author": "G8X",
   "license": "MIT",
   "devDependencies": {
     "typescript": "^5.0.0"

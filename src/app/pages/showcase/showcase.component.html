@@ -1,19 +1,20 @@
 <div class="showcase-container">
-  <h1>ts-string-lite</h1>
-  <p class="subtitle">Learn how to use ts-string-lite in your projects</p>
+  <h1>ts-utils-lite Showcase</h1>
+  <p class="subtitle">Interactive demonstration of all utility methods available in the library.</p>
 
   <nav class="tabs">
     <button *ngFor="let tab of tabs"
       [class.active]="activeTab === tab.id"
-      (click)="activeTab = tab.id">
+      (click)="setTab(tab.id)">
       {{ tab.name }}
     </button>
   </nav>
 
   <div class="demo-panel">
+    <!-- String Utils -->
     <div *ngIf="activeTab === 'string'" class="demo">
       <h2>String Utils</h2>
-      <p>String manipulation and formatting</p>
+      <p>Comprehensive string manipulation, formatting, and analysis.</p>
 
       <div class="demo-box">
         <div class="input-group">
@@ -28,28 +29,18 @@
           <button (click)="runString('truncate')">truncate</button>
           <button (click)="runString('capitalize')">capitalize</button>
           <button (click)="runString('titleCase')">titleCase</button>
+          <button (click)="runString('reverse')">reverse</button>
+          <button (click)="runString('levenshtein')">levenshtein (vs "Hello World")</button>
           <button (click)="runString('escapeHtml')">escapeHtml</button>
         </div>
         <div *ngIf="stringResult" class="result">{{ stringResult }}</div>
       </div>
-
-      <div class="code-section">
-        <div class="code-header">
-          <h3>How to use:</h3>
-          <button class="copy-btn" (click)="copyCode('string')">Copy</button>
-        </div>
-        <pre><code>import &#123; StringUtils &#125; from 'ts-string-lite';
-
-const str = new StringUtils();
-
-str.slugify('Hello World');
-str.camelCase('hello world');</code></pre>
-      </div>
     </div>
 
+    <!-- Date Utils -->
     <div *ngIf="activeTab === 'date'" class="demo">
       <h2>Date Utils</h2>
-      <p>Date manipulation and formatting</p>
+      <p>Lightweight date formatting, manipulation, and comparison.</p>
 
       <div class="demo-box">
         <div class="btn-group">
@@ -58,28 +49,17 @@ str.camelCase('hello world');</code></pre>
           <button (click)="runDate('isToday')">isToday</button>
           <button (click)="runDate('add')">add(7 days)</button>
           <button (click)="runDate('diff')">diff(days)</button>
+          <button (click)="runDate('startOf')">startOf(month)</button>
+          <button (click)="runDate('endOf')">endOf(month)</button>
         </div>
         <div *ngIf="dateResult" class="result">{{ dateResult }}</div>
       </div>
-
-      <div class="code-section">
-        <div class="code-header">
-          <h3>How to use:</h3>
-          <button class="copy-btn" (click)="copyCode('date')">Copy</button>
-        </div>
-        <pre><code>import &#123; DateUtils &#125; from 'ts-date-lite';
-
-const date = new DateUtils();
-
-date.format(new Date(), 'YYYY-MM-DD');
-date.relative(new Date(Date.now() - 3600000));
-date.add(new Date(), 7, 'day');</code></pre>
-      </div>
     </div>
 
+    <!-- Array Utils -->
     <div *ngIf="activeTab === 'array'" class="demo">
       <h2>Array Utils</h2>
-      <p>Array manipulation utilities</p>
+      <p>Powerful array manipulation and collection processing.</p>
 
       <div class="demo-box">
         <div class="input-group">
@@ -89,93 +69,58 @@ date.add(new Date(), 7, 'day');</code></pre>
         <div class="btn-group">
           <button (click)="runArray('unique')">unique</button>
           <button (click)="runArray('chunk')">chunk(2)</button>
-          <button (click)="runArray('groupBy')">groupBy</button>
+          <button (click)="runArray('groupBy')">groupBy(1st char)</button>
           <button (click)="runArray('shuffle')">shuffle</button>
-          <button (click)="runArray('compact')">compact</button>
+          <button (click)="runArray('compact')">compact (test set)</button>
+          <button (click)="runArray('range')">range(1-10)</button>
+          <button (click)="runArray('sample')">sample</button>
         </div>
         <div *ngIf="arrayResult" class="result">{{ arrayResult }}</div>
       </div>
-
-      <div class="code-section">
-        <div class="code-header">
-          <h3>How to use:</h3>
-          <button class="copy-btn" (click)="copyCode('array')">Copy</button>
-        </div>
-        <pre><code>import &#123; ArrayUtils &#125; from 'ts-array-lite';
-
-const arr = new ArrayUtils();
-
-arr.unique([1, 2, 2, 3]);
-arr.chunk([1,2,3,4], 2);
-arr.groupBy(['apple','banana'], s => s[0]);</code></pre>
-      </div>
     </div>
 
+    <!-- Object Utils -->
     <div *ngIf="activeTab === 'object'" class="demo">
       <h2>Object Utils</h2>
-      <p>Object manipulation and comparison</p>
+      <p>Safe object traversal, deep cloning, and comparison.</p>
 
       <div class="demo-box">
         <div class="btn-group">
-          <button (click)="runObject('deepGet')">deepGet</button>
+          <button (click)="runObject('deepGet')">deepGet (a.b.c)</button>
           <button (click)="runObject('deepClone')">deepClone</button>
           <button (click)="runObject('merge')">merge</button>
-          <button (click)="runObject('omit')">omit</button>
-          <button (click)="runObject('pick')">pick</button>
+          <button (click)="runObject('omit')">omit('c')</button>
+          <button (click)="runObject('pick')">pick('a','b')</button>
           <button (click)="runObject('isEmpty')">isEmpty</button>
+          <button (click)="runObject('isEqual')">isEqual</button>
         </div>
         <div *ngIf="objectResult" class="result">{{ objectResult }}</div>
       </div>
-
-      <div class="code-section">
-        <div class="code-header">
-          <h3>How to use:</h3>
-          <button class="copy-btn" (click)="copyCode('object')">Copy</button>
-        </div>
-        <pre><code>import &#123; ObjectUtils &#125; from 'ts-object-lite';
-
-const obj = new ObjectUtils();
-
-obj.deepGet(nestedObj, 'a.b');
-obj.deepClone(obj);
-obj.merge(obj1, obj2);</code></pre>
-      </div>
     </div>
 
+    <!-- Number Utils -->
     <div *ngIf="activeTab === 'number'" class="demo">
       <h2>Number Utils</h2>
-      <p>Number formatting and math utilities</p>
+      <p>Formatting, validation, and mathematical helper functions.</p>
 
       <div class="demo-box">
         <div class="btn-group">
           <button (click)="runNumber('formatCurrency')">formatCurrency</button>
           <button (click)="runNumber('formatBytes')">formatBytes</button>
           <button (click)="runNumber('formatPercent')">formatPercent</button>
-          <button (click)="runNumber('clamp')">clamp</button>
-          <button (click)="runNumber('round')">round</button>
-          <button (click)="runNumber('randomInt')">randomInt</button>
+          <button (click)="runNumber('clamp')">clamp(0-100)</button>
+          <button (click)="runNumber('round')">round(2 dec)</button>
+          <button (click)="runNumber('randomInt')">randomInt(1-100)</button>
+          <button (click)="runNumber('isEven')">isEven</button>
         </div>
         <div *ngIf="numberResult" class="result">{{ numberResult }}</div>
       </div>
-
-      <div class="code-section">
-        <div class="code-header">
-          <h3>How to use:</h3>
-          <button class="copy-btn" (click)="copyCode('number')">Copy</button>
-        </div>
-        <pre><code>import &#123; NumberUtils &#125; from 'ts-number-lite';
-
-const num = new NumberUtils();
-
-num.formatCurrency(1234.56);
-num.formatBytes(1048576);
-num.formatPercent(0.756);</code></pre>
-      </div>
     </div>
 
+    <!-- Validation Utils -->
     <div *ngIf="activeTab === 'validation'" class="demo">
       <h2>Validation Utils</h2>
-      <p>Input validation and pattern matching</p>
+      <p>Data validation and pattern checking utilities.</p>
 
       <div class="demo-box">
         <div class="input-group">
@@ -188,28 +133,16 @@ num.formatPercent(0.756);</code></pre>
           <button (click)="runValidation('isPhone')">isPhone</button>
           <button (click)="runValidation('isPostalCode')">isPostalCode</button>
           <button (click)="runValidation('isStrongPassword')">isStrongPassword</button>
+          <button (click)="runValidation('isJSON')">isJSON</button>
         </div>
         <div *ngIf="validationResult" class="result">{{ validationResult }}</div>
       </div>
-
-      <div class="code-section">
-        <div class="code-header">
-          <h3>How to use:</h3>
-          <button class="copy-btn" (click)="copyCode('validation')">Copy</button>
-        </div>
-        <pre><code>import &#123; ValidationUtils &#125; from 'ts-validation-lite';
-
-const val = new ValidationUtils();
-
-val.isEmail('test&#64;example.com');
-val.isUrl('https://google.com');
-val.isStrongPassword('Test123!');</code></pre>
-      </div>
     </div>
 
+    <!-- ID Utils -->
     <div *ngIf="activeTab === 'id'" class="demo">
       <h2>ID Utils</h2>
-      <p>Unique ID and code generation</p>
+      <p>Unique ID generation and string hashing.</p>
 
       <div class="demo-box">
         <div class="btn-group">
@@ -219,28 +152,16 @@ val.isStrongPassword('Test123!');</code></pre>
           <button (click)="runId('hash')">hash</button>
           <button (click)="runId('snowflake')">snowflake</button>
           <button (click)="runId('generateCode')">generateCode</button>
+          <button (click)="runId('generateToken')">generateToken</button>
         </div>
         <div *ngIf="idResult" class="result">{{ idResult }}</div>
       </div>
-
-      <div class="code-section">
-        <div class="code-header">
-          <h3>How to use:</h3>
-          <button class="copy-btn" (click)="copyCode('id')">Copy</button>
-        </div>
-        <pre><code>import &#123; IdUtils &#125; from 'ts-id-lite';
-
-const id = new IdUtils();
-
-id.uuid();
-id.nanoid();
-id.generateCode(6);</code></pre>
-      </div>
     </div>
 
+    <!-- Cookie Utils -->
     <div *ngIf="activeTab === 'cookie'" class="demo">
       <h2>Cookie Utils</h2>
-      <p>Browser cookie management</p>
+      <p>Simple browser-side cookie management.</p>
 
       <div class="demo-box">
         <div class="input-group">
@@ -256,23 +177,17 @@ id.generateCode(6);</code></pre>
           <button (click)="runCookie('get')">get</button>
           <button (click)="runCookie('has')">has</button>
           <button (click)="runCookie('delete')">delete</button>
+          <button (click)="runCookie('all')">all (json)</button>
         </div>
         <div *ngIf="cookieResult" class="result">{{ cookieResult }}</div>
       </div>
+    </div>
+  </div>
 
-      <div class="code-section">
-        <div class="code-header">
-          <h3>How to use:</h3>
-          <button class="copy-btn" (click)="copyCode('cookie')">Copy</button>
-        </div>
-        <pre><code>import &#123; CookieUtils &#125; from 'ts-cookie-lite';
-
-const cookie = new CookieUtils();
-
-cookie.set('theme', 'dark', 7);
-cookie.get('theme');
-cookie.delete('theme');</code></pre>
-      </div>
+  <div class="readme-section">
+    <h3>Documentation</h3>
+    <div class="markdown-container">
+      <markdown [src]="markdownPath"></markdown>
     </div>
   </div>
 </div>

@@ -34,14 +34,20 @@ export class MyService {
 
 | Method | Description | Example |
 |--------|-------------|---------|
-| `format` | Format date with pattern | `format(new Date(), 'YYYY-MM-DD')` → `'2026-04-11'` |
+| `format` | Format date with pattern | `format(date, 'YYYY-MM-DD')` → `'2026-04-11'` |
 | `relative` | Get relative time | `relative(now - 1h)` → `'1 hour ago'` |
 | `isToday` | Check if date is today | `isToday(date)` → `true/false` |
 | `add` | Add time to date | `add(date, 7, 'day')` → date + 7 days |
-| `diff` | Get difference between dates | `diff(d1, d2, 'day')` → number of days |
+| `diff` | Get difference between dates | `diff(d1, d2)` → number of days |
+| `startOf` | Get start of period | `startOf(date, 'month')` → 1st of month |
+| `endOf` | Get end of period | `endOf(date, 'year')` → Dec 31st |
+| `isBefore` | Check if date is before | `isBefore(d1, d2)` → `true/false` |
+| `isAfter` | Check if date is after | `isAfter(d1, d2)` → `true/false` |
+| `isSame` | Check if dates are same | `isSame(d1, d2)` → `true/false` |
+| `parse` | Parse date string | `parse('2024-01-01')` → `Date` object |
+| `now` | Get current timestamp | `now()` → `171283...` |
+| `timestamp` | Get current timestamp | `timestamp()` → `171283...` |
 
 ## License
 
 MIT
-
-
