@@ -22,7 +22,8 @@ import {
   NumberUtils, 
   ValidationUtils, 
   IdUtils, 
-  CookieUtils 
+  CookieUtils,
+  StorageUtils
 } from 'ts-utils-lite';
 
 @Injectable({ providedIn: 'root' })
@@ -35,7 +36,8 @@ export class MyService {
     private num: NumberUtils,
     private val: ValidationUtils,
     private id: IdUtils,
-    private cookie: CookieUtils
+    private cookie: CookieUtils,
+    private storage: StorageUtils
   ) { }
   
   myMethod(): void {
@@ -62,6 +64,10 @@ export class MyService {
     
     // Cookie Utils
     this.cookie.set('theme', 'dark', 7);   // Set cookie
+    
+    // Storage Utils
+    this.storage.set('user', { name: 'John' }); // Set to localStorage
+    const user = this.storage.get('user');      // Get from localStorage
   }
 }
 ```
@@ -77,6 +83,7 @@ import { NumberUtils } from 'ts-number-lite';
 import { ValidationUtils } from 'ts-validation-lite';
 import { IdUtils } from 'ts-id-lite';
 import { CookieUtils } from 'ts-cookie-lite';
+import { StorageUtils } from 'ts-storage-lite';
 ```
 
 ## Features
@@ -89,6 +96,7 @@ import { CookieUtils } from 'ts-cookie-lite';
 - **Validation Utils** - isEmail, isUrl, isPhone, isPostalCode, isStrongPassword, isNumeric, isAlpha, isAlphanumeric, isDate, isJSON, isCreditCard
 - **ID Utils** - uuid, nanoid, shortId, snowflake, hash, generateCode, generateToken
 - **Cookie Utils** - set, get, has, delete, clear, all
+- **Storage Utils** - set, get, has, remove, clear (supports localStorage and sessionStorage)
 
 ## License
 
