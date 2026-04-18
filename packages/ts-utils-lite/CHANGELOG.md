@@ -1,5 +1,12 @@
 # ts-utils-lite
 
+## 2.0.30
+
+### Patch Changes
+
+- ### Changes
+  - feat: add ts-storage-lite dependency and integrate StorageUtils into ts-utils-lite
+
 ## 2.0.29
 
 ### Patch Changes
