@@ -48,7 +48,7 @@ import { FormsModule } from '@angular/forms';
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; {{ currentYear }} G8X. All rights reserved.</p>
+          <p>&copy; {{ currentYear }} Gaurang Mody. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -13,10 +13,12 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "LICENSE",
+    "README.md"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.json && terser dist/index.js -o dist/index.js -m -c"
   },
   "keywords": [
     "utils",
@@ -25,7 +27,7 @@
     "helpers",
     "lite"
   ],
-  "author": "G8X",
+  "author": "Gaurang Mody",
   "license": "MIT",
   "repository": {
     "type": "git",
