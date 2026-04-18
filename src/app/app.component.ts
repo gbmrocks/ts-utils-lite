@@ -20,9 +20,6 @@ import { FormsModule } from '@angular/forms';
           <a routerLink="/showcase" routerLinkActive="active">
             <span class="nav-icon">📖</span> How to Use
           </a>
-          <a routerLink="/roadmap" routerLinkActive="active">
-            <span class="nav-icon">🗺️</span> Roadmap
-          </a>
         </div>
         <div class="nav-right">
           <button class="theme-toggle" (click)="toggleTheme()">
