@@ -1,5 +1,22 @@
 # ts-utils-lite
 
+## 2.0.29
+
+### Patch Changes
+
+- ### Changes
+  - fix: update footer copyright name to reflect current branding
+  - feat: add MIT License and update author name in package files
+- Updated dependencies
+  - ts-array-lite@2.0.24
+  - ts-cookie-lite@2.0.20
+  - ts-date-lite@2.0.21
+  - ts-id-lite@2.0.20
+  - ts-number-lite@2.0.20
+  - ts-object-lite@2.0.20
+  - ts-string-lite@2.0.20
+  - ts-validation-lite@2.0.20
+
 ## 2.0.28
 
 ### Patch Changes
