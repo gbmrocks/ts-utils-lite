@@ -1,5 +1,13 @@
 # ts-number-lite
 
+## 2.0.20
+
+### Patch Changes
+
+- ### Changes
+  - fix: update footer copyright name to reflect current branding
+  - feat: add MIT License and update author name in package files
+
 ## 2.0.19
 
 ### Patch Changes

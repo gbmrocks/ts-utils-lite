@@ -1,5 +1,13 @@
 # ts-array-lite
 
+## 2.0.24
+
+### Patch Changes
+
+- ### Changes
+  - fix: update footer copyright name to reflect current branding
+  - feat: add MIT License and update author name in package files
+
 ## 2.0.23
 
 ### Patch Changes
