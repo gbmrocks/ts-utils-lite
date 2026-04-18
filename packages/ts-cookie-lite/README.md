@@ -33,13 +33,13 @@ export class MyService {
 
 | Method | Description | Example |
 |--------|-------------|---------|
-| `set` | Set cookie | `set('theme', 'dark', 7)` |
-| `get` | Get cookie | `get('theme')` → `'dark'` |
-| `has` | Check if exists | `has('theme')` → `true/false` |
-| `delete` | Delete cookie | `delete('theme')` |
+| `set` | Set a cookie | `set('theme', 'dark', 7)` |
+| `get` | Get a cookie value | `get('theme')` → `'dark'` |
+| `has` | Check if cookie exists | `has('theme')` → `true` |
+| `delete` | Delete a cookie | `delete('theme')` |
+| `clear` | Delete all cookies | `clear()` |
+| `all` | Get all cookies as object | `all()` → `{key: value}` |
 
 ## License
 
 MIT
-
-

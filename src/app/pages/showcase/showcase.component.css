@@ -5,7 +5,7 @@ h1 { font-size: 2.5rem; background: var(--gradient); -webkit-background-clip: te
 .tabs button { padding: 0.6rem 1.2rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; color: var(--text-muted); cursor: pointer; transition: all 0.2s; font-weight: 500; }
 .tabs button:hover { background: var(--bg-hover); color: var(--text); }
 .tabs button.active { background: var(--gradient); color: white; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); }
-.demo-panel { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; padding: 2rem; }
+.demo-panel { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; padding: 2rem; margin-bottom: 2rem;}
 .demo h2 { font-size: 1.5rem; color: var(--text); font-weight: 700; margin-bottom: 0.5rem; }
 .demo p { color: var(--text-muted); margin-bottom: 1.5rem; }
 .demo-box { background: var(--bg); border-radius: 14px; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; border: 1px solid var(--border-color); margin-bottom: 1.5rem; }
@@ -14,13 +14,32 @@ h1 { font-size: 2.5rem; background: var(--gradient); -webkit-background-clip: te
 input { padding: 0.75rem 1rem; background: var(--bg-input); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text); }
 input:focus { outline: none; border-color: var(--accent); }
 .btn-group { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-button { padding: 0.75rem 1.5rem; background: var(--gradient); border: none; border-radius: 12px; color: white; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3); }
-.code-section { position: relative; margin-top: 1.5rem; }
-.code-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
-.code-header h3 { color: var(--text); font-size: 1rem; margin: 0; }
-.copy-btn { padding: 0.4rem 0.8rem; font-size: 0.75rem; background: var(--bg-card); border: 1px solid var(--border-color); color: var(--accent); }
-.copy-btn:hover { background: var(--bg-hover); transform: none; box-shadow: none; }
+.btn-group button { padding: 0.6rem 1.2rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text); font-weight: 500; cursor: pointer; transition: all 0.2s; font-size: 0.9rem;}
+.btn-group button:hover { background: var(--gradient); color: white; transform: translateY(-2px); border-color: transparent;}
 .result { padding: 1rem; background: var(--bg); border: 1px solid var(--border-color); border-radius: 10px; color: var(--accent); font-family: monospace; word-break: break-all; }
-.code-section pre { background: var(--bg); border: 1px solid var(--border-color); border-radius: 14px; padding: 1.25rem; overflow-x: auto; margin: 0; }
-.code-section code { display: block; font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace; font-size: 0.875rem; line-height: 1.7; white-space: pre; color: var(--text); }
+
+/* Markdown Styling */
+.readme-section { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; padding: 2rem; }
+.readme-section h3 { color: var(--text); font-size: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); }
+
+::ng-deep .markdown-container { color: var(--text); line-height: 1.6; }
+::ng-deep .markdown-container h1 { font-size: 2rem; margin-top: 0; margin-bottom: 1rem; background: none; -webkit-text-fill-color: var(--text); }
+::ng-deep .markdown-container h2 { font-size: 1.4rem; color: var(--accent); margin: 2rem 0 1rem; font-weight: 700; }
+::ng-deep .markdown-container p { color: var(--text-muted); margin-bottom: 1rem; }
+::ng-deep .markdown-container a img { margin: 0 4px 1rem 0; } /* Badges */
+
+/* Table Styling */
+::ng-deep .markdown-container table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border-color); }
+::ng-deep .markdown-container th { background: var(--bg); color: var(--text); padding: 1rem; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border-color); }
+::ng-deep .markdown-container td { padding: 1rem; border-bottom: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.95rem; }
+::ng-deep .markdown-container tr:last-child td { border-bottom: none; }
+::ng-deep .markdown-container tr:hover td { background: var(--bg-hover); color: var(--text); }
+
+/* Code in README */
+::ng-deep .markdown-container pre { background: var(--bg) !important; border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+::ng-deep .markdown-container code { font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace; font-size: 0.875rem; color: var(--accent-light); }
+::ng-deep .markdown-container pre code { color: var(--text); background: none; padding: 0; }
+
+.quick-copy { margin-top: 1.5rem; display: flex; justify-content: center; }
+.copy-main { padding: 0.8rem 2rem; background: var(--bg-card); border: 1px solid var(--accent); color: var(--accent); border-radius: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.copy-main:hover { background: var(--accent); color: white; }
